@@ -35,6 +35,7 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
+uint16_t tmp = 0;
 /* USER CODE BEGIN 0 */
 /* USER CODE END 0 */
 /* External variables --------------------------------------------------------*/
@@ -50,8 +51,10 @@ extern ADC_HandleTypeDef hadc3;
 */
 void ADC_IRQHandler(void)
 {
+	
+	
   /* USER CODE BEGIN ADC_IRQn 0 */
-	DAC->DHR12RD = ADC3->DR;
+	DAC->DHR12RD = ADC3->DR  ;
 	//DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG1;
   /* USER CODE END ADC_IRQn 0 */
   NVIC_ClearPendingIRQ(ADC_IRQn);
