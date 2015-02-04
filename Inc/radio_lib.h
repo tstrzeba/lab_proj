@@ -473,7 +473,7 @@ unsigned char rfm73_is_present( struct Radio_TypeDef * );
 //! \ingroup highlevel
 //! This function flushes the transmit queue,
 //! and switches the rfm73 to transmit mode.
-void rfm73_mode_transmit( void );
+void rfm73_mode_transmit( struct Radio_TypeDef * );
 
 //! switch the rfm73 to receive mode
 //

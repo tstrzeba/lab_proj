@@ -704,6 +704,31 @@ void rfm73_mode_powerdown( struct Radio_TypeDef * _radioH ){
    rfm73_register_write( _radioH, RFM73_REG_CONFIG, value );
 }
 
+
+
+void rfm73_mode_transmit( struct Radio_TypeDef * _radioH ){
+   unsigned char value;
+   
+   // flush transmit queue
+   rfm73_register_write( _radioH, RFM73_CMD_FLUSH_TX, 0);
+   
+   // clear interrupt status
+   value = rfm73_register_read( _radioH, RFM73_REG_STATUS );
+   rfm73_register_write(  _radioH, RFM73_REG_STATUS ,value );
+   
+   // switch to transmit mode
+   RFM73_CE( _radioH, 0 );
+   value = rfm73_register_read( _radioH, RFM73_REG_CONFIG );
+   value &= 0xFE; // clear RX bit
+   value |= 0x02; // set PWR_UP bit
+   rfm73_register_write( _radioH, RFM73_REG_CONFIG, value );
+   RFM73_CE( _radioH, 1 );
+}
+
+
+
+
+
 void rfm73_channel( struct Radio_TypeDef * _radioH, unsigned char ch ){
   // MSB must be 0
   rfm73_register_write( _radioH, RFM73_REG_RF_CH, ch & 0x7E );
@@ -987,5 +1012,5 @@ void radio_init( struct Radio_TypeDef * _radioH ) {
 	 
 	 
 	 // Enable SPI RX not empty interrpt
-		_radioH->spi_inst->Instance->CR2 |= (SPI_CR2_RXNEIE);
+	 //	_radioH->spi_inst->Instance->CR2 |= (SPI_CR2_RXNEIE);
 }
