@@ -25,8 +25,8 @@ struct Radio_TypeDef {
 	volatile uint8_t status ;
 	R_SPI_HandleTypeDef *spi_inst ;
 	GPIO_TypeDef *A_SPI_gpio_port ;
-	uint8_t A_SPI_CE_pin ;
-	uint8_t A_SPI_CSN_pin ;
+	uint16_t A_SPI_CE_pin ;
+	uint16_t A_SPI_CSN_pin ;
 	
 } ;
 
@@ -412,7 +412,7 @@ typedef unsigned char rfm73_buffer [ RFM73_MAX_PACKET_LEN ];
 //! - use channel 10
 //! - air data rate 1Mbit power 5dbm, LNA gain high
 //! - use some fixed address
-void rfm73_init( void );
+void rfm73_init( struct Radio_TypeDef * );
 
 //! read a single-byte command or register
 //
@@ -823,7 +823,7 @@ unsigned char rfm73_receive(
 	*
 */
 uint8_t rfm73_SPI_RW (	R_SPI_HandleTypeDef *_spiH, uint8_t _data ) ;
-void rfm73_SPI_WO ( R_SPI_HandleTypeDef *_spiH, uint8_t _data ) ;
+
 void rfm73_bank( struct Radio_TypeDef * _radioH, unsigned char b ) ;
 void rfm73_init_bank1( struct Radio_TypeDef * ) ;
 void rfm73_wait_ms( uint32_t );

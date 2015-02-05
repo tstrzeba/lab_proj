@@ -36,6 +36,7 @@
 #include "stm32f4xx_hal.h"
 #include "spi.h"
 #include "gpio.h"
+#include "radio_lib.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -44,7 +45,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -56,13 +56,50 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN 0 */
 
+// Declare Radio_TypeDef structure for each RFM73 module
+struct Radio_TypeDef radio1;
+struct Radio_TypeDef radio2;
+
+
+// SPI hal instances from spi.c
+extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi3;
+
+
+
 /* USER CODE END 0 */
 
 int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	
+	// Main function variables: 
+	uint8_t temp8 ;
+	
+	// for testing:
+	uint8_t pipe, length, r2buff[20];
+	
+	
+	// Define Radio_TypeDef structs for each RFM73 module
+	
+	radio1.spi_inst = &hspi1 ;
+	radio1.A_SPI_CE_pin = MOD1_CE ;
+	radio1.A_SPI_CSN_pin = MOD1_CSN ;
+	radio1.A_SPI_gpio_port = MOD1_ADF_PORT ;
+	radio1.buff_stat = 0 ;
+	radio1.status = 0 ;
+	
+	radio2.spi_inst = &hspi3 ;
+	radio2.A_SPI_CE_pin = MOD2_CE ;
+	radio2.A_SPI_CSN_pin = MOD2_CSN ;
+	radio2.A_SPI_gpio_port = MOD2_ADF_PORT ;
+	radio2.buff_stat = 0 ;
+	radio2.status = 0 ;
+	
+	// End Define Radio_TypeDef struct for each RFM73 module
+	
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -79,16 +116,63 @@ int main(void)
   MX_SPI3_Init();
 
   /* USER CODE BEGIN 2 */
+	
+	// Init radio RFM73 module
+	rfm73_init( &radio1 );
+	rfm73_init( &radio2 );
+  
+	
+	/* USER CODE END 2 */
 
-  /* USER CODE END 2 */
+	
+	// Check that radio RFM73 module is connected
 
-  /* USER CODE BEGIN 3 */
+	if ( rfm73_is_present(&radio1) ) {
+		// turn on led
+		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
+	} else {
+		// turn off led
+		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
+	}
+
+	// Check that radio RFM73 module is connected
+	if ( rfm73_is_present(&radio2) ) {
+		// turn on led
+		GPIO_SET(RED_LED_PORT, RED_LED_PIN);
+	} else {
+		// turn off led
+		GPIO_CLEAR(RED_LED_PORT, RED_LED_PIN);
+	}
+		
+	
+	
+
+	rfm73_mode_transmit(&radio1);
+	rfm73_transmit_message(&radio1, (const unsigned char *)"aabbccyyiiooaakklld", 19);
+	rfm73_mode_receive(&radio1);
+	
+	
+	// Test module2 if are some data to read:
+	temp8 = 0;
+	temp8 = rfm73_register_read(&radio2, RFM73_REG_STATUS);
+	if ( temp8 & (1<<6) )
+		rfm73_receive( &radio2, &pipe, r2buff, &length );
+	
+	// Clear status
+	rfm73_register_write( &radio2, RFM73_REG_STATUS, temp8 ); //clear interrupts in RFM73
+	
+	
   /* Infinite loop */
   while (1)
   {
-
+		/*
+		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
+		rfm73_wait_ms(1000);
+		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
+		rfm73_wait_ms(1000);
+		*/
   }
-  /* USER CODE END 3 */
+
 
 }
 

@@ -44,6 +44,8 @@
 /*----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
 GPIO_InitTypeDef gpio_init_struct ;	//for: CE, CSN, and IRQ pins in RFM73 module
+
+
 /* USER CODE END 1 */
 
 /** Configure pins as 
@@ -58,8 +60,9 @@ void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __GPIOH_CLK_ENABLE();
-  __GPIOA_CLK_ENABLE();
-  __GPIOC_CLK_ENABLE();
+  __GPIOA_CLK_ENABLE();		// For SPI1
+  __GPIOC_CLK_ENABLE();		// For SPI3
+	__GPIOG_CLK_ENABLE(); 	// For LEDs
 
 	
 	/**  RFM73 - others pin configuration - MODULE 1
@@ -78,12 +81,12 @@ void MX_GPIO_Init(void)
 		// PIN IRQ - interrupt
 		gpio_init_struct.Pin = MOD1_IRQ ;
 		gpio_init_struct.Mode = GPIO_MODE_IT_FALLING ;
-		gpio_init_struct.Pull = GPIO_NOPULL ;
-		HAL_GPIO_Init(MOD1_ADF_PORT, &gpio_init_struct );
+		gpio_init_struct.Pull = GPIO_PULLUP ;
+		HAL_GPIO_Init(MOD1_IRQ_PORT, &gpio_init_struct );
 		
 		// Set NVIC for IRQ - SPI1
-		HAL_NVIC_SetPriority(EXTI2_IRQn, 0x0F, 0x00);
-		HAL_NVIC_EnableIRQ(EXTI2_IRQn);
+		HAL_NVIC_SetPriority(EXTI3_IRQn, 0x0F, 0x00);
+		HAL_NVIC_EnableIRQ(EXTI3_IRQn);
 	
 		
 		
@@ -102,16 +105,36 @@ void MX_GPIO_Init(void)
 		// PIN IRQ - interrupt
 		gpio_init_struct.Pin = MOD2_IRQ ;
 		gpio_init_struct.Mode = GPIO_MODE_IT_FALLING ;
-		gpio_init_struct.Pull = GPIO_NOPULL ;
-		HAL_GPIO_Init(MOD2_ADF_PORT, &gpio_init_struct );
+		gpio_init_struct.Pull = GPIO_PULLUP ;
+		HAL_GPIO_Init(MOD2_IRQ_PORT, &gpio_init_struct );
 		
 
 		// Set NVIC for IRQ - SPI3
-		HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0E, 0x00);
-		HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+		HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0x0E, 0x00);
+		HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+		
+		
+		
+		// Init green LED
+		gpio_init_struct.Pin = GREEN_LED_PIN;
+		gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio_init_struct.Pull = GPIO_NOPULL;
+		gpio_init_struct.Speed = GPIO_SPEED_LOW ;
+		HAL_GPIO_Init(GREEN_LED_PORT, &gpio_init_struct);
+		
+		// Init red LED
+		gpio_init_struct.Pin = RED_LED_PIN;
+		gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio_init_struct.Pull = GPIO_NOPULL;
+		gpio_init_struct.Speed = GPIO_SPEED_LOW ;
+		HAL_GPIO_Init(RED_LED_PORT, &gpio_init_struct);
+		
 }
 
 /* USER CODE BEGIN 2 */
+		
+		
+	
 
 /* USER CODE END 2 */
 

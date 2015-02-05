@@ -38,6 +38,14 @@
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
 
+
+// external - global - variables
+
+// structures for radio RFM73 modules:
+extern struct Radio_TypeDef radio1;
+extern struct Radio_TypeDef radio2;
+
+
 /* USER CODE END 0 */
 /* External variables --------------------------------------------------------*/
 
@@ -79,7 +87,7 @@ void RCC_IRQHandler(void)
 * @brief For RFM73 IRQ - MODULE 1 ( connected with SPI1 )
 *
 */
-void EXTI2_IRQHandler( void ) {
+void EXTI3_IRQHandler( void ) {
 	
 	// Check if that was interrupt from MOD1_IRQ pin
 	if(__HAL_GPIO_EXTI_GET_IT(MOD1_IRQ) != RESET)
@@ -97,7 +105,7 @@ void EXTI2_IRQHandler( void ) {
 /**
 *	@brief For RFM73 IRQ - MODULE 2 ( connected with SPI3 )
 */
-void EXTI15_10_IRQHandler( void ) {
+void EXTI9_5_IRQHandler( void ) {
 	
 	// Check if that was interrupt from MOD1_IRQ pin
 	if(__HAL_GPIO_EXTI_GET_IT(MOD2_IRQ) != RESET)

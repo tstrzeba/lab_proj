@@ -61,6 +61,9 @@ void MX_SPI1_Init(void)
   hspi1.Init.TIMode = SPI_TIMODE_DISABLED;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
   HAL_SPI_Init(&hspi1);
+	
+	// Enable module
+	hspi1.Instance->CR1 |= SPI_CR1_SPE ;
 
 }
 /* SPI3 init function */
@@ -79,7 +82,9 @@ void MX_SPI3_Init(void)
   hspi3.Init.TIMode = SPI_TIMODE_DISABLED;
   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
   HAL_SPI_Init(&hspi3);
-
+	
+	// Enable module
+	hspi3.Instance->CR1 |= SPI_CR1_SPE ;
 }
 
 void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
@@ -93,7 +98,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
   /* USER CODE END SPI1_MspInit 0 */
     /* Peripheral clock enable */
     __SPI1_CLK_ENABLE();
-  
+		__GPIOA_CLK_ENABLE();
     /**SPI1 GPIO Configuration    
     PA5     ------> SPI1_SCK
     PA6     ------> SPI1_MISO
@@ -120,6 +125,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
   /* USER CODE END SPI3_MspInit 0 */
     /* Peripheral clock enable */
     __SPI3_CLK_ENABLE();
+		__GPIOA_CLK_ENABLE();
   
     /**SPI3 GPIO Configuration    
     PC10     ------> SPI3_SCK

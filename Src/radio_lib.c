@@ -404,18 +404,18 @@ const unsigned char RX0_Address[]={ 0x34, 0x43, 0x10, 0x10, 0x01 };
 // Set or clear CE pin
 void RFM73_CE( struct Radio_TypeDef *_handler, uint8_t _val ) {
 	if ( _val == 0 ) 
-		_handler->A_SPI_gpio_port->BSRRH |= (1 << _handler->A_SPI_CE_pin ) ;
+		_handler->A_SPI_gpio_port->BSRRH |= _handler->A_SPI_CE_pin ;
 	else 
-		_handler->A_SPI_gpio_port->BSRRL |= (1 << _handler->A_SPI_CE_pin ) ;
+		_handler->A_SPI_gpio_port->BSRRL |= _handler->A_SPI_CE_pin ;
 }
 
 
 // Set or clear CSN pin
 void RFM73_CSN( struct Radio_TypeDef *_handler, uint8_t _val ) {
 	if ( _val == 0 ) 
-		_handler->A_SPI_gpio_port->BSRRH |= (1 << _handler->A_SPI_CSN_pin ) ;
+		_handler->A_SPI_gpio_port->BSRRH |= _handler->A_SPI_CSN_pin ;
 	else 
-		_handler->A_SPI_gpio_port->BSRRL |= (1 << _handler->A_SPI_CSN_pin ) ;
+		_handler->A_SPI_gpio_port->BSRRL |= _handler->A_SPI_CSN_pin ;
 	
 }
 
@@ -440,6 +440,8 @@ uint8_t rfm73_SPI_RW ( R_SPI_HandleTypeDef *_spiH, uint8_t _data ) {
 
 
 // Write only to SPI - don't care about rx buffer
+// Not good idea with that - problem with data mixing occurred
+/*
 void rfm73_SPI_WO ( R_SPI_HandleTypeDef *_spiH, uint8_t _data ) {
 	
 	uint8_t temp ;
@@ -454,7 +456,7 @@ void rfm73_SPI_WO ( R_SPI_HandleTypeDef *_spiH, uint8_t _data ) {
 		temp = (uint8_t)_spiH->Instance->DR ;
 	
 }
-
+*/
 
 
 
@@ -515,10 +517,10 @@ void rfm73_buffer_write(
       reg |= RFM73_CMD_WRITE_REG;      
    }  
    RFM73_CSN( _radioH, 0 );            // Set CSN low, init SPI tranaction
-   rfm73_SPI_WO( _radioH->spi_inst, reg );          // Select register to write tio write
+   rfm73_SPI_RW( _radioH->spi_inst, reg );          // Select register to write tio write
    
 	 for( i = 0; i < length; i++ ){       // write all bytes in buffer(*pBuf)
-      rfm73_SPI_WO( _radioH->spi_inst, pBuf[ i ]);  // write one byte
+      rfm73_SPI_RW( _radioH->spi_inst, pBuf[ i ]);  // write one byte
    }   
 	 
    RFM73_CSN( _radioH, 1 );            // Set CSN high again
@@ -682,9 +684,8 @@ unsigned char rfm73_is_present( struct Radio_TypeDef * _radioH ){
    rfm73_register_write( _radioH, RFM73_CMD_ACTIVATE, 0x53 );
    st2 = rfm73_register_read( _radioH, RFM73_REG_STATUS );
    rfm73_register_write( _radioH, RFM73_CMD_ACTIVATE, 0x53 );
-   return ( st1 ^ st2 ) == 0x80;
+   return (( (st1 & 0x80) ^ (st2 & 0x80) ) == 0x80 );
 }
-
 
 
 
@@ -958,7 +959,7 @@ void rfm73_wait_ms( uint32_t _delay ) {
 }
 
 
-void radio_init( struct Radio_TypeDef * _radioH ) {
+void rfm73_init( struct Radio_TypeDef * _radioH ) {
 	unsigned char i;
    
 	 // Disable SPI RX not empty interrpt
@@ -971,7 +972,7 @@ void radio_init( struct Radio_TypeDef * _radioH ) {
 		
 	 // delay at least 50ms.
    // the example code says so, but why??
-   rfm73_wait_ms( 50 );
+   rfm73_wait_ms( 100 );
 	
 	/*
    RFM73_SCK( 0 );
@@ -1006,10 +1007,9 @@ void radio_init( struct Radio_TypeDef * _radioH ) {
 
    rfm73_init_bank1( _radioH );
 	 
-	 rfm73_wait_ms( 50 ); 
+	 rfm73_wait_ms( 100 ); 
 	 
    rfm73_mode_receive( _radioH );
-	 
 	 
 	 // Enable SPI RX not empty interrpt
 	 //	_radioH->spi_inst->Instance->CR2 |= (SPI_CR2_RXNEIE);
