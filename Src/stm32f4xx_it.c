@@ -132,7 +132,19 @@ void EXTI9_5_IRQHandler( void ) {
 */
 void SPI1_IRQHandler(void) {
 	
+	// Is it RX interrut? 
+	if ( radio1.spi_inst->Instance->SR & SPI_SR_RXNE ) {
 	
+			rfm73_rx_interrupt_handle( &radio1 );
+		
+	}
+	
+	
+	
+	// Is it TX interrupt ? 
+	if ( radio1.spi_inst->Instance->SR & SPI_SR_TXE ) {
+		
+	}
 	
 }
 
@@ -142,37 +154,21 @@ void SPI1_IRQHandler(void) {
 */
 void SPI3_IRQHandler(void) {
 	
-	if ( (radio2.status & RFM73_D_READING_MASK) && 
-			 !(radio2.status & RFM73_D_READY_MASK)
-	) {
+	
+	// Is it RX interrut? 
+	if ( radio2.spi_inst->Instance->SR & SPI_SR_RXNE ) {
+	
+			rfm73_rx_interrupt_handle( &radio2 );
 		
-		// Copy just read data to buffer
-		radio2.buffer[ radio2.buffer_cpos ] = radio2.spi_inst->Instance->DR ;
+	}
+	
+	
+	
+	// Is it TX interrupt ? 
+	if ( radio2.spi_inst->Instance->SR & SPI_SR_TXE ) {
 		
-		radio2.buffer_cpos++ ;
-		
-		// All bytes was read? 
-		if( radio2.buffer_cpos >= radio2.buffer_maxl ) {
-			// Inform main that whole data was read
-			radio2.status |= RFM73_D_READY_MASK ;
-			
-			RFM73_CSN( &radio2, 1 ); 				// End of transmition
-			
-			// Mask source of this interrpt ( disable )
-			radio2.spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
-		}
-		else {
-			// still some bytes are waitng in RFM73 RX FIFO
-			
-			// send infomation to RFM73 to send next byte
-			// wait for empty TX buffer
-			while( !(radio2.spi_inst->Instance->SR & SPI_SR_TXE) ) ;			
-			radio2.spi_inst->Instance->DR = 0;				// received data will triger that interrupt
-			
-		}
-	} 
-	// else option is hard fault?  Could it happen?
-
+	}
+	
 }
 
 

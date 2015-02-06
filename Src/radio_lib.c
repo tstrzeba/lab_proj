@@ -387,7 +387,7 @@ const unsigned char Bank1_Reg14[] = {
 const unsigned char Bank0_Reg[ BANK0_ENTRIES ][ 2 ]={
    {  0, 0x0F }, // receive, enabled, CRC 2, enable interupts
    {  1, 0x3F }, // auto-ack on all pipes enabled
-   {  2, 0x03 }, // Enable pipes 0 and 1
+   {  2, 0x07 }, // Enable pipes 0 and 1 and 2
    {  3, 0x03 }, // 5 bytes addresses
    {  4, 0x27 }, // 0x27- 750us, 7 times | 0xff - auto retransmission delay 4 ms, 15 times
    {  5, 0x0A }, // channel 10
@@ -397,9 +397,12 @@ const unsigned char Bank0_Reg[ BANK0_ENTRIES ][ 2 ]={
    { 23, 0x00 }, // fifo status
 };
 
+
    // default receive address data pipe 0:
    // just a bunch of bytes, nothing magical
 const unsigned char RX0_Address[]={ 0x34, 0x43, 0x10, 0x10, 0x01 };
+const unsigned char RX2_Address[]={ 0x12, 0x43, 0x10, 0x10, 0x01 };
+
 
 // Set or clear CE pin
 void RFM73_CE( struct Radio_TypeDef *_handler, uint8_t _val ) {
@@ -987,6 +990,7 @@ void rfm73_init( struct Radio_TypeDef * _radioH ) {
 
    rfm73_receive_address_p0( _radioH, RX0_Address );
    rfm73_receive_address_p1( _radioH, RX0_Address );
+	 rfm73_receive_address_pn( _radioH, 2, RX2_Address[0] );
    rfm73_transmit_address( _radioH, RX0_Address );
 
    // enable the extra features
@@ -1017,46 +1021,60 @@ void rfm73_init( struct Radio_TypeDef * _radioH ) {
 
 
 
-void rfm73_analyze( struct Radio_TypeDef * _radioH ){
+void _rfm73_analyze( struct Radio_TypeDef * _radioH ){
+	
+	uint8_t clr_int = 0;
+	
 	
 	// clear IRQ flag
 	_radioH->status &= ~(RFM73_IRQ_OCR_MASK) ;
 	
 	// Read status register
 	_radioH->buff_stat = rfm73_register_read( _radioH, RFM73_REG_STATUS );
+
 	
 	
 	// If data was send properly ( and / or was delivered ( Acknowledge mode ) packet to destination )
 	if ( _radioH->buff_stat & (1 << 5 ) ) {
 			// TO DO STH.
+			clr_int |= (1 << 5) ;
 	}
 	
 	// If data was not send properly - maximum retransmiton times reached
 	if ( _radioH->buff_stat & (1 << 4 ) ) {
-			// TO DO STH.
+			
+			__DBG_SEND_CHAR('-');
+			__DBG_SEND_CHAR('M');
+			__DBG_SEND_CHAR('-');
+			clr_int |= (1 << 4) ;
 	}
 	
-	// And clear that flags before next step ( but not clear FIFO flag )
-	rfm73_register_write( _radioH, RFM73_REG_STATUS, 0x30 ); //clear ints
-
 
 	// Any data are waiting in RX FIFO? 
 	if (_radioH->buff_stat & (1 << 6 )) {
 		// if yes - then read them
-		
+
+				
 		if ( !(_radioH->status & RFM73_D_READING_MASK) ){
 				// If there is no active data transfer
 				
 				// Turn off SPI RX interrupt - for precaution
 				_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
 			
+				// clear flags in RFM73 before next step
+				clr_int |= ( 1 << 6 ) ;
+				rfm73_register_write( _radioH, RFM73_REG_STATUS, clr_int ); // clear ints
+				
+			
+				// get pipe number
+				_radioH->pipe = ( _radioH->buff_stat >> 1 ) & 0x07 ;
+			
 				// get length ( B ) of data
 				_radioH->buffer_maxl = rfm73_register_read( _radioH, RFM73_CMD_R_RX_PL_WID );
 				// set buffer[] index to first (0)
 				_radioH->buffer_cpos = 0 ;
-				// get pipe number
-				_radioH->pipe = ( _radioH->buff_stat >> 1 ) & 0x07 ;
-				
+			
+			
 			
 				RFM73_CSN( _radioH, 0 );            				// Set CSN 0 - start data transmition ( the end is in SPI3 IRQ func. )
 				// Select register to write
@@ -1065,21 +1083,112 @@ void rfm73_analyze( struct Radio_TypeDef * _radioH ){
 				// Enable SPI interrupt
 				NVIC_ClearPendingIRQ( _radioH->spi_irqn );
 				_radioH->spi_inst->Instance->CR2 |= SPI_CR2_RXNEIE ;
-							
+					
+				// Set flag that allow SPI interrupt to read data: 
+				_radioH->status |= RFM73_D_READING_MASK ;
+				
 				// send info, that want to read one byte from RFM73
 				while( !(_radioH->spi_inst->Instance->SR & SPI_SR_TXE) ) ;			
 				_radioH->spi_inst->Instance->DR = 0;				// received data will triger proper SPI interrupt
 				
-					
-				// Set flag that allow SPI interrupt to read data: 
-				_radioH->status |= RFM73_D_READING_MASK ;
 		} 
 		else {
-				// there is active data transfer - need to inform main about that
-			// Set RFM73_D_PENDING?
+			// there is active data transfer - need to inform main that new data are waiting in RXFIFO
+			_radioH->status |= RFM73_D_PENDING_MASK ;
 		}
+	} 
+	else {
+		
+		// Clear flags only when there is no active data transfer !!!!
+		if ( !(_radioH->status & RFM73_D_READING_MASK) ) 
+			rfm73_register_write( _radioH, RFM73_REG_STATUS, clr_int ) ;
+		
 	}
 	
 	
 	
 }
+
+
+void rfm73_check( struct Radio_TypeDef * _radioH ) {
+	
+		#ifdef __DBG_ITM
+			uint8_t temp8;
+		#endif
+		
+		// if IRQ interrupt was received
+		/// *******// Probably good idea is to test IRQpin if it has low level ( becouse probably rfm73 can keep low level
+		// when have even one interrupt flag set ( in his status register )
+		if ( (_radioH->status & RFM73_IRQ_OCR_MASK) ) {
+			
+			__DBG_SEND_CHAR('A');
+			
+			// Perform test his status register
+			_rfm73_analyze( _radioH );
+			
+		}
+		
+		
+		
+		// If data from RFM73 module was read properly
+		if ( _radioH->status & RFM73_D_READY_MASK ) {
+
+			// Clear library flags - ready for another data
+			_radioH->status &= ~( RFM73_D_READY_MASK | RFM73_D_READING_MASK );
+			
+			// Clear int. flags in module: 
+			//rfm73_register_write( &radio2, RFM73_REG_STATUS, 0x70 );  //clear ints
+			
+			
+			#ifdef __DBG_ITM
+			for ( temp8 = 0 ; temp8 < _radioH->buffer_maxl ; temp8++ ) 
+				ITM_SendChar( _radioH->buffer[temp8] ) ;
+			#endif
+
+		}
+		
+		
+	
+}
+
+
+
+
+
+void rfm73_rx_interrupt_handle ( struct Radio_TypeDef * _radioH ) {
+	
+	if ( (_radioH->status & RFM73_D_READING_MASK) && 
+			 !(_radioH->status & RFM73_D_READY_MASK)
+		 ) {
+				
+				//__DBG_SEND_CHAR('I');
+				
+				// Copy just read data to buffer
+				_radioH->buffer[ _radioH->buffer_cpos ] = _radioH->spi_inst->Instance->DR ;
+				
+				_radioH->buffer_cpos++ ;
+				
+				// All bytes was read? 
+				if( _radioH->buffer_cpos >= _radioH->buffer_maxl ) {
+					// Inform main that whole data was read
+					_radioH->status |= RFM73_D_READY_MASK ;
+					
+					RFM73_CSN( _radioH, 1 ); 				// End of transmition
+					
+					// Mask source of this interrpt ( disable )
+					_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
+				}
+				else {
+					// still some bytes are waitng in RFM73 RX FIFO
+					
+					// send infomation to RFM73 to send next byte
+					// wait for empty TX buffer
+					while( !(_radioH->spi_inst->Instance->SR & SPI_SR_TXE) ) ;			
+					_radioH->spi_inst->Instance->DR = 0;				// received data will triger that interrupt
+					
+				}
+			} 
+			// else option is hard fault?  Could it happen?
+
+}
+

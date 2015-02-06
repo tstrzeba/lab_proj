@@ -4,6 +4,15 @@
 #include <stdint.h>
 #include <spi.h>
 
+
+// For debug purposes
+#ifdef __DBG_ITM
+#define __DBG_SEND_CHAR(c) ITM_SendChar(c); ITM_SendChar('\n') //do {} while(0) //
+#else
+#define __DBG_SEND_CHAR(c) do {} while(0)
+#endif
+
+
 /** 
 * @brief This structue contain whole necessary variables in one place
 * 
@@ -837,8 +846,6 @@ unsigned char rfm73_receive(
 
 
 	 
-
-	 
 /*
 	Additional functions
 */	 
@@ -857,10 +864,25 @@ void RFM73_CSN (struct Radio_TypeDef * , uint8_t ) ;
 void RFM73_CE( struct Radio_TypeDef * , uint8_t  ) ;
 
 /**
+*	@brief	Analzying request from RFM73 when IRQ interrupt set RFM73_IRQ_OCR bit
+*
+*/
+void _rfm73_analyze( struct Radio_TypeDef * ) ;
+
+/**
 *		That functions need to be called form main - it stearing whole 
 * 	data flow from RFM73 to MCU
 */
-void rfm73_analyze( struct Radio_TypeDef * ) ;
+
+void rfm73_check( struct Radio_TypeDef * ) ;
+
+/** 
+*		That function must be called in SPI interrupt - when RX data must be handled
+* 	
+* 	All bytes will be save to buffer in Radio_TypeDef  structure in non bocking way
+*/
+void rfm73_rx_interrupt_handle ( struct Radio_TypeDef * ) ;
+
 
 
 #endif

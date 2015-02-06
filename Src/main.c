@@ -91,6 +91,9 @@ int main(void)
 	uint8_t pipe, length, r2buff[20];
 	uint32_t coreclock ;
 	
+	const unsigned char RX0_AddressT[]={ 0x34, 0x43, 0x10, 0x10, 0x01 };
+	const unsigned char RX2_AddressT[]={ 0x12, 0x43, 0x10, 0x10, 0x01 };
+	
 	// Define Radio_TypeDef structs for each RFM73 module
 	
 	radio1.spi_inst = &hspi1 ;
@@ -156,24 +159,33 @@ int main(void)
 		GPIO_CLEAR(RED_LED_PORT, RED_LED_PIN);
 	}
 		
-	
-	
 
-	rfm73_mode_transmit(&radio1);
-	rfm73_transmit_message(&radio1, (const unsigned char *)"aabbccyyiiooaakklld", 19);
-	rfm73_mode_receive(&radio1);
+
+		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
+		rfm73_receive_address_p0(&radio1, RX2_AddressT ) ;
+		
+		rfm73_mode_transmit( &radio1 ) ;
+		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P21", 13);
+		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P22", 13);
+		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P23", 13);
+		rfm73_mode_receive( &radio1 );
 	
 	
-	// Test module2 if are some data to read:
 	/*
-	temp8 = 0;
-	temp8 = rfm73_register_read(&radio2, RFM73_REG_STATUS);
-	if ( temp8 & (1<<6) )
-		rfm73_receive( &radio2, &pipe, r2buff, &length );
-	
-	// Clear status
-	rfm73_register_write( &radio2, RFM73_REG_STATUS, temp8 ); //clear interrupts in RFM73
+		rfm73_transmit_address( &radio2, RX0_AddressT ) ;
+		rfm73_receive_address_p0(&radio2, RX0_AddressT ) ;
+		rfm73_mode_transmit(&radio2);
+		rfm73_transmit_message(&radio2, (const unsigned char *)"2TRANSMIT_P01", 13);
+		rfm73_mode_receive(&radio2);
 	*/
+		
+		
+
+	
+	//	rfm73_wait_ms(1) ;
+
+
+	
 	
 	/*
 	SystemCoreClockUpdate();
@@ -193,32 +205,12 @@ int main(void)
 		*/
 		
 		
-		// if IRQ interrupt was received
-		/// *******// Probably good idea is to test IRQpin if it has low level ( becouse probably rfm73 can keep low level
-		// when have even one interrupt flag set ( in his status register )
-		if ( (radio2.status & RFM73_IRQ_OCR_MASK) ) {
-			
-			// Perform test his status register
-			rfm73_analyze( &radio2 );
-			
-		}
+		// Check status rfm73 module
+		rfm73_check( &radio2 ) ;
 		
+		// Check status rfm73 module
+		rfm73_check( &radio1 ) ;
 		
-		// if data from RFM73 module was read properly
-		if ( radio2.status & RFM73_D_READY_MASK ) {
-			
-		#ifdef __DBG_ITM
-			for ( temp8 = 0 ; temp8 <= radio2.buffer_maxl ; temp8++ ) 
-				ITM_SendChar( radio2.buffer[temp8] ) ;
-		#endif
-			
-			// Clear library flags - ready for another data
-			radio2.status &= ~( RFM73_D_READY_MASK | RFM73_D_READING_MASK );
-			
-			// Clear int. flags in module: 
-			rfm73_register_write( &radio2, RFM73_REG_STATUS, 0x70 );  //clear ints
-			
-		}
 		
   }
 
