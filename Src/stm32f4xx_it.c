@@ -36,6 +36,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
 #include "gpio.h"
+#include "radio_lib.h"
 /* USER CODE BEGIN 0 */
 
 
@@ -94,8 +95,8 @@ void EXTI3_IRQHandler( void ) {
   {
     __HAL_GPIO_EXTI_CLEAR_IT(MOD1_IRQ);		// Clear INTERRUPT
 		
-		// TO DO STH. 
-		// ************
+		// Inform main program that RFM73 module 1 has something to say: 
+		radio1.status |= RFM73_IRQ_OCR_MASK ;
   }
 
 }
@@ -112,11 +113,69 @@ void EXTI9_5_IRQHandler( void ) {
   {
     __HAL_GPIO_EXTI_CLEAR_IT(MOD2_IRQ);		// Clear INTERRUPT
 		
-		// TO DO STH. 
-		// ************
+		
+		// Inform main program that RFM73 module 2 has something to say: 
+		radio2.status |= RFM73_IRQ_OCR_MASK ;
+		
   }
 	
 }
+
+
+
+
+
+
+
+/** 
+* @brief For RFM73 IRQ - MODULE 1 SPI - interrupt
+*/
+void SPI1_IRQHandler(void) {
+	
+	
+	
+}
+
+
+/** 
+* @brief For RFM73 IRQ - MODULE 2 SPI - interrupt
+*/
+void SPI3_IRQHandler(void) {
+	
+	if ( (radio2.status & RFM73_D_READING_MASK) && 
+			 !(radio2.status & RFM73_D_READY_MASK)
+	) {
+		
+		// Copy just read data to buffer
+		radio2.buffer[ radio2.buffer_cpos ] = radio2.spi_inst->Instance->DR ;
+		
+		radio2.buffer_cpos++ ;
+		
+		// All bytes was read? 
+		if( radio2.buffer_cpos >= radio2.buffer_maxl ) {
+			// Inform main that whole data was read
+			radio2.status |= RFM73_D_READY_MASK ;
+			
+			RFM73_CSN( &radio2, 1 ); 				// End of transmition
+			
+			// Mask source of this interrpt ( disable )
+			radio2.spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
+		}
+		else {
+			// still some bytes are waitng in RFM73 RX FIFO
+			
+			// send infomation to RFM73 to send next byte
+			// wait for empty TX buffer
+			while( !(radio2.spi_inst->Instance->SR & SPI_SR_TXE) ) ;			
+			radio2.spi_inst->Instance->DR = 0;				// received data will triger that interrupt
+			
+		}
+	} 
+	// else option is hard fault?  Could it happen?
+
+}
+
+
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

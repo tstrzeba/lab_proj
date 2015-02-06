@@ -38,6 +38,9 @@
 #include "gpio.h"
 #include "radio_lib.h"
 
+#ifdef __DBG_ITM
+#include "stdio.h"
+#endif
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -46,6 +49,13 @@
 
 /* USER CODE BEGIN PV */
 /* USER CODE END PV */
+
+#ifdef __DBG_ITM
+	// For debuging option
+	int fputc(int c, FILE *f) {
+		return(	ITM_SendChar(c));
+	}
+#endif
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -79,11 +89,12 @@ int main(void)
 	
 	// for testing:
 	uint8_t pipe, length, r2buff[20];
-	
+	uint32_t coreclock ;
 	
 	// Define Radio_TypeDef structs for each RFM73 module
 	
 	radio1.spi_inst = &hspi1 ;
+	radio1.spi_irqn = SPI1_IRQn ;
 	radio1.A_SPI_CE_pin = MOD1_CE ;
 	radio1.A_SPI_CSN_pin = MOD1_CSN ;
 	radio1.A_SPI_gpio_port = MOD1_ADF_PORT ;
@@ -91,6 +102,7 @@ int main(void)
 	radio1.status = 0 ;
 	
 	radio2.spi_inst = &hspi3 ;
+	radio2.spi_irqn = SPI3_IRQn ;
 	radio2.A_SPI_CE_pin = MOD2_CE ;
 	radio2.A_SPI_CSN_pin = MOD2_CSN ;
 	radio2.A_SPI_gpio_port = MOD2_ADF_PORT ;
@@ -153,6 +165,7 @@ int main(void)
 	
 	
 	// Test module2 if are some data to read:
+	/*
 	temp8 = 0;
 	temp8 = rfm73_register_read(&radio2, RFM73_REG_STATUS);
 	if ( temp8 & (1<<6) )
@@ -160,6 +173,13 @@ int main(void)
 	
 	// Clear status
 	rfm73_register_write( &radio2, RFM73_REG_STATUS, temp8 ); //clear interrupts in RFM73
+	*/
+	
+	/*
+	SystemCoreClockUpdate();
+	coreclock = SystemCoreClock;
+	printf("CoreClock: %i", coreclock);
+	*/
 	
 	
   /* Infinite loop */
@@ -171,6 +191,35 @@ int main(void)
 		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
 		rfm73_wait_ms(1000);
 		*/
+		
+		
+		// if IRQ interrupt was received
+		/// *******// Probably good idea is to test IRQpin if it has low level ( becouse probably rfm73 can keep low level
+		// when have even one interrupt flag set ( in his status register )
+		if ( (radio2.status & RFM73_IRQ_OCR_MASK) ) {
+			
+			// Perform test his status register
+			rfm73_analyze( &radio2 );
+			
+		}
+		
+		
+		// if data from RFM73 module was read properly
+		if ( radio2.status & RFM73_D_READY_MASK ) {
+			
+		#ifdef __DBG_ITM
+			for ( temp8 = 0 ; temp8 <= radio2.buffer_maxl ; temp8++ ) 
+				ITM_SendChar( radio2.buffer[temp8] ) ;
+		#endif
+			
+			// Clear library flags - ready for another data
+			radio2.status &= ~( RFM73_D_READY_MASK | RFM73_D_READING_MASK );
+			
+			// Clear int. flags in module: 
+			rfm73_register_write( &radio2, RFM73_REG_STATUS, 0x70 );  //clear ints
+			
+		}
+		
   }
 
 

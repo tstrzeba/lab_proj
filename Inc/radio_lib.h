@@ -16,19 +16,44 @@
 */ 
 
 typedef SPI_HandleTypeDef R_SPI_HandleTypeDef ;	// For future purposes ( if HAL will not be using anymore )
-#define R_BUFF_SIZE 8	// Size of data form one packiet received from radio module
+typedef uint8_t stat_TypeDef ;								  // If 8 bits will be not enough
+#define R_BUFF_SIZE 32	// Size of data form one packiet received from radio module ( max is 32 )
 
 struct Radio_TypeDef {
 	
-	volatile uint8_t buffer[R_BUFF_SIZE] ;
-	volatile uint8_t buff_stat ;
-	volatile uint8_t status ;
-	R_SPI_HandleTypeDef *spi_inst ;
-	GPIO_TypeDef *A_SPI_gpio_port ;
-	uint16_t A_SPI_CE_pin ;
-	uint16_t A_SPI_CSN_pin ;
+	volatile uint8_t buffer[R_BUFF_SIZE] ;			// Bytes form RFM73 - data - not status register
+	volatile uint8_t pipe	;											// Pipe number - data in buffer[] come from that pipe
+	volatile uint8_t buffer_maxl ;							// How many data RFM73 has in RX FIFO
+	volatile uint8_t buffer_cpos ;							// How many bytes was just read from RFM73
+	volatile uint8_t buff_stat ;								// RFM73 Status register
+	volatile stat_TypeDef status ;							// Status register for library function
+	R_SPI_HandleTypeDef *spi_inst ;							// HAL SPI structure
+	IRQn_Type spi_irqn ;													// SPI IRQ number
+	GPIO_TypeDef *A_SPI_gpio_port ;							// PORT where Additional pins CE and CSN are connected
+	uint16_t A_SPI_CE_pin ;											// CE pin mask
+	uint16_t A_SPI_CSN_pin ;										// CSN pin mask
 	
 } ;
+
+
+/** 
+* @brief Bits description in status variable in struct Radio_TypeDef
+* RFM73_IRQ_OCR_BIT is set by IRQ falling interrupt - inform main that RFM73 module has someting to say
+* RFM73_D_READING_BIT is set by main and it indicates that data are reading form RFM73 module
+* RFM73_D_READY_BIT is set when all bytes from RFM73 module had been read
+* RFM73_D_PENDING_BIT is set when data are reading from RFM73 and another data are available to read
+*/
+#define RFM73_IRQ_OCR_BIT 0
+#define RFM73_IRQ_OCR_MASK (stat_TypeDef)( 1 << RFM73_IRQ_OCR_BIT )
+
+#define RFM73_D_READING_BIT 1
+#define RFM73_D_READING_MASK (stat_TypeDef)( 1 << RFM73_D_READING_BIT )
+
+#define RFM73_D_READY_BIT 2
+#define RFM73_D_READY_MASK (stat_TypeDef)( 1 << RFM73_D_READY_BIT )
+
+#define RFM73_D_PENDING_BIT 3
+#define RFM73_D_PENDING_MASK (stat_TypeDef)( 1 << RFM73_D_PENDING_BIT )
 
 
 
@@ -827,6 +852,15 @@ uint8_t rfm73_SPI_RW (	R_SPI_HandleTypeDef *_spiH, uint8_t _data ) ;
 void rfm73_bank( struct Radio_TypeDef * _radioH, unsigned char b ) ;
 void rfm73_init_bank1( struct Radio_TypeDef * ) ;
 void rfm73_wait_ms( uint32_t );
-	 
+
+void RFM73_CSN (struct Radio_TypeDef * , uint8_t ) ;
+void RFM73_CE( struct Radio_TypeDef * , uint8_t  ) ;
+
+/**
+*		That functions need to be called form main - it stearing whole 
+* 	data flow from RFM73 to MCU
+*/
+void rfm73_analyze( struct Radio_TypeDef * ) ;
+
 
 #endif

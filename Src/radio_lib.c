@@ -389,9 +389,9 @@ const unsigned char Bank0_Reg[ BANK0_ENTRIES ][ 2 ]={
    {  1, 0x3F }, // auto-ack on all pipes enabled
    {  2, 0x03 }, // Enable pipes 0 and 1
    {  3, 0x03 }, // 5 bytes addresses
-   {  4, 0xff }, // auto retransmission delay 4000 ms, 15 times
+   {  4, 0x27 }, // 0x27- 750us, 7 times | 0xff - auto retransmission delay 4 ms, 15 times
    {  5, 0x0A }, // channel 10
-   {  6 ,0x07 }, // data rate 1Mbit, power 5dbm, LNA gain high
+   {  6 ,0x2F }, // 2MBit, power TX 5dBm, LNA gain high - 0x27 | 0x07 - data rate 1Mbit, power 5dbm, LNA gain high
    {  7, 0x07 }, // why write this at all?? but seems required to work...
    {  8, 0x00 }, // clear Tx packet counters
    { 23, 0x00 }, // fifo status
@@ -1013,4 +1013,73 @@ void rfm73_init( struct Radio_TypeDef * _radioH ) {
 	 
 	 // Enable SPI RX not empty interrpt
 	 //	_radioH->spi_inst->Instance->CR2 |= (SPI_CR2_RXNEIE);
+}
+
+
+
+void rfm73_analyze( struct Radio_TypeDef * _radioH ){
+	
+	// clear IRQ flag
+	_radioH->status &= ~(RFM73_IRQ_OCR_MASK) ;
+	
+	// Read status register
+	_radioH->buff_stat = rfm73_register_read( _radioH, RFM73_REG_STATUS );
+	
+	
+	// If data was send properly ( and / or was delivered ( Acknowledge mode ) packet to destination )
+	if ( _radioH->buff_stat & (1 << 5 ) ) {
+			// TO DO STH.
+	}
+	
+	// If data was not send properly - maximum retransmiton times reached
+	if ( _radioH->buff_stat & (1 << 4 ) ) {
+			// TO DO STH.
+	}
+	
+	// And clear that flags before next step ( but not clear FIFO flag )
+	rfm73_register_write( _radioH, RFM73_REG_STATUS, 0x30 ); //clear ints
+
+
+	// Any data are waiting in RX FIFO? 
+	if (_radioH->buff_stat & (1 << 6 )) {
+		// if yes - then read them
+		
+		if ( !(_radioH->status & RFM73_D_READING_MASK) ){
+				// If there is no active data transfer
+				
+				// Turn off SPI RX interrupt - for precaution
+				_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
+			
+				// get length ( B ) of data
+				_radioH->buffer_maxl = rfm73_register_read( _radioH, RFM73_CMD_R_RX_PL_WID );
+				// set buffer[] index to first (0)
+				_radioH->buffer_cpos = 0 ;
+				// get pipe number
+				_radioH->pipe = ( _radioH->buff_stat >> 1 ) & 0x07 ;
+				
+			
+				RFM73_CSN( _radioH, 0 );            				// Set CSN 0 - start data transmition ( the end is in SPI3 IRQ func. )
+				// Select register to write
+				(void)rfm73_SPI_RW( _radioH->spi_inst, RFM73_CMD_R_RX_PAYLOAD );         
+				
+				// Enable SPI interrupt
+				NVIC_ClearPendingIRQ( _radioH->spi_irqn );
+				_radioH->spi_inst->Instance->CR2 |= SPI_CR2_RXNEIE ;
+							
+				// send info, that want to read one byte from RFM73
+				while( !(_radioH->spi_inst->Instance->SR & SPI_SR_TXE) ) ;			
+				_radioH->spi_inst->Instance->DR = 0;				// received data will triger proper SPI interrupt
+				
+					
+				// Set flag that allow SPI interrupt to read data: 
+				_radioH->status |= RFM73_D_READING_MASK ;
+		} 
+		else {
+				// there is active data transfer - need to inform main about that
+			// Set RFM73_D_PENDING?
+		}
+	}
+	
+	
+	
 }

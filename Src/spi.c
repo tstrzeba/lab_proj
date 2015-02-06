@@ -64,6 +64,12 @@ void MX_SPI1_Init(void)
 	
 	// Enable module
 	hspi1.Instance->CR1 |= SPI_CR1_SPE ;
+	
+	// Enable NVIC interrupt 
+	NVIC_ClearPendingIRQ( SPI1_IRQn ) ;
+	NVIC_EnableIRQ( SPI1_IRQn ) ;
+	NVIC_SetPriority( SPI1_IRQn, 0x0D ) ;
+	
 
 }
 /* SPI3 init function */
@@ -85,6 +91,12 @@ void MX_SPI3_Init(void)
 	
 	// Enable module
 	hspi3.Instance->CR1 |= SPI_CR1_SPE ;
+	
+	// Enable NVIC 
+	NVIC_ClearPendingIRQ( SPI3_IRQn ) ;
+	NVIC_EnableIRQ( SPI3_IRQn ) ;
+	NVIC_SetPriority( SPI3_IRQn, 0x0C ) ;
+	
 }
 
 void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
