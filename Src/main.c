@@ -37,6 +37,7 @@
 #include "spi.h"
 #include "gpio.h"
 #include "radio_lib.h"
+#include "rfm73_callbacks.h"
 
 #ifdef __DBG_ITM
 #include "stdio.h"
@@ -107,6 +108,9 @@ int main(void)
 	radio1.tx_buff_size = 0 ;
 	radio1.buff_stat = 0 ;
 	radio1.status = 0 ;
+	radio1._data_ready_handler = &data_ready_callback ;
+	radio1._max_retransmission_handler = &cant_send_callback ;
+	radio1._packet_sent_handler = &packet_sent_callback ;
 	
 	radio2.spi_inst = &hspi3 ;
 	radio2.spi_irqn = SPI3_IRQn ;
@@ -119,6 +123,9 @@ int main(void)
 	radio2.tx_buff_size = 0 ;
 	radio2.buff_stat = 0 ;
 	radio2.status = 0 ;
+	radio2._data_ready_handler = &data_ready_callback ;
+	radio2._max_retransmission_handler = &cant_send_callback ;
+	radio2._packet_sent_handler = &packet_sent_callback ;
 	
 	// End Define Radio_TypeDef struct for each RFM73 module
 	
@@ -169,6 +176,7 @@ int main(void)
 		
 
 
+		//rfm73_mode_standby( &radio2 );
 	
 		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
 		rfm73_set_Tpipe( &radio1, RX2_AddressT );

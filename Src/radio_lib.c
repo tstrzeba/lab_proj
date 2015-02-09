@@ -1036,18 +1036,26 @@ void _rfm73_analyze( struct Radio_TypeDef * _radioH ) {
 	
 	// If data was send properly ( and / or was delivered ( Acknowledge mode ) packet to destination )
 	if ( _radioH->buff_stat & (1 << 5 ) ) {
-			// TO DO STH.
-			clr_int |= (1 << 5) ;
+		
+		clr_int |= (1 << 5) ;		
+		
+		// Call user function to handle that situation: 
+		(* _radioH->_packet_sent_handler )( _radioH ) ;
 	}
 	
 	// If data was not send properly - maximum retransmiton times reached
 	if ( _radioH->buff_stat & (1 << 4 ) ) {
 			
-			__DBG_SEND_CHAR('-');
-			__DBG_SEND_CHAR('M');
-			__DBG_SEND_CHAR('-');
-			
 			clr_int |= (1 << 4) ;
+		
+			// Is needed to flush the TX FIFO because it will be trying to send it an infinite number of times
+			// So user function should return != 0 to flush TX fifo
+			// Call user function to handle that sytuation:	
+			switch( (*_radioH->_max_retransmission_handler)( _radioH ) ){
+				case 0:  break ;
+				default: rfm73_register_write( _radioH, RFM73_CMD_FLUSH_TX, 0);
+								 break ;
+			}
 	}
 	
 
@@ -1130,7 +1138,7 @@ void rfm73_check( struct Radio_TypeDef * _radioH ) {
 			
 			//__DBG_SEND_CHAR('A');
 			
-			// Perform test his status register
+			// Test module status register
 			_rfm73_analyze( _radioH );
 			
 		}
@@ -1143,12 +1151,8 @@ void rfm73_check( struct Radio_TypeDef * _radioH ) {
 			// Clear library flags - ready for another data
 			_radioH->status &= ~( RFM73_D_READY_MASK | RFM73_D_READING_MASK );
 			
-			
-			#ifdef __DBG_ITM
-			for ( temp8 = 0 ; temp8 < _radioH->buffer_maxl ; temp8++ ) 
-				ITM_SendChar( _radioH->buffer[temp8] ) ;
-			#endif
-
+			// Call user function to handle that situation
+			(* _radioH->_data_ready_handler)( _radioH ) ;
 		}
 		
 		

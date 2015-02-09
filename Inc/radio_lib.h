@@ -46,6 +46,14 @@ struct Radio_TypeDef {
 	volatile uint8_t buff_stat ;								// RFM73 Status register
 	volatile stat_TypeDef status ;							// Status register for library function
 	
+	// Pointers to user callback functions to handle:
+	// - max. retransmissions - receiver didn't get packet:
+	uint8_t (*_max_retransmission_handler)( struct Radio_TypeDef * ) ;
+	// - packet was send properly - receiver got packet:
+	void (*_packet_sent_handler)( struct Radio_TypeDef * ) ;
+	// - data ready to read:
+	void (*_data_ready_handler)( struct Radio_TypeDef *) ;
+	
 	R_SPI_HandleTypeDef *spi_inst ;							// HAL SPI structure
 	IRQn_Type spi_irqn ;												// SPI IRQ number
 	
