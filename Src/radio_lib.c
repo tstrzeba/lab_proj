@@ -1021,7 +1021,7 @@ void rfm73_init( struct Radio_TypeDef * _radioH ) {
 
 
 
-void _rfm73_analyze( struct Radio_TypeDef * _radioH ){
+void _rfm73_analyze( struct Radio_TypeDef * _radioH ) {
 	
 	uint8_t clr_int = 0;
 	
@@ -1030,7 +1030,7 @@ void _rfm73_analyze( struct Radio_TypeDef * _radioH ){
 	_radioH->status &= ~(RFM73_IRQ_OCR_MASK) ;
 	
 	// Read status register
-	_radioH->buff_stat = rfm73_register_read( _radioH, RFM73_REG_STATUS );
+	clr_int = _radioH->buff_stat = rfm73_register_read( _radioH, RFM73_REG_STATUS ) ;
 
 	
 	
@@ -1046,6 +1046,7 @@ void _rfm73_analyze( struct Radio_TypeDef * _radioH ){
 			__DBG_SEND_CHAR('-');
 			__DBG_SEND_CHAR('M');
 			__DBG_SEND_CHAR('-');
+			
 			clr_int |= (1 << 4) ;
 	}
 	
@@ -1117,11 +1118,17 @@ void rfm73_check( struct Radio_TypeDef * _radioH ) {
 		#endif
 		
 		// if IRQ interrupt was received
-		/// *******// Probably good idea is to test IRQpin if it has low level ( becouse probably rfm73 can keep low level
+		/// *******// Probably good idea is to test IRQpin if it has low level ( because probably rfm73 can keep low level
 		// when have even one interrupt flag set ( in his status register )
-		if ( (_radioH->status & RFM73_IRQ_OCR_MASK) ) {
+	
+	/*
+	|| 
+				 !(_radioH->A_IRQ_gpio_port->IDR & _radioH->A_SPI_IRQ_pin) 
+	*/
+		if ( (_radioH->status & RFM73_IRQ_OCR_MASK) 
+			 ) {
 			
-			__DBG_SEND_CHAR('A');
+			//__DBG_SEND_CHAR('A');
 			
 			// Perform test his status register
 			_rfm73_analyze( _radioH );
@@ -1135,9 +1142,6 @@ void rfm73_check( struct Radio_TypeDef * _radioH ) {
 
 			// Clear library flags - ready for another data
 			_radioH->status &= ~( RFM73_D_READY_MASK | RFM73_D_READING_MASK );
-			
-			// Clear int. flags in module: 
-			//rfm73_register_write( &radio2, RFM73_REG_STATUS, 0x70 );  //clear ints
 			
 			
 			#ifdef __DBG_ITM
@@ -1175,8 +1179,9 @@ void rfm73_rx_interrupt_handle ( struct Radio_TypeDef * _radioH ) {
 					
 					RFM73_CSN( _radioH, 1 ); 				// End of transmition
 					
-					// Mask source of this interrpt ( disable )
+					// Mask source of this interrupt ( disable )
 					_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
+					
 				}
 				else {
 					// still some bytes are waitng in RFM73 RX FIFO
@@ -1192,3 +1197,128 @@ void rfm73_rx_interrupt_handle ( struct Radio_TypeDef * _radioH ) {
 
 }
 
+
+
+
+
+
+
+
+void rfm73_set_Tpipe (
+	struct Radio_TypeDef * _radioH, 
+	const uint8_t * const _pipe_addr
+	) {
+		
+		rfm73_transmit_address( _radioH, _pipe_addr ) ;
+		rfm73_receive_address_p0( _radioH, _pipe_addr ) ;
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+// Does not work!
+
+/*
+
+void rfm73_tx_interrupt_handle ( struct Radio_TypeDef * _radioH ) {
+	
+	_radioH->tx_buff_cpos++ ;
+	
+	// Transmit next byte:
+	_radioH->spi_inst->Instance->DR = (uint16_t)_radioH->tx_buffer[ _radioH->tx_buff_cpos ] ;
+	
+	
+	if ( _radioH->tx_buff_cpos >= _radioH->tx_buff_size ) {
+		// All bytes were transmitted to module
+		
+		// Release buffer
+		_radioH->tx_buffer = NULL ;
+		_radioH->tx_buff_size = _radioH->tx_buff_cpos = 0 ;
+		
+		// Disable SPI TX empty interrupt trigger
+		_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_TXEIE) ;
+		
+		// Clear flag in status 
+		_radioH->status &= ~(RFM73_SPI_SENDING_MASK) ;
+		
+		// Inform module about end of SPI communication
+		RFM73_CSN( _radioH, 1 ) ;
+		
+	}
+	
+}
+*/
+
+
+
+
+
+
+
+// Does not work
+/*
+uint8_t rfm73_init_sendingNB(
+	struct Radio_TypeDef * _radioH, 
+	uint8_t * const _buff,
+	uint8_t _buff_size,
+	const uint8_t * const _pipe_addr
+	) {
+	
+	if ( !(_radioH->status & RFM73_SPI_SENDING_MASK) && 
+			 (_buff_size <= PACKET_MAX_BUFF_SIZE) &&
+			 (_buff_size > 0)
+	) {
+		
+		// Set the address for transmiter
+		rfm73_transmit_address( _radioH, (unsigned char *)_pipe_addr ) ;
+		// Set the same address for ACK function
+		rfm73_receive_address_p0( _radioH, (unsigned char *)_pipe_addr ) ;
+		
+			
+		// Disable SPI RX NotEmpty interrupt 
+		_radioH->spi_inst->Instance->CR2 &= ~(SPI_CR2_RXNEIE) ;
+		
+		rfm73_mode_transmit( _radioH ) ;
+			
+		// Prepare structure before sending data to RFM73 module
+		_radioH->tx_buffer = _buff ;
+		_radioH->tx_buff_size = _buff_size ;
+		_radioH->tx_buff_cpos = 0 ;
+		
+		// Inform module about SPI communication - data will send
+		RFM73_CSN( _radioH, 0 ) ;
+	
+		// Select proper register in RFM73 module
+		rfm73_SPI_RW( _radioH->spi_inst, RFM73_CMD_W_TX_PAYLOAD ) ;
+		
+		// Clear old IRQ
+		NVIC_ClearPendingIRQ(_radioH->spi_irqn);
+		
+		// Send first byte from buffer:
+		while( !(_radioH->spi_inst->Instance->SR & SPI_SR_TXE) ) ;		
+		
+		_radioH->spi_inst->Instance->DR = (uint16_t)_radioH->tx_buffer[0] ;
+		
+		// Set status in module structure
+		_radioH->status |= RFM73_SPI_SENDING_MASK ;
+		
+		// Enable SPI TX empty interrupt trigger
+		_radioH->spi_inst->Instance->CR2 |= SPI_CR2_TXEIE ;
+		
+		return 0 ;
+		
+	} else {
+		// Busy or length is grather than should be
+		return 1 ;
+	}
+	
+}
+*/

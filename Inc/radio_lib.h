@@ -4,6 +4,10 @@
 #include <stdint.h>
 #include <spi.h>
 
+// It should be defined in project-name header not here in rfm73 library header
+#define PACKET_MAX_BUFF_SIZE 30				// Bytes
+#define PACKET_ADDRES_SIZE 5					// Bytes
+
 
 // For debug purposes
 #ifdef __DBG_ITM
@@ -30,17 +34,27 @@ typedef uint8_t stat_TypeDef ;								  // If 8 bits will be not enough
 
 struct Radio_TypeDef {
 	
-	volatile uint8_t buffer[R_BUFF_SIZE] ;			// Bytes form RFM73 - data - not status register
-	volatile uint8_t pipe	;											// Pipe number - data in buffer[] come from that pipe
+	volatile uint8_t buffer[R_BUFF_SIZE] ;			// Bytes from RFM73 - data - not status register
 	volatile uint8_t buffer_maxl ;							// How many data RFM73 has in RX FIFO
 	volatile uint8_t buffer_cpos ;							// How many bytes was just read from RFM73
+	
+	volatile uint8_t * volatile tx_buffer ;			// Pointer to table which contain data to send
+	volatile uint8_t tx_buff_size ;							// Size of table pointed by tx_buffer
+	volatile uint8_t tx_buff_cpos ;							// Point to position in tx_buffer
+	
+	volatile uint8_t pipe	;											// Pipe number - data in buffer[] come from that pipe
 	volatile uint8_t buff_stat ;								// RFM73 Status register
 	volatile stat_TypeDef status ;							// Status register for library function
+	
 	R_SPI_HandleTypeDef *spi_inst ;							// HAL SPI structure
-	IRQn_Type spi_irqn ;													// SPI IRQ number
+	IRQn_Type spi_irqn ;												// SPI IRQ number
+	
 	GPIO_TypeDef *A_SPI_gpio_port ;							// PORT where Additional pins CE and CSN are connected
 	uint16_t A_SPI_CE_pin ;											// CE pin mask
 	uint16_t A_SPI_CSN_pin ;										// CSN pin mask
+	
+	GPIO_TypeDef *A_IRQ_gpio_port ;							// PORT where IRQ pin is conected
+	uint16_t A_SPI_IRQ_pin ;										// IRQ pin mask
 	
 } ;
 
@@ -64,7 +78,8 @@ struct Radio_TypeDef {
 #define RFM73_D_PENDING_BIT 3
 #define RFM73_D_PENDING_MASK (stat_TypeDef)( 1 << RFM73_D_PENDING_BIT )
 
-
+#define RFM73_SPI_SENDING_BIT 4
+#define RFM73_SPI_SENDING_MASK (stat_TypeDef)( 1 << RFM73_SPI_SENDING_BIT )
 
 //***************************************************************************//
 //
@@ -877,12 +892,52 @@ void _rfm73_analyze( struct Radio_TypeDef * ) ;
 void rfm73_check( struct Radio_TypeDef * ) ;
 
 /** 
-*		That function must be called in SPI interrupt - when RX data must be handled
+*		@brief That function must be called in SPI interrupt - when RX data must be handled
 * 	
 * 	All bytes will be save to buffer in Radio_TypeDef  structure in non bocking way
 */
 void rfm73_rx_interrupt_handle ( struct Radio_TypeDef * ) ;
 
 
+
+/**
+*		@brief It is using for setting transmission pipe 
+* 	
+* 	Call this function once before sending data. 
+* 	Also uou need to call rfm73_mode_transmit() once before sending data.
+*/
+
+void rfm73_set_Tpipe (
+	struct Radio_TypeDef * _radioH, 
+	const uint8_t * const _pipe_addr
+	) ;
+
+
+/** 
+*   DOES NOT WORK PROPERLY FOR NOW
+*		@brief That function must be called in SPI interrupt - when TX data must be handled
+* 	
+* 	This function is connected with rfm73_init_sendingNB()
+*/
+//void rfm73_tx_interrupt_handle ( struct Radio_TypeDef * ) ;
+
+
+
+
+/**
+* 	DOES NOT WORK PROPERLY FOR NOW
+* 	@brief Initialize non blocking sending data by SPI to RFM73 module
+* 	
+*/
+
+
+/*
+uint8_t rfm73_init_sendingNB(
+	struct Radio_TypeDef * _radioH, 
+	uint8_t * const _buff,
+	uint8_t _buff_size,
+	const uint8_t * const _pipe_addr
+);
+*/
 
 #endif

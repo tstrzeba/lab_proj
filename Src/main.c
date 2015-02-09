@@ -101,6 +101,10 @@ int main(void)
 	radio1.A_SPI_CE_pin = MOD1_CE ;
 	radio1.A_SPI_CSN_pin = MOD1_CSN ;
 	radio1.A_SPI_gpio_port = MOD1_ADF_PORT ;
+	radio1.A_IRQ_gpio_port = MOD1_IRQ_PORT ;
+	radio1.A_SPI_IRQ_pin = MOD1_IRQ ;
+	radio1.tx_buffer = NULL ;
+	radio1.tx_buff_size = 0 ;
 	radio1.buff_stat = 0 ;
 	radio1.status = 0 ;
 	
@@ -109,6 +113,10 @@ int main(void)
 	radio2.A_SPI_CE_pin = MOD2_CE ;
 	radio2.A_SPI_CSN_pin = MOD2_CSN ;
 	radio2.A_SPI_gpio_port = MOD2_ADF_PORT ;
+	radio2.A_IRQ_gpio_port = MOD2_IRQ_PORT ;
+	radio2.A_SPI_IRQ_pin = MOD2_IRQ ;
+	radio2.tx_buffer = NULL ;
+	radio2.tx_buff_size = 0 ;
 	radio2.buff_stat = 0 ;
 	radio2.status = 0 ;
 	
@@ -161,31 +169,43 @@ int main(void)
 		
 
 
+	
+		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
+		rfm73_set_Tpipe( &radio1, RX2_AddressT );
+	
+		rfm73_mode_transmit( &radio1 ) ;
+	
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+	
+		/*
 		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
-		rfm73_receive_address_p0(&radio1, RX2_AddressT ) ;
+		rfm73_receive_address_p0( &radio1, RX2_AddressT ) ;
 		
 		rfm73_mode_transmit( &radio1 ) ;
-		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P21", 13);
-		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P22", 13);
-		rfm73_transmit_message(&radio1, (const unsigned char *)"1TRANSMIT_P23", 13);
-		rfm73_mode_receive( &radio1 );
+		rfm73_transmit_message(&radio1, r2buff, 6);
+		rfm73_transmit_message(&radio1, r2buff, 6);
+		rfm73_transmit_message(&radio1, r2buff, 6);
+		*/
+	//	rfm73_mode_receive( &radio1 );
+		
 	
 	
-	/*
-		rfm73_transmit_address( &radio2, RX0_AddressT ) ;
-		rfm73_receive_address_p0(&radio2, RX0_AddressT ) ;
+		
+		/*
+		rfm73_transmit_address( &radio2, RX2_AddressT ) ;
+		rfm73_receive_address_p0(&radio2, RX2_AddressT ) ;
 		rfm73_mode_transmit(&radio2);
-		rfm73_transmit_message(&radio2, (const unsigned char *)"2TRANSMIT_P01", 13);
+		rfm73_transmit_message(&radio2, (const unsigned char *)r2buff, 5);
 		rfm73_mode_receive(&radio2);
-	*/
+		*/
 		
 		
-
-	
-	//	rfm73_wait_ms(1) ;
-
-
-	
+	//	rfm73_init_sendingNB( &radio1, r2buff, 6, RX2_AddressT ) ;
+		
+		//rfm73_wait_ms(1) ;
+		//rfm73_mode_receive(&radio1);
 	
 	/*
 	SystemCoreClockUpdate();
@@ -204,13 +224,12 @@ int main(void)
 		rfm73_wait_ms(1000);
 		*/
 		
-		
-		// Check status rfm73 module
-		rfm73_check( &radio2 ) ;
-		
 		// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
 		
+		
+		// Check status rfm73 module
+		rfm73_check( &radio2 ) ;
 		
   }
 

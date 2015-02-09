@@ -133,17 +133,23 @@ void EXTI9_5_IRQHandler( void ) {
 void SPI1_IRQHandler(void) {
 	
 	// Is it RX interrut? 
-	if ( radio1.spi_inst->Instance->SR & SPI_SR_RXNE ) {
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_RXNE) &&
+			 (radio1.status & RFM73_D_READING_MASK)
+	) {
 	
 			rfm73_rx_interrupt_handle( &radio1 );
-		
+	
 	}
 	
 	
 	
 	// Is it TX interrupt ? 
-	if ( radio1.spi_inst->Instance->SR & SPI_SR_TXE ) {
-		
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_TXE) && 
+			 (radio1.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
+			 (radio1.status & RFM73_SPI_SENDING_MASK)
+		)
+	{
+				//rfm73_tx_interrupt_handle( &radio1 ) ;
 	}
 	
 }
@@ -156,8 +162,9 @@ void SPI3_IRQHandler(void) {
 	
 	
 	// Is it RX interrut? 
-	if ( radio2.spi_inst->Instance->SR & SPI_SR_RXNE ) {
-	
+	if ( (radio2.spi_inst->Instance->SR & SPI_SR_RXNE) &&
+			 (radio2.status & RFM73_D_READING_MASK)
+	) {
 			rfm73_rx_interrupt_handle( &radio2 );
 		
 	}
@@ -165,8 +172,12 @@ void SPI3_IRQHandler(void) {
 	
 	
 	// Is it TX interrupt ? 
-	if ( radio2.spi_inst->Instance->SR & SPI_SR_TXE ) {
-		
+	if ( (radio2.spi_inst->Instance->SR & SPI_SR_TXE) && 
+			 (radio2.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
+			 (radio2.status & RFM73_SPI_SENDING_MASK)
+		)
+	{
+		//	rfm73_tx_interrupt_handle( &radio2 ) ;
 	}
 	
 }

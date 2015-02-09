@@ -1,0 +1,27 @@
+--cpu Cortex-M4.fp
+"laboratorium_projektowe_kod configuration\main.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_msp.o"
+"laboratorium_projektowe_kod configuration\gpio.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_it.o"
+"laboratorium_projektowe_kod configuration\spi.o"
+"laboratorium_projektowe_kod configuration\radio_lib.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_spi.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_cortex.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_rcc_ex.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_flash_ex.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_flash_ramfunc.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_gpio.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_pwr.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_flash.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_rcc.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma_ex.o"
+"laboratorium_projektowe_kod configuration\stm32f4xx_hal_pwr_ex.o"
+"laboratorium_projektowe_kod configuration\system_stm32f4xx.o"
+"laboratorium_projektowe_kod configuration\startup_stm32f429xx.o"
+--library_type=microlib --strict --scatter "Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.sct"
+
+--diag_suppress=L6329 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "Laboratorium_projektowe_kod Configuration.map" -o "Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf"
