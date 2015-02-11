@@ -38,6 +38,10 @@
 #include "gpio.h"
 #include "radio_lib.h"
 #include "rfm73_callbacks.h"
+#include "system_status.h"
+
+#include "sys_connect.h"
+
 
 #ifdef __DBG_ITM
 #include "stdio.h"
@@ -67,6 +71,10 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN 0 */
 
+// Declare SYSTEM structure - contain system state information ( e.g. connected / not connected )
+struct SysStat_TypeDef system ;
+	
+	
 // Declare Radio_TypeDef structure for each RFM73 module
 struct Radio_TypeDef radio1;
 struct Radio_TypeDef radio2;
@@ -77,6 +85,10 @@ extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi3;
 
 
+// RFM73 pipes address
+extern const unsigned char RX0_Address[] ;
+extern const unsigned char RX1_Address[] ;
+extern const unsigned char RX2_Address[] ;
 
 /* USER CODE END 0 */
 
@@ -91,9 +103,9 @@ int main(void)
 	// for testing:
 	uint8_t pipe, length, r2buff[20];
 	uint32_t coreclock ;
-	
-	const unsigned char RX0_AddressT[]={ 0x34, 0x43, 0x10, 0x10, 0x01 };
-	const unsigned char RX2_AddressT[]={ 0x12, 0x43, 0x10, 0x10, 0x01 };
+
+	// Define SYSTEM STATUS
+	system.conn_status = 0 ;
 	
 	// Define Radio_TypeDef structs for each RFM73 module
 	
@@ -108,9 +120,15 @@ int main(void)
 	radio1.tx_buff_size = 0 ;
 	radio1.buff_stat = 0 ;
 	radio1.status = 0 ;
-	radio1._data_ready_handler = &data_ready_callback ;
-	radio1._max_retransmission_handler = &cant_send_callback ;
-	radio1._packet_sent_handler = &packet_sent_callback ;
+	radio1._data_ready_handler = &disc_rcv_data_callback ;
+	radio1._max_retransmission_handler = &disc_cant_send_callback ;
+	radio1._packet_sent_handler = &disc_packet_sent_callback ;
+	/*
+	_radioH->_data_ready_handler = &data_ready_callback ;
+	_radioH->_max_retransmission_handler = &cant_send_callback ;
+	_radioH->_packet_sent_handler = &packet_sent_callback ;
+	*/
+	
 	
 	radio2.spi_inst = &hspi3 ;
 	radio2.spi_irqn = SPI3_IRQn ;
@@ -123,9 +141,9 @@ int main(void)
 	radio2.tx_buff_size = 0 ;
 	radio2.buff_stat = 0 ;
 	radio2.status = 0 ;
-	radio2._data_ready_handler = &data_ready_callback ;
-	radio2._max_retransmission_handler = &cant_send_callback ;
-	radio2._packet_sent_handler = &packet_sent_callback ;
+	radio2._data_ready_handler = &disc_rcv_data_callback ;
+	radio2._max_retransmission_handler = &disc_cant_send_callback ;
+	radio2._packet_sent_handler = &disc_packet_sent_callback ;
 	
 	// End Define Radio_TypeDef struct for each RFM73 module
 	
@@ -156,7 +174,7 @@ int main(void)
 
 	
 	// Check that radio RFM73 module is connected
-
+	/*
 	if ( rfm73_is_present(&radio1) ) {
 		// turn on led
 		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
@@ -173,47 +191,31 @@ int main(void)
 		// turn off led
 		GPIO_CLEAR(RED_LED_PORT, RED_LED_PIN);
 	}
-		
+	*/
 
 
 		//rfm73_mode_standby( &radio2 );
 	
+	/*
 		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
-		rfm73_set_Tpipe( &radio1, RX2_AddressT );
-	
+		
+		rfm73_set_Tpipe( &radio1, RX2_Address );
 		rfm73_mode_transmit( &radio1 ) ;
 	
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
-	
+	*/
 		/*
 		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
 		rfm73_receive_address_p0( &radio1, RX2_AddressT ) ;
 		
 		rfm73_mode_transmit( &radio1 ) ;
-		rfm73_transmit_message(&radio1, r2buff, 6);
-		rfm73_transmit_message(&radio1, r2buff, 6);
-		rfm73_transmit_message(&radio1, r2buff, 6);
 		*/
 	//	rfm73_mode_receive( &radio1 );
 		
-	
-	
-		
-		/*
-		rfm73_transmit_address( &radio2, RX2_AddressT ) ;
-		rfm73_receive_address_p0(&radio2, RX2_AddressT ) ;
-		rfm73_mode_transmit(&radio2);
-		rfm73_transmit_message(&radio2, (const unsigned char *)r2buff, 5);
-		rfm73_mode_receive(&radio2);
-		*/
-		
-		
 	//	rfm73_init_sendingNB( &radio1, r2buff, 6, RX2_AddressT ) ;
 		
-		//rfm73_wait_ms(1) ;
-		//rfm73_mode_receive(&radio1);
 	
 	/*
 	SystemCoreClockUpdate();
@@ -221,26 +223,59 @@ int main(void)
 	printf("CoreClock: %i", coreclock);
 	*/
 	
-	
-  /* Infinite loop */
-  while (1)
-  {
-		/*
+	/*
 		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
 		rfm73_wait_ms(1000);
 		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
 		rfm73_wait_ms(1000);
 		*/
-		
+	
+  /* Infinite loop */
+  while (1)
+  {
+				
 		// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
 		
 		
 		// Check status rfm73 module
 		rfm73_check( &radio2 ) ;
+			
+			
+			
+		// Perform connection procedure - master mode:
+		if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_SET) &&
+				!(system.conn_status & SYSTEM_CONNECTED_MASK)
+			 ) {
+			
+				 // Is need to disable interrupts?
+				if( try_connect(&radio1, RX1_Address, RX2_Address) == RET_M_CONNECTED )
+					coreclock = HAL_GetTick() ;	// for sending testing message
+					
+				
+		} 
+		// Perform disconnection procedure only in master mode:
+		else if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_RESET) &&
+							(system.conn_status & SYSTEM_CONNECTED_MASK) && 
+							(system.conn_status & SYSTEM_MASTER_MODE_MASK )
+						) { 
+			// Is need to disable interrupts?
+			master_disconnect_main( &radio1, RX1_Address ) ;
+		}
 		
-  }
-
+		
+	/** Send one message after 2s since estabilished connection **/
+	if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
+				(system.conn_status & SYSTEM_CONNECTED_MASK)
+		 ) {
+			 
+			 coreclock = HAL_GetTick() ; // reset timer
+			 rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
+	}
+		
+		
+	}
+	
 
 }
 
@@ -299,6 +334,21 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 
 #endif
+
+/*
+		// Connected in master (transmitter) mode 
+		if ( (system.conn_status & SYSTEM_CONNECTED_MASK) && 
+				 (system.conn_status & SYSTEM_MASTER_MODE_MASK)
+			 ) {}
+		// Connected in slave (receiver) mode 
+		else if ( (system.conn_status & SYSTEM_CONNECTED_MASK) && 
+							!(system.conn_status & SYSTEM_MASTER_MODE_MASK)
+						){ }
+		// Not connected - idle
+		else 
+		{		}
+		*/
+
 
 /**
   * @}

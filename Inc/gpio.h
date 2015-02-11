@@ -76,6 +76,12 @@
 #define RED_LED_PIN GPIO_PIN_14
 #define RED_LED_PORT GPIOG
 
+
+// For User switch:
+#define BLUE_SW_PIN GPIO_PIN_0
+#define BLUE_SW_PORT GPIOA
+
+
 void MX_GPIO_Init(void);
 #ifdef __cplusplus
 }

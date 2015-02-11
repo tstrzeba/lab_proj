@@ -438,6 +438,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\Src\radio_lib.c</FilePath>
             </File>
+            <File>
+              <FileName>rfm73_callbacks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Src\rfm73_callbacks.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

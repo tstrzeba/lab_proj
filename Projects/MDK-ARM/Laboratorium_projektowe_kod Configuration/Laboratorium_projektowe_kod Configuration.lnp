@@ -6,6 +6,7 @@
 "laboratorium_projektowe_kod configuration\spi.o"
 "laboratorium_projektowe_kod configuration\radio_lib.o"
 "laboratorium_projektowe_kod configuration\rfm73_callbacks.o"
+"laboratorium_projektowe_kod configuration\sys_connect.o"
 "laboratorium_projektowe_kod configuration\stm32f4xx_hal_spi.o"
 "laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o"
 "laboratorium_projektowe_kod configuration\stm32f4xx_hal_cortex.o"

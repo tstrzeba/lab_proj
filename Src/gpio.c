@@ -60,8 +60,8 @@ void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __GPIOH_CLK_ENABLE();
-  __GPIOA_CLK_ENABLE();		// For SPI1
-  __GPIOC_CLK_ENABLE();		// For SPI3
+  __GPIOA_CLK_ENABLE();		// For SPI1 and other RFM73 pins
+  __GPIOC_CLK_ENABLE();		// For SPI3 and other RFM73 pins
 	__GPIOG_CLK_ENABLE(); 	// For LEDs
 
 	
@@ -128,6 +128,15 @@ void MX_GPIO_Init(void)
 		gpio_init_struct.Pull = GPIO_NOPULL;
 		gpio_init_struct.Speed = GPIO_SPEED_LOW ;
 		HAL_GPIO_Init(RED_LED_PORT, &gpio_init_struct);
+		
+		
+		
+		// User button - hardware pulled-down - active when HIGH
+		gpio_init_struct.Pin = BLUE_SW_PIN;
+		gpio_init_struct.Mode = GPIO_MODE_INPUT;
+		gpio_init_struct.Pull = GPIO_NOPULL;
+		HAL_GPIO_Init(BLUE_SW_PORT, &gpio_init_struct);
+		
 		
 }
 

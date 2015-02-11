@@ -400,8 +400,9 @@ const unsigned char Bank0_Reg[ BANK0_ENTRIES ][ 2 ]={
 
    // default receive address data pipe 0:
    // just a bunch of bytes, nothing magical
-const unsigned char RX0_Address[]={ 0x34, 0x43, 0x10, 0x10, 0x01 };
-const unsigned char RX2_Address[]={ 0x12, 0x43, 0x10, 0x10, 0x01 };
+const unsigned char RX0_Address[]={ 0x04, 0x43, 0x10, 0x10, 0x01 };
+const unsigned char RX1_Address[]={ 0x15, 0x43, 0x10, 0x10, 0x01 };
+const unsigned char RX2_Address[]={ 0x26, 0x43, 0x10, 0x10, 0x01 };
 
 
 // Set or clear CE pin
@@ -989,9 +990,9 @@ void rfm73_init( struct Radio_TypeDef * _radioH ) {
    }
 
    rfm73_receive_address_p0( _radioH, RX0_Address );
-   rfm73_receive_address_p1( _radioH, RX0_Address );
+   rfm73_receive_address_p1( _radioH, RX1_Address );
 	 rfm73_receive_address_pn( _radioH, 2, RX2_Address[0] );
-   rfm73_transmit_address( _radioH, RX0_Address );
+   rfm73_transmit_address( _radioH, RX1_Address );
 
    // enable the extra features
    i = rfm73_register_read( _radioH, 29);
@@ -1121,10 +1122,6 @@ void _rfm73_analyze( struct Radio_TypeDef * _radioH ) {
 
 void rfm73_check( struct Radio_TypeDef * _radioH ) {
 	
-		#ifdef __DBG_ITM
-			uint8_t temp8;
-		#endif
-		
 		// if IRQ interrupt was received
 		/// *******// Probably good idea is to test IRQpin if it has low level ( because probably rfm73 can keep low level
 		// when have even one interrupt flag set ( in his status register )

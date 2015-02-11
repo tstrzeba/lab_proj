@@ -47,7 +47,7 @@ struct Radio_TypeDef {
 	volatile stat_TypeDef status ;							// Status register for library function
 	
 	// Pointers to user callback functions to handle:
-	// - max. retransmissions - receiver didn't get packet:
+	// - max. retransmissions - receiver didn't get packet:  ( return non-zero value to FLUSH TX buffer )
 	uint8_t (*_max_retransmission_handler)( struct Radio_TypeDef * ) ;
 	// - packet was send properly - receiver got packet:
 	void (*_packet_sent_handler)( struct Radio_TypeDef * ) ;

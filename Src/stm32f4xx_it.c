@@ -37,6 +37,8 @@
 #include "stm32f4xx_it.h"
 #include "gpio.h"
 #include "radio_lib.h"
+#include "sys_connect.h"
+
 /* USER CODE BEGIN 0 */
 
 
