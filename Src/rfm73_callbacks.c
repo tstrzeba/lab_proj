@@ -60,7 +60,11 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 		} 
 		// Valid data
 		else {
-			//**** Place here not too long functions to handle received data ****//
+			/* *** Place here not too long functions to handle received data
+						 Otherwise you should set proper flag and handle your function
+						 in main. This function shouldn't be to long because the incoming
+						 data could be missed.
+			*** */
 			
 			#ifdef __DBG_ITM
 			
