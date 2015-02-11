@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * File Name          : stm32f4xx_hal_msp.c
-  * Date               : 23/01/2015 21:38:53
+  * Date               : 24/01/2015 00:31:18
   * Description        : This file provides code for the MSP Initialization 
   *                      and de-Initialization codes.
   ******************************************************************************
@@ -48,17 +48,23 @@ void HAL_MspInit(void)
 
   /* USER CODE END MspInit 0 */
 
-  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_0);
+  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
 
   /* System interrupt init*/
 /* SysTick_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+/* RCC_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(RCC_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(RCC_IRQn);
 
   /* USER CODE BEGIN MspInit 1 */
 
   /* USER CODE END MspInit 1 */
 }
 
+/* USER CODE BEGIN 1 */
+
+/* USER CODE END 1 */
 void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 {
 
@@ -115,59 +121,6 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 
 }
 
-void HAL_DAC_MspInit(DAC_HandleTypeDef* hdac)
-{
-
-  GPIO_InitTypeDef GPIO_InitStruct;
-  if(hdac->Instance==DAC)
-  {
-  /* USER CODE BEGIN DAC_MspInit 0 */
-
-  /* USER CODE END DAC_MspInit 0 */
-    /* Peripheral clock enable */
-    __DAC_CLK_ENABLE();
-  
-    /**DAC GPIO Configuration    
-    PA4     ------> DAC_OUT1 
-    */
-    GPIO_InitStruct.Pin = GPIO_PIN_4;
-    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN DAC_MspInit 1 */
-
-  /* USER CODE END DAC_MspInit 1 */
-  }
-
-}
-
-void HAL_DAC_MspDeInit(DAC_HandleTypeDef* hdac)
-{
-
-  if(hdac->Instance==DAC)
-  {
-  /* USER CODE BEGIN DAC_MspDeInit 0 */
-
-  /* USER CODE END DAC_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __DAC_CLK_DISABLE();
-  
-    /**DAC GPIO Configuration    
-    PA4     ------> DAC_OUT1 
-    */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_4);
-
-  /* USER CODE BEGIN DAC_MspDeInit 1 */
-
-  /* USER CODE END DAC_MspDeInit 1 */
-  }
-
-}
-
-/* USER CODE BEGIN 1 */
-
-/* USER CODE END 1 */
 
 /**
   * @}

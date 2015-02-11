@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * File Name          : main.c
-  * Date               : 23/01/2015 21:38:53
+  * Date               : 24/01/2015 00:31:19
   * Description        : Main program body
   ******************************************************************************
   *
@@ -34,25 +34,36 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "spi.h"
+#include "gpio.h"
+#include "radio_lib.h"
+#include "rfm73_callbacks.h"
+#include "system_status.h"
+#include "adc.h"
+#include "sys_connect.h"
 
+
+#ifdef __DBG_ITM
+#include "stdio.h"
+#endif
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc3;
-
-DAC_HandleTypeDef hdac;
 
 /* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
+
+#ifdef __DBG_ITM
+	// For debuging option
+	int fputc(int c, FILE *f) {
+		return(	ITM_SendChar(c));
+	}
+#endif
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_ADC3_Init(void);
-static void MX_DAC_Init(void);
 
 /* USER CODE BEGIN PFP */
 
@@ -60,13 +71,83 @@ static void MX_DAC_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+// Declare SYSTEM structure - contain system state information ( e.g. connected / not connected )
+struct SysStat_TypeDef system ;
+	
+	
+// Declare Radio_TypeDef structure for each RFM73 module
+struct Radio_TypeDef radio1;
+struct Radio_TypeDef radio2;
+
+
+// SPI hal instances from spi.c
+extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi3;
+extern ADC_HandleTypeDef hadc3;
+
+// RFM73 pipes address
+extern const unsigned char RX0_Address[] ;
+extern const unsigned char RX1_Address[] ;
+extern const unsigned char RX2_Address[] ;
+
 /* USER CODE END 0 */
 
 int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	
+	// Main function variables: 
+	uint8_t temp8 ;
+	
+	// for testing:
+	uint8_t pipe, length, r2buff[20];
+	uint32_t coreclock ;
 
+	// Define SYSTEM STATUS
+	system.conn_status = 0 ;
+	
+	// Define Radio_TypeDef structs for each RFM73 module
+	
+	radio1.spi_inst = &hspi1 ;
+	radio1.spi_irqn = SPI1_IRQn ;
+	radio1.A_SPI_CE_pin = MOD1_CE ;
+	radio1.A_SPI_CSN_pin = MOD1_CSN ;
+	radio1.A_SPI_gpio_port = MOD1_ADF_PORT ;
+	radio1.A_IRQ_gpio_port = MOD1_IRQ_PORT ;
+	radio1.A_SPI_IRQ_pin = MOD1_IRQ ;
+	radio1.tx_buffer = NULL ;
+	radio1.tx_buff_size = 0 ;
+	radio1.buff_stat = 0 ;
+	radio1.status = 0 ;
+	radio1._data_ready_handler = &disc_rcv_data_callback ;
+	radio1._max_retransmission_handler = &disc_cant_send_callback ;
+	radio1._packet_sent_handler = &disc_packet_sent_callback ;
+	/*
+	_radioH->_data_ready_handler = &data_ready_callback ;
+	_radioH->_max_retransmission_handler = &cant_send_callback ;
+	_radioH->_packet_sent_handler = &packet_sent_callback ;
+	*/
+	
+	
+	radio2.spi_inst = &hspi3 ;
+	radio2.spi_irqn = SPI3_IRQn ;
+	radio2.A_SPI_CE_pin = MOD2_CE ;
+	radio2.A_SPI_CSN_pin = MOD2_CSN ;
+	radio2.A_SPI_gpio_port = MOD2_ADF_PORT ;
+	radio2.A_IRQ_gpio_port = MOD2_IRQ_PORT ;
+	radio2.A_SPI_IRQ_pin = MOD2_IRQ ;
+	radio2.tx_buffer = NULL ;
+	radio2.tx_buff_size = 0 ;
+	radio2.buff_stat = 0 ;
+	radio2.status = 0 ;
+	radio2._data_ready_handler = &disc_rcv_data_callback ;
+	radio2._max_retransmission_handler = &disc_cant_send_callback ;
+	radio2._packet_sent_handler = &disc_packet_sent_callback ;
+	
+	// End Define Radio_TypeDef struct for each RFM73 module
+	
+	
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -79,20 +160,122 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_SPI1_Init();
+  MX_SPI3_Init();
   MX_ADC3_Init();
-  MX_DAC_Init();
-
   /* USER CODE BEGIN 2 */
+	
+	// Init radio RFM73 module
+	rfm73_init( &radio1 );
+	rfm73_init( &radio2 );
+  
+	
+	/* USER CODE END 2 */
 
-  /* USER CODE END 2 */
+	
+	// Check that radio RFM73 module is connected
+	/*
+	if ( rfm73_is_present(&radio1) ) {
+		// turn on led
+		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
+	} else {
+		// turn off led
+		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
+	}
 
-  /* USER CODE BEGIN 3 */
+	// Check that radio RFM73 module is connected
+	if ( rfm73_is_present(&radio2) ) {
+		// turn on led
+		GPIO_SET(RED_LED_PORT, RED_LED_PIN);
+	} else {
+		// turn off led
+		GPIO_CLEAR(RED_LED_PORT, RED_LED_PIN);
+	}
+	*/
+
+
+		//rfm73_mode_standby( &radio2 );
+	
+	/*
+		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
+		
+		rfm73_set_Tpipe( &radio1, RX2_Address );
+		rfm73_mode_transmit( &radio1 ) ;
+	
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
+	*/
+		/*
+		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
+		rfm73_receive_address_p0( &radio1, RX2_AddressT ) ;
+		
+		rfm73_mode_transmit( &radio1 ) ;
+		*/
+	//	rfm73_mode_receive( &radio1 );
+		
+	//	rfm73_init_sendingNB( &radio1, r2buff, 6, RX2_AddressT ) ;
+		
+	
+	/*
+	SystemCoreClockUpdate();
+	coreclock = SystemCoreClock;
+	printf("CoreClock: %i", coreclock);
+	*/
+	
+	/*
+		GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
+		rfm73_wait_ms(1000);
+		GPIO_CLEAR(GREEN_LED_PORT, GREEN_LED_PIN);
+		rfm73_wait_ms(1000);
+		*/
+	
   /* Infinite loop */
   while (1)
   {
-
-  }
-  /* USER CODE END 3 */
+			adc_ON();
+		// Check status rfm73 module
+		rfm73_check( &radio1 ) ;
+		
+		
+		// Check status rfm73 module
+		rfm73_check( &radio2 ) ;
+			
+			
+			
+		// Perform connection procedure - master mode:
+		if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_SET) &&
+				!(system.conn_status & SYSTEM_CONNECTED_MASK)
+			 ) {
+			
+				 // Is need to disable interrupts?
+				if( try_connect(&radio1, RX1_Address, RX2_Address) == RET_M_CONNECTED )
+					coreclock = HAL_GetTick() ;	// for sending testing message
+					
+				
+		} 
+		// Perform disconnection procedure only in master mode:
+		else if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_RESET) &&
+							(system.conn_status & SYSTEM_CONNECTED_MASK) && 
+							(system.conn_status & SYSTEM_MASTER_MODE_MASK )
+						) { 
+			// Is need to disable interrupts?
+			master_disconnect_main( &radio1, RX1_Address ) ;
+		}
+		
+		
+	/** Send one message after 2s since estabilished connection **/
+	if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
+				(system.conn_status & SYSTEM_CONNECTED_MASK)
+		 ) {
+			 
+			 coreclock = HAL_GetTick() ; // reset timer
+			 rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
+	}
+		
+		adc_OFF();
+	}
+	
 
 }
 
@@ -106,93 +289,25 @@ void SystemClock_Config(void)
 
   __PWR_CLK_ENABLE();
 
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLN = 240;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK|RCC_CLOCKTYPE_PCLK1
                               |RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV64;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV16;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV8;
-  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
-
-}
-
-/* ADC3 init function */
-void MX_ADC3_Init(void)
-{
-
-  ADC_ChannelConfTypeDef sConfig;
-
-    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
-    */
-  hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
-  hadc3.Init.Resolution = ADC_RESOLUTION12b;
-  hadc3.Init.ScanConvMode = DISABLE;
-  hadc3.Init.ContinuousConvMode = ENABLE;
-  hadc3.Init.DiscontinuousConvMode = DISABLE;
-  hadc3.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc3.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc3.Init.NbrOfConversion = 1;
-  hadc3.Init.DMAContinuousRequests = DISABLE;
-  //shadc3.Init.EOCSelection = EOC_SEQ_CONV;
-  HAL_ADC_Init(&hadc3);
-
-    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
-    */
-  sConfig.Channel = ADC_CHANNEL_4;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_15CYCLES;
-  HAL_ADC_ConfigChannel(&hadc3, &sConfig);
-	ADC3->CR1 |= ADC_CR1_EOCIE;
-	ADC3->CR2 |= ADC_CR2_ADON;						// wlacz adc
-	ADC3->CR2 |= ADC_CR2_SWSTART;					// start konwersji
-}
-
-/* DAC init function */
-void MX_DAC_Init(void)
-{
-
-  DAC_ChannelConfTypeDef sConfig;
-
-    /**DAC Initialization 
-    */
-  hdac.Instance = DAC;
-  HAL_DAC_Init(&hdac);
-
-    /**DAC channel OUT1 config 
-    */
-  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_DISABLE;
-  HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1);
-	DAC->CR |= DAC_CR_EN1;
-}
-
-/** Configure pins as 
-        * Analog 
-        * Input 
-        * Output
-        * EVENT_OUT
-        * EXTI
-*/
-void MX_GPIO_Init(void)
-{
-
-  /* GPIO Ports Clock Enable */
-  __GPIOF_CLK_ENABLE();
-  __GPIOH_CLK_ENABLE();
-  __GPIOA_CLK_ENABLE();
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3);
 
 }
 
@@ -219,6 +334,21 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 
 #endif
+
+/*
+		// Connected in master (transmitter) mode 
+		if ( (system.conn_status & SYSTEM_CONNECTED_MASK) && 
+				 (system.conn_status & SYSTEM_MASTER_MODE_MASK)
+			 ) {}
+		// Connected in slave (receiver) mode 
+		else if ( (system.conn_status & SYSTEM_CONNECTED_MASK) && 
+							!(system.conn_status & SYSTEM_MASTER_MODE_MASK)
+						){ }
+		// Not connected - idle
+		else 
+		{		}
+		*/
+
 
 /**
   * @}

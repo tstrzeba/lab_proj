@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hal_dma_ex.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    26-December-2014
+  * @version V1.1.0
+  * @date    19-June-2014
   * @brief   DMA Extension HAL module driver
   *         This file provides firmware functions to manage the following 
   *         functionalities of the DMA Extension peripheral:
@@ -61,35 +61,30 @@
   * @{
   */
 
-/** @defgroup DMAEx DMAEx
+/** @defgroup DMAEx 
   * @brief DMA Extended HAL module driver
   * @{
   */
 
 #ifdef HAL_DMA_MODULE_ENABLED
 
-/* Private types -------------------------------------------------------------*/
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-/* Private Constants ---------------------------------------------------------*/
-/* Private macros ------------------------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
-/** @addtogroup DMAEx_Private_Functions
-  * @{
-  */
+/* Private function prototypes -----------------------------------------------*/
 static void DMA_MultiBufferSetConfig(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-/**
-  * @}
-  */
 
-/* Exported functions ---------------------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
-/** @addtogroup DMAEx_Exported_Functions
+/** @defgroup DMAEx_Private_Functions
   * @{
   */
 
 
-/** @addtogroup DMAEx_Exported_Functions_Group1
-  *
+/** @defgroup DMAEx_Group1 Extended features functions 
+ *  @brief   Extended features functions   
+ *
 @verbatim   
  ===============================================================================
                 #####  Extended features functions  #####
@@ -247,14 +242,6 @@ HAL_StatusTypeDef HAL_DMAEx_ChangeMemory(DMA_HandleTypeDef *hdma, uint32_t Addre
 
 /**
   * @}
-  */
-
-/**
-  * @}
-  */
-
-/** @addtogroup DMAEx_Private_Functions
-  * @{
   */
 
 /**

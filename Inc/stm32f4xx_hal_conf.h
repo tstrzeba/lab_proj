@@ -48,11 +48,11 @@
   * @brief This is the list of modules to be used in the HAL driver 
   */
 #define HAL_MODULE_ENABLED  
-#define HAL_ADC_MODULE_ENABLED
+#define HAL_ADC_MODULE_ENABLED   
 //#define HAL_CAN_MODULE_ENABLED   
 //#define HAL_CRC_MODULE_ENABLED   
 //#define HAL_CRYP_MODULE_ENABLED   
-#define HAL_DAC_MODULE_ENABLED
+//#define HAL_DAC_MODULE_ENABLED   
 //#define HAL_DCMI_MODULE_ENABLED   
 //#define HAL_DMA2D_MODULE_ENABLED   
 //#define HAL_ETH_MODULE_ENABLED   
@@ -70,7 +70,7 @@
 //#define HAL_RTC_MODULE_ENABLED   
 //#define HAL_SAI_MODULE_ENABLED   
 //#define HAL_SD_MODULE_ENABLED   
-//#define HAL_SPI_MODULE_ENABLED   
+#define HAL_SPI_MODULE_ENABLED
 //#define HAL_TIM_MODULE_ENABLED   
 //#define HAL_UART_MODULE_ENABLED   
 //#define HAL_USART_MODULE_ENABLED   
@@ -113,7 +113,7 @@
   * @brief Internal Low Speed oscillator (LSI) value.
   */
 #if !defined  (LSI_VALUE) 
- #define LSI_VALUE  ((uint32_t)32000)    
+ #define LSI_VALUE  ((uint32_t)40000)    
 #endif /* LSI_VALUE */                      /*!< Value of the Internal Low Speed oscillator in Hz
                                              The real value may vary depending on the variations
                                              in voltage and temperature.  */
@@ -142,7 +142,7 @@
   */     
   
 #define  VDD_VALUE					  ((uint32_t)3300) /*!< Value of VDD in mv */           
-#define  TICK_INT_PRIORITY            ((uint32_t)0)   /*!< tick interrupt priority */            
+#define  TICK_INT_PRIORITY            ((uint32_t)0)    /*!< tick interrupt priority */            
 #define  USE_RTOS                     0     
 #define  PREFETCH_ENABLE              1
 #define  INSTRUCTION_CACHE_ENABLE     1

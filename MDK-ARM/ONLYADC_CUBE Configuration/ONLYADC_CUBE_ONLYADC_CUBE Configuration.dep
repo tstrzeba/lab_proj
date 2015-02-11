@@ -1,583 +1,0 @@
-Dependencies for Project 'ONLYADC_CUBE', Target 'ONLYADC_CUBE Configuration': (DO NOT MODIFY !)
-F (..\Src\stm32f4xx_hal_msp.c)(0x54C2B15D)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_msp.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_msp.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_msp.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Src\stm32f4xx_it.c)(0x54C39CC2)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_it.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_it.crf" --depend "onlyadc_cube configuration\stm32f4xx_it.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_it.h)(0x54C2B15D)
-F (..\Src\main.c)(0x54C39C69)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\main.o" --omf_browse "onlyadc_cube configuration\main.crf" --depend "onlyadc_cube configuration\main.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429xx.s)(0x54C282BE)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 513" --pd "STM32F429xx SETA 1"--list startup_stm32f429xx.lst --xref -o "onlyadc_cube configuration\startup_stm32f429xx.o" --depend "onlyadc_cube configuration\startup_stm32f429xx.d")
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_pwr_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_pwr_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_pwr_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_dac_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_dac_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_dac_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_rcc_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_rcc_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_rcc_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_adc_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_adc_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_adc_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_adc.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_adc.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_adc.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_rcc.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_rcc.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_rcc.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_cortex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_cortex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_cortex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_flash_ramfunc.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_flash_ramfunc.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_flash_ramfunc.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_flash.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_flash.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_flash.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_gpio.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_gpio.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_gpio.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_flash_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_flash_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_flash_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_dma_ex.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_dma_ex.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_dma_ex.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_pwr.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_pwr.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_pwr.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_dac.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_dac.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_dac.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c)(0x54C282C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\stm32f4xx_hal_dma.o" --omf_browse "onlyadc_cube configuration\stm32f4xx_hal_dma.crf" --depend "onlyadc_cube configuration\stm32f4xx_hal_dma.d")
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)
-F (..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c)(0x54C282BE)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy -I..\Drivers\CMSIS\Include -I..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I E:\OneDrive\Study\Project_Lab\ONLYADC_CUBE\MDK-ARM\RTE-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-I C:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="513" -DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx-o "onlyadc_cube configuration\system_stm32f4xx.o" --omf_browse "onlyadc_cube configuration\system_stm32f4xx.crf" --depend "onlyadc_cube configuration\system_stm32f4xx.d")
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x54C282BE)
-I (..\Drivers\CMSIS\Include\core_cm4.h)(0x54C282C2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54765570)
-I (..\Drivers\CMSIS\Include\core_cmInstr.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmFunc.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Include\core_cmSimd.h)(0x54C282C2)
-I (..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x54C282BE)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54C282C4)
-I (..\Inc\stm32f4xx_hal_conf.h)(0x54C2B15D)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_def.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\Legacy/stm32_hal_legacy.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_gpio_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dma_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54C282C4)
-I (..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54C282C4)

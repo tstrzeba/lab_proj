@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
   * @file    stm32f4xx_it.c
-  * @date    23/01/2015 21:38:53
+  * @date    24/01/2015 00:31:18
   * @brief   Interrupt Service Routines.
   ******************************************************************************
   *
@@ -35,33 +35,26 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
-uint16_t tmp = 0;
+#include "gpio.h"
+#include "radio_lib.h"
+#include "sys_connect.h"
+
 /* USER CODE BEGIN 0 */
+
+
+// external - global - variables
+
+// structures for radio RFM73 modules:
+extern struct Radio_TypeDef radio1;
+extern struct Radio_TypeDef radio2;
+extern ADC_HandleTypeDef hadc3;
+
 /* USER CODE END 0 */
 /* External variables --------------------------------------------------------*/
-
-extern ADC_HandleTypeDef hadc3;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
-
-/**
-* @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
-*/
-void ADC_IRQHandler(void)
-{
-	
-	
-  /* USER CODE BEGIN ADC_IRQn 0 */
-	DAC->DHR12RD = ADC3->DR  ;
-	//DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG1;
-  /* USER CODE END ADC_IRQn 0 */
-  NVIC_ClearPendingIRQ(ADC_IRQn);
-  /* USER CODE BEGIN ADC_IRQn 1 */
-
-  /* USER CODE END ADC_IRQn 1 */
-}
 
 /**
 * @brief This function handles System tick timer.
@@ -78,7 +71,130 @@ void SysTick_Handler(void)
   /* USER CODE END SysTick_IRQn 1 */
 }
 
+/**
+* @brief This function handles RCC global interrupt.
+*/
+void RCC_IRQHandler(void)
+{
+  /* USER CODE BEGIN RCC_IRQn 0 */
+
+  /* USER CODE END RCC_IRQn 0 */
+  /* USER CODE BEGIN RCC_IRQn 1 */
+
+  /* USER CODE END RCC_IRQn 1 */
+}
+
 /* USER CODE BEGIN 1 */
+
+/** 
+* @brief For RFM73 IRQ - MODULE 1 ( connected with SPI1 )
+*
+*/
+void EXTI3_IRQHandler( void ) {
+	
+	// Check if that was interrupt from MOD1_IRQ pin
+	if(__HAL_GPIO_EXTI_GET_IT(MOD1_IRQ) != RESET)
+  {
+    __HAL_GPIO_EXTI_CLEAR_IT(MOD1_IRQ);		// Clear INTERRUPT
+		
+		// Inform main program that RFM73 module 1 has something to say: 
+		radio1.status |= RFM73_IRQ_OCR_MASK ;
+  }
+
+}
+
+
+
+/**
+*	@brief For RFM73 IRQ - MODULE 2 ( connected with SPI3 )
+*/
+void EXTI9_5_IRQHandler( void ) {
+	
+	// Check if that was interrupt from MOD1_IRQ pin
+	if(__HAL_GPIO_EXTI_GET_IT(MOD2_IRQ) != RESET)
+  {
+    __HAL_GPIO_EXTI_CLEAR_IT(MOD2_IRQ);		// Clear INTERRUPT
+		
+		
+		// Inform main program that RFM73 module 2 has something to say: 
+		radio2.status |= RFM73_IRQ_OCR_MASK ;
+		
+  }
+	
+}
+
+
+
+
+
+
+
+/** 
+* @brief For RFM73 IRQ - MODULE 1 SPI - interrupt
+*/
+void SPI1_IRQHandler(void) {
+	
+	// Is it RX interrut? 
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_RXNE) &&
+			 (radio1.status & RFM73_D_READING_MASK)
+	) {
+	
+			rfm73_rx_interrupt_handle( &radio1 );
+	
+	}
+	
+	
+	
+	// Is it TX interrupt ? 
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_TXE) && 
+			 (radio1.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
+			 (radio1.status & RFM73_SPI_SENDING_MASK)
+		)
+	{
+				//rfm73_tx_interrupt_handle( &radio1 ) ;
+	}
+	
+}
+
+
+/** 
+* @brief For RFM73 IRQ - MODULE 2 SPI - interrupt
+*/
+void SPI3_IRQHandler(void) {
+	
+	
+	// Is it RX interrut? 
+	if ( (radio2.spi_inst->Instance->SR & SPI_SR_RXNE) &&
+			 (radio2.status & RFM73_D_READING_MASK)
+	) {
+			rfm73_rx_interrupt_handle( &radio2 );
+		
+	}
+	
+	
+	
+	// Is it TX interrupt ? 
+	if ( (radio2.spi_inst->Instance->SR & SPI_SR_TXE) && 
+			 (radio2.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
+			 (radio2.status & RFM73_SPI_SENDING_MASK)
+		)
+	{
+		//	rfm73_tx_interrupt_handle( &radio2 ) ;
+	}
+	
+}
+
+void ADC_IRQHandler(void)
+{
+  /* USER CODE BEGIN ADC_IRQn 0 */
+	//DAC->DHR12RD = ADC3->DR  ;
+	//DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG1;
+  /* USER CODE END ADC_IRQn 0 */
+  HAL_ADC_IRQHandler(&hadc3);
+  /* USER CODE BEGIN ADC_IRQn 1 */
+
+  /* USER CODE END ADC_IRQn 1 */
+}
 
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
