@@ -3,7 +3,7 @@
 #include "system_status.h"
 #include "sys_connect.h"
 #include "adc.h"
-
+#include "dac.h"
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
@@ -66,10 +66,17 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 						 data could be missed.
 			*** */
 			
+			
+			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
+				dac_buff_append((uint8_t*)_radioH->buffer[i]);
+				//ITM_SendChar( _radioH->buffer[i] ) ;
+			}
 			#ifdef __DBG_ITM
 			
-			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) 
+			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
+				//dac_buff_append((uint8_t*)_radioH->buffer[i]);
 				ITM_SendChar( _radioH->buffer[i] ) ;
+			}
 			
 			/*ITM_SendChar( '-' ) ;
 			ITM_SendChar( 'S' ) ;

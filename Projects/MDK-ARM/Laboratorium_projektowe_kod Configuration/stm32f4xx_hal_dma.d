@@ -20,9 +20,13 @@ laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h
+laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h
+laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h
 laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h
+laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h
+laboratorium_projektowe_kod configuration\stm32f4xx_hal_dma.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h

@@ -20,12 +20,16 @@ laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Dr
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_cortex.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_adc_ex.h
+laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac.h
+laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_dac_ex.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ex.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h
+laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h
+laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\gpio.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\radio_lib.h
@@ -33,4 +37,5 @@ laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\rfm73_callbacks.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\system_status.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\adc.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\sys_connect.h
+laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\dac.h
 laboratorium_projektowe_kod configuration\main.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

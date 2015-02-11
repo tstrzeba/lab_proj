@@ -45,9 +45,9 @@
 
 // MODULE 1 (connected with SPI1) RFM73 additional pins definition - HAL notation
 // !!!!!!!! CE and CSN must be at the same port!
-#define MOD1_CE GPIO_PIN_3
-#define MOD1_CSN GPIO_PIN_4
-#define MOD1_ADF_PORT GPIOA
+#define MOD1_CE GPIO_PIN_2
+#define MOD1_CSN GPIO_PIN_3
+#define MOD1_ADF_PORT GPIOG
 
 #define MOD1_IRQ GPIO_PIN_3
 #define MOD1_IRQ_PORT GPIOC

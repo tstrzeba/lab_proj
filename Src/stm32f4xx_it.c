@@ -39,6 +39,7 @@
 #include "radio_lib.h"
 #include "sys_connect.h"
 #include "adc.h"
+#include "dac.h"
 /* USER CODE BEGIN 0 */
 
 
@@ -48,7 +49,9 @@
 extern struct Radio_TypeDef radio1;
 extern struct Radio_TypeDef radio2;
 extern ADC_HandleTypeDef hadc3;
-
+extern TIM_HandleTypeDef htim2;
+extern DAC_BUFF dac_buff;
+volatile uint8_t i=0;
 /* USER CODE END 0 */
 /* External variables --------------------------------------------------------*/
 
@@ -197,5 +200,20 @@ void ADC_IRQHandler(void)
   /* USER CODE END ADC_IRQn 1 */
 }
 
-/* USER CODE END 1 */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+void TIM2_IRQHandler(void)
+{
+	i++;
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+	DAC->DHR12RD = *dac_buff.p_buff_ready;
+	dac_buff.p_buff_ready--;
+	if (i == (dac_buff.buff_max-1)) {
+			TIM2->CR1 &= ~TIM_CR1_CEN;
+			dac_OFF();
+		i = 0;
+	}
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
+}

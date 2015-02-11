@@ -41,7 +41,7 @@
 #include "system_status.h"
 #include "adc.h"
 #include "sys_connect.h"
-
+#include "dac.h"
 
 #ifdef __DBG_ITM
 #include "stdio.h"
@@ -84,11 +84,14 @@ struct Radio_TypeDef radio2;
 extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi3;
 extern ADC_HandleTypeDef hadc3;
-
+extern DAC_HandleTypeDef hdac;
+TIM_HandleTypeDef htim2;
 // RFM73 pipes address
 extern const unsigned char RX0_Address[] ;
 extern const unsigned char RX1_Address[] ;
 extern const unsigned char RX2_Address[] ;
+
+static void MX_TIM2_Init(void);
 
 /* USER CODE END 0 */
 
@@ -163,6 +166,8 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI3_Init();
   MX_ADC3_Init();
+	MX_DAC_Init();
+	MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 	
 	// Init radio RFM73 module
@@ -234,7 +239,8 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-			adc_data_ready();
+		adc_data_ready();
+		dac_data_ready(); 
 		// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
 		
@@ -309,6 +315,17 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV16;
   HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3);
 
+}
+
+void MX_TIM2_Init(void)
+{
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 1000;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  HAL_TIM_Base_Init(&htim2);
+	TIM2->DIER |= TIM_DIER_UIE;
 }
 
 /* USER CODE BEGIN 4 */
