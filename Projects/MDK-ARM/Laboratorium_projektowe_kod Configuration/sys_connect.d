@@ -32,3 +32,4 @@ laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Drivers\STM32F4xx
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\system_status.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\gpio.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\rfm73_callbacks.h
+laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\adc.h

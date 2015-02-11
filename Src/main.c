@@ -196,7 +196,7 @@ int main(void)
 
 		//rfm73_mode_standby( &radio2 );
 	
-	/*
+	
 		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
 		
 		rfm73_set_Tpipe( &radio1, RX2_Address );
@@ -205,7 +205,7 @@ int main(void)
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
-	*/
+
 		/*
 		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
 		rfm73_receive_address_p0( &radio1, RX2_AddressT ) ;
@@ -230,10 +230,11 @@ int main(void)
 		rfm73_wait_ms(1000);
 		*/
 	
+
   /* Infinite loop */
   while (1)
   {
-			adc_ON();
+			adc_data_ready();
 		// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
 		
@@ -270,10 +271,9 @@ int main(void)
 		 ) {
 			 
 			 coreclock = HAL_GetTick() ; // reset timer
-			 rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
+			// rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
 	}
 		
-		adc_OFF();
 	}
 	
 

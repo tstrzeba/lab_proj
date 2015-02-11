@@ -31,3 +31,4 @@ laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\gpio.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\radio_lib.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\sys_connect.h
+laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\adc.h

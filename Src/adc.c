@@ -1,8 +1,14 @@
 #include "adc.h"
+#include "radio_lib.h"
+#ifdef __DBG_ITM
+#include "stdio.h"
+#endif
+
 
 struct ADC_BUFF adc_buff;
 
 ADC_HandleTypeDef hadc3;
+extern struct Radio_TypeDef radio1;
 
 void adc_buff_append(uint16_t value) {
 	if (adc_buff.i == 0) {
@@ -21,8 +27,7 @@ void adc_buff_append(uint16_t value) {
 		adc_buff.buff_it++;
 		adc_buff.i = 0;
 	}
-	
-	if (adc_buff.buff_it == adc_buff.buff_max) {
+	if (adc_buff.buff_it >= adc_buff.buff_max) {
 		adc_buff.buff_full = 1;
 		adc_buff.buff_it = 0;
 		adc_buff.p_buff_ready = adc_buff.p_buff;
@@ -40,7 +45,12 @@ void adc_buff_append(uint16_t value) {
 void adc_data_ready(void) {
 	if (adc_buff.buff_full == 1) {
 		adc_buff.p_buff_ready--;
-		//RF_SEND (adc_buff.p_buff);
+		if (adc_buff.buff_in_use == 1) {
+			rfm73_transmit_message( &radio1, (const uint8_t*)adc_buff.buffer0, 30 );
+		}
+		else {
+			rfm73_transmit_message( &radio1, (const uint8_t*)adc_buff.buffer1, 30 );
+		}
 		for (adc_buff.i = adc_buff.buff_max; adc_buff.i > 0; adc_buff.i--, adc_buff.p_buff_ready--) {
 			*adc_buff.p_buff_ready = 0;
 		}
@@ -109,4 +119,5 @@ void MX_ADC3_Init(void)
   sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
   HAL_ADC_ConfigChannel(&hadc3, &sConfig);
 	ADC3->CR1 |= ADC_CR1_EOCIE;
+	adc_buff_init();
 }

@@ -38,7 +38,7 @@
 #include "gpio.h"
 #include "radio_lib.h"
 #include "sys_connect.h"
-
+#include "adc.h"
 /* USER CODE BEGIN 0 */
 
 
@@ -186,6 +186,7 @@ void SPI3_IRQHandler(void) {
 
 void ADC_IRQHandler(void)
 {
+	adc_buff_append(ADC3->DR);
   /* USER CODE BEGIN ADC_IRQn 0 */
 	//DAC->DHR12RD = ADC3->DR  ;
 	//DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG1;

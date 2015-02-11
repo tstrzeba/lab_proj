@@ -2,7 +2,7 @@
 #include "gpio.h"
 #include "system_status.h"
 #include "sys_connect.h"
-
+#include "adc.h"
 
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
@@ -174,6 +174,7 @@ void master_connected_callback( struct Radio_TypeDef * _radioH ) {
 	system.conn_status |= SYSTEM_CONNECTED_MASK ;
 	// set connection status for master mode
 	system.conn_status |= SYSTEM_MASTER_MODE_MASK ;
+	adc_ON();
 	
 }	
 

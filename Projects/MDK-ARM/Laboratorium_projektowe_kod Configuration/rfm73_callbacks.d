@@ -32,3 +32,4 @@ laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Drivers\STM32
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\gpio.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\system_status.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\sys_connect.h
+laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\adc.h

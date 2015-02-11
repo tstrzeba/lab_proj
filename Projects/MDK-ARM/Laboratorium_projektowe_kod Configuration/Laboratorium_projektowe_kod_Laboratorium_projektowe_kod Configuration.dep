@@ -1,5 +1,5 @@
 Dependencies for Project 'Laboratorium_projektowe_kod', Target 'Laboratorium_projektowe_kod Configuration': (DO NOT MODIFY !)
-F (..\..\Src\main.c)(0x54DB52A5)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\main.o" --omf_browse "laboratorium_projektowe_kod configuration\main.crf" --depend "laboratorium_projektowe_kod configuration\main.d")
+F (..\..\Src\main.c)(0x54DB7202)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\main.o" --omf_browse "laboratorium_projektowe_kod configuration\main.crf" --depend "laboratorium_projektowe_kod configuration\main.d")
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54DB3F99)
 I (..\..\Inc\stm32f4xx_hal_conf.h)(0x54DB4F9C)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54DB3F99)
@@ -31,7 +31,7 @@ I (..\..\Inc\gpio.h)(0x54DB3F99)
 I (..\..\Inc\radio_lib.h)(0x54DB3F99)
 I (..\..\Inc\rfm73_callbacks.h)(0x54DB3F99)
 I (..\..\Inc\system_status.h)(0x54DB3F99)
-I (..\..\Inc\adc.h)(0x54DB506D)
+I (..\..\Inc\adc.h)(0x54DB69D8)
 I (..\..\Inc\sys_connect.h)(0x54DB3F99)
 I (C:\Program Files\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5419E3CC)
 F (..\..\Src\stm32f4xx_hal_msp.c)(0x54DB56B6)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\stm32f4xx_hal_msp.o" --omf_browse "laboratorium_projektowe_kod configuration\stm32f4xx_hal_msp.crf" --depend "laboratorium_projektowe_kod configuration\stm32f4xx_hal_msp.d")
@@ -89,7 +89,7 @@ I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54DB3
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x54DB3F99)
-F (..\..\Src\stm32f4xx_it.c)(0x54DB57FD)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\stm32f4xx_it.o" --omf_browse "laboratorium_projektowe_kod configuration\stm32f4xx_it.crf" --depend "laboratorium_projektowe_kod configuration\stm32f4xx_it.d")
+F (..\..\Src\stm32f4xx_it.c)(0x54DB6D4A)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\stm32f4xx_it.o" --omf_browse "laboratorium_projektowe_kod configuration\stm32f4xx_it.crf" --depend "laboratorium_projektowe_kod configuration\stm32f4xx_it.d")
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54DB3F99)
 I (..\..\Inc\stm32f4xx_hal_conf.h)(0x54DB4F9C)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h)(0x54DB3F99)
@@ -121,7 +121,8 @@ I (..\..\Inc\gpio.h)(0x54DB3F99)
 I (..\..\Inc\radio_lib.h)(0x54DB3F99)
 I (..\..\Inc\spi.h)(0x54DB3F99)
 I (..\..\Inc\sys_connect.h)(0x54DB3F99)
-F (..\..\Src\spi.c)(0x54DB3F99)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\spi.o" --omf_browse "laboratorium_projektowe_kod configuration\spi.crf" --depend "laboratorium_projektowe_kod configuration\spi.d")
+I (..\..\Inc\adc.h)(0x54DB69D8)
+F (..\..\Src\spi.c)(0x54DB6BC1)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\spi.o" --omf_browse "laboratorium_projektowe_kod configuration\spi.crf" --depend "laboratorium_projektowe_kod configuration\spi.d")
 I (..\..\Inc\spi.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54DB3F99)
 I (..\..\Inc\stm32f4xx_hal_conf.h)(0x54DB4F9C)
@@ -179,7 +180,7 @@ I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54DB3
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x54DB3F99)
-F (..\..\Src\rfm73_callbacks.c)(0x54DB3F99)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\rfm73_callbacks.o" --omf_browse "laboratorium_projektowe_kod configuration\rfm73_callbacks.crf" --depend "laboratorium_projektowe_kod configuration\rfm73_callbacks.d")
+F (..\..\Src\rfm73_callbacks.c)(0x54DB7146)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\rfm73_callbacks.o" --omf_browse "laboratorium_projektowe_kod configuration\rfm73_callbacks.crf" --depend "laboratorium_projektowe_kod configuration\rfm73_callbacks.d")
 I (..\..\Inc\rfm73_callbacks.h)(0x54DB3F99)
 I (C:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419E3CA)
 I (..\..\Inc\radio_lib.h)(0x54DB3F99)
@@ -212,7 +213,8 @@ I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x54DB3F99)
 I (..\..\Inc\gpio.h)(0x54DB3F99)
 I (..\..\Inc\system_status.h)(0x54DB3F99)
 I (..\..\Inc\sys_connect.h)(0x54DB3F99)
-F (..\..\Src\sys_connect.c)(0x54DB3F99)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\sys_connect.o" --omf_browse "laboratorium_projektowe_kod configuration\sys_connect.crf" --depend "laboratorium_projektowe_kod configuration\sys_connect.d")
+I (..\..\Inc\adc.h)(0x54DB69D8)
+F (..\..\Src\sys_connect.c)(0x54DB71C4)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\sys_connect.o" --omf_browse "laboratorium_projektowe_kod configuration\sys_connect.crf" --depend "laboratorium_projektowe_kod configuration\sys_connect.d")
 I (..\..\Inc\sys_connect.h)(0x54DB3F99)
 I (..\..\Inc\radio_lib.h)(0x54DB3F99)
 I (C:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419E3CA)
@@ -245,8 +247,9 @@ I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x54DB3F99)
 I (..\..\Inc\system_status.h)(0x54DB3F99)
 I (..\..\Inc\gpio.h)(0x54DB3F99)
 I (..\..\Inc\rfm73_callbacks.h)(0x54DB3F99)
-F (..\..\Src\adc.c)(0x54DB5D7A)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\adc.o" --omf_browse "laboratorium_projektowe_kod configuration\adc.crf" --depend "laboratorium_projektowe_kod configuration\adc.d")
-I (..\..\Inc\adc.h)(0x54DB506D)
+I (..\..\Inc\adc.h)(0x54DB69D8)
+F (..\..\Src\adc.c)(0x54DB71F8)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\adc.o" --omf_browse "laboratorium_projektowe_kod configuration\adc.crf" --depend "laboratorium_projektowe_kod configuration\adc.d")
+I (..\..\Inc\adc.h)(0x54DB69D8)
 I (C:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5419E3CA)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54DB3F99)
 I (..\..\Inc\stm32f4xx_hal_conf.h)(0x54DB4F9C)
@@ -273,6 +276,9 @@ I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_flash_ramfunc.h)(0x54DB3
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_pwr_ex.h)(0x54DB3F99)
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_spi.h)(0x54DB3F99)
+I (..\..\Inc\radio_lib.h)(0x54DB3F99)
+I (..\..\Inc\spi.h)(0x54DB3F99)
+I (C:\Program Files\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5419E3CC)
 F (..\..\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c)(0x54DB3F99)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I..\..\Inc -I..\..\Drivers\STM32F4xx_HAL_Driver\Inc -I..\..\Drivers\CMSIS\Include -I..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include --C99-I "C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE"-I "C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include"-I "C:\Program Files\Keil_v5\ARM\CMSIS\Include"-DSTM32F429xx -DUSE_HAL_DRIVER -DSTM32F429xx -D__DBG_ITM-o "laboratorium_projektowe_kod configuration\stm32f4xx_hal_spi.o" --omf_browse "laboratorium_projektowe_kod configuration\stm32f4xx_hal_spi.crf" --depend "laboratorium_projektowe_kod configuration\stm32f4xx_hal_spi.d")
 I (..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x54DB3F99)
 I (..\..\Inc\stm32f4xx_hal_conf.h)(0x54DB4F9C)

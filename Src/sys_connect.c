@@ -2,7 +2,7 @@
 #include "system_status.h"
 #include "gpio.h"
 #include "rfm73_callbacks.h"
-
+#include "adc.h"
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
@@ -115,7 +115,8 @@ void master_disconnect_main(
 			// Clear possible IRQ in modulse status - ?
 			_radioH->status &= ~(RFM73_IRQ_OCR_MASK) ;
 			
-			
+			adc_OFF();
+			adc_buff_clear();
 			// Disable all used peripherials, clear buffer and their 'iterators', etc ...
 			//...
 }
