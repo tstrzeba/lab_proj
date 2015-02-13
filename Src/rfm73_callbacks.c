@@ -21,7 +21,10 @@ void disc_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			system.conn_status |= SYSTEM_CONNECTED_MASK ;
 			
 			// Turn on red led
-			GPIO_SET(RED_LED_PORT, RED_LED_PIN) ; 
+			GPIO_SET(RED_LED_PORT, RED_LED_PIN) ;
+			
+			// Init DAC - buffers, etc.
+			dac_buff_init() ;
 			
 			// Set callback functions for module in that state - connected SLAVE mode ( receiver )
 			_radioH->_data_ready_handler = &Sconn_rcv_data_callback ;
@@ -66,11 +69,10 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 						 data could be missed.
 			*** */
 			
-			
-			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
-				dac_buff_append((uint8_t*)_radioH->buffer[i]);
-				//ITM_SendChar( _radioH->buffer[i] ) ;
-			}
+			// Convert received data to DAC buffer
+			// second parameter shoud be:  _radioH->buffer_maxl but dac_append() only works for 30Bs
+			dac_buff_append( (uint8_t*)_radioH->buffer, 30);
+				
 			#ifdef __DBG_ITM
 			
 			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {

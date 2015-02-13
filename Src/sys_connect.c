@@ -3,6 +3,9 @@
 #include "gpio.h"
 #include "rfm73_callbacks.h"
 #include "adc.h"
+#include "dac.h"
+
+
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
@@ -142,4 +145,5 @@ void slave_disconnect( struct Radio_TypeDef * _radioH ) {
 	
 		// Disable all used peripherials, clear buffer and their 'iterators', etc ...
 		//...
+		dac_OFF() ;
 }

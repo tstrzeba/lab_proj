@@ -3,9 +3,9 @@
 <title>Static Call Graph - [Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Wed Feb 11 20:35:49 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Feb 13 15:51:27 2015
 <BR><P>
-<H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        152 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_SetPriority
 <P>
@@ -157,7 +157,7 @@ Global Symbols
 <P><STRONG><a name="[66]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(.text)
 </UL>
-<P><STRONG><a name="[d0]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[d1]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[73]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -167,15 +167,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[d1]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[d2]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[d2]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[d3]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[d3]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[d4]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[d4]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[d5]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[d5]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[d6]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f429xx.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
@@ -495,7 +495,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[d6]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[d7]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[1c]"></a>ADC_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.ADC_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = ADC_IRQHandler &rArr; HAL_ADC_IRQHandler
@@ -594,7 +594,7 @@ Global Symbols
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 </UL>
 
-<P><STRONG><a name="[c0]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
+<P><STRONG><a name="[bf]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f4xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
 <BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -767,13 +767,13 @@ Global Symbols
 <P><STRONG><a name="[97]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 406 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_TIM_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_BreakCallback
+<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_BreakCallback
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_PulseFinishedCallback
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_DelayElapsedCallback
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_CaptureCallback
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
@@ -863,9 +863,9 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(RESET)
 </UL>
 <P><STRONG><a name="[c9]"></a>RFM73_CE</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, radio_lib.o(i.RFM73_CE))
-<BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR><BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[b6]"></a>RFM73_CSN</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, radio_lib.o(i.RFM73_CSN))
@@ -874,7 +874,7 @@ Global Symbols
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_rfm73_analyze
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_rx_interrupt_handle
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[2d]"></a>SPI1_IRQHandler</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.SPI1_IRQHandler))
@@ -897,8 +897,8 @@ Global Symbols
 <P><STRONG><a name="[69]"></a>Sconn_packet_sent_callback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rfm73_callbacks.o(i.Sconn_packet_sent_callback))
 <BR>[Address Reference Count : 1]<UL><LI> rfm73_callbacks.o(i.disc_rcv_data_callback)
 </UL>
-<P><STRONG><a name="[67]"></a>Sconn_rcv_data_callback</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, rfm73_callbacks.o(i.Sconn_rcv_data_callback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Sconn_rcv_data_callback
+<P><STRONG><a name="[67]"></a>Sconn_rcv_data_callback</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, rfm73_callbacks.o(i.Sconn_rcv_data_callback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = Sconn_rcv_data_callback &rArr; dac_buff_append
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ITM_SendChar
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slave_disconnect
@@ -926,7 +926,7 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>SystemInit</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, system_stm32f4xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(.text)
 </UL>
-<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.TIM2_IRQHandler))
+<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.TIM2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIM2_IRQHandler &rArr; HAL_TIM_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_OFF
@@ -938,11 +938,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Init
 </UL>
 
-<P><STRONG><a name="[d7]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[d8]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[d8]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[d9]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[d9]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[da]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
 <P><STRONG><a name="[b3]"></a>_rfm73_analyze</STRONG> (Thumb, 302 bytes, Stack size 16 bytes, radio_lib.o(i._rfm73_analyze))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = _rfm73_analyze &rArr; rfm73_register_write
@@ -952,14 +952,14 @@ Global Symbols
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_SPI_RW
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CSN
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
+<BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
 </UL>
 
 <P><STRONG><a name="[c4]"></a>adc_OFF</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, adc.o(i.adc_OFF))
 <BR><BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 </UL>
 
-<P><STRONG><a name="[c2]"></a>adc_ON</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, adc.o(i.adc_ON))
+<P><STRONG><a name="[c1]"></a>adc_ON</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, adc.o(i.adc_ON))
 <BR><BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_connected_callback
 </UL>
 
@@ -983,19 +983,26 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b2]"></a>dac_OFF</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dac.o(i.dac_OFF))
+<P><STRONG><a name="[b2]"></a>dac_OFF</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, dac.o(i.dac_OFF))
 <BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;slave_disconnect
 </UL>
 
-<P><STRONG><a name="[bb]"></a>dac_ON</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, dac.o(i.dac_ON))
+<P><STRONG><a name="[bb]"></a>dac_ON</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, dac.o(i.dac_ON))
 <BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_data_ready
 </UL>
 
-<P><STRONG><a name="[af]"></a>dac_buff_append</STRONG> (Thumb, 196 bytes, Stack size 0 bytes, dac.o(i.dac_buff_append))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
+<P><STRONG><a name="[af]"></a>dac_buff_append</STRONG> (Thumb, 204 bytes, Stack size 12 bytes, dac.o(i.dac_buff_append))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = dac_buff_append
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
 </UL>
 
-<P><STRONG><a name="[ba]"></a>dac_data_ready</STRONG> (Thumb, 100 bytes, Stack size 4 bytes, dac.o(i.dac_data_ready))
+<P><STRONG><a name="[bc]"></a>dac_buff_init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, dac.o(i.dac_buff_init))
+<BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disc_rcv_data_callback
+</UL>
+
+<P><STRONG><a name="[ba]"></a>dac_data_ready</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dac.o(i.dac_data_ready))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = dac_data_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_ON
@@ -1015,21 +1022,22 @@ Global Symbols
 <LI> sys_connect.o(i.master_disconnect_main)
 <LI> sys_connect.o(i.slave_disconnect)
 </UL>
-<P><STRONG><a name="[6a]"></a>disc_rcv_data_callback</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, rfm73_callbacks.o(i.disc_rcv_data_callback))
+<P><STRONG><a name="[6a]"></a>disc_rcv_data_callback</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, rfm73_callbacks.o(i.disc_rcv_data_callback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = disc_rcv_data_callback
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_buff_init
+</UL>
 <BR>[Address Reference Count : 4]<UL><LI> main.o(i.main)
 <LI> rfm73_callbacks.o(i.master_cant_conn_callback)
 <LI> sys_connect.o(i.master_disconnect_main)
 <LI> sys_connect.o(i.slave_disconnect)
 </UL>
-<P><STRONG><a name="[64]"></a>main</STRONG> (Thumb, 394 bytes, Stack size 24 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_SetPriority
+<P><STRONG><a name="[64]"></a>main</STRONG> (Thumb, 312 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_SetPriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
+<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_data_ready
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_data_ready
@@ -1040,7 +1048,7 @@ Global Symbols
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC3_Init
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 </UL>
@@ -1052,18 +1060,18 @@ Global Symbols
 <P><STRONG><a name="[72]"></a>master_connected_callback</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, rfm73_callbacks.o(i.master_connected_callback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = master_connected_callback
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_ON
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_ON
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> sys_connect.o(i.try_connect)
 </UL>
 <P><STRONG><a name="[ac]"></a>master_disconnect_main</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, sys_connect.o(i.master_disconnect_main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = master_disconnect_main &rArr; rfm73_set_Tpipe &rArr; rfm73_transmit_address &rArr; rfm73_buffer_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_write
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_write
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_ReadPin
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_buff_clear
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_OFF
 </UL>
@@ -1088,7 +1096,7 @@ Global Symbols
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init_bank1
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[c7]"></a>rfm73_buffer_write</STRONG> (Thumb, 68 bytes, Stack size 24 bytes, radio_lib.o(i.rfm73_buffer_write))
@@ -1097,11 +1105,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_SPI_RW
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CSN
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_address
+<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_address
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_receive_address_p1
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_receive_address_p0
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init_bank1
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
 </UL>
 
 <P><STRONG><a name="[c8]"></a>rfm73_channel_payload_size</STRONG> (Thumb, 68 bytes, Stack size 20 bytes, radio_lib.o(i.rfm73_channel_payload_size))
@@ -1110,19 +1118,19 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_write
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
-<P><STRONG><a name="[bf]"></a>rfm73_check</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, radio_lib.o(i.rfm73_check))
+<P><STRONG><a name="[be]"></a>rfm73_check</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, radio_lib.o(i.rfm73_check))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = rfm73_check &rArr; _rfm73_analyze &rArr; rfm73_register_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_rfm73_analyze
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bc]"></a>rfm73_init</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_init))
+<P><STRONG><a name="[bd]"></a>rfm73_init</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 76<LI>Call Chain = rfm73_init &rArr; rfm73_init_bank1 &rArr; rfm73_bank &rArr; rfm73_register_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_wait_ms
@@ -1148,7 +1156,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_bank
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[c3]"></a>rfm73_mode_receive</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_mode_receive))
@@ -1158,20 +1166,19 @@ Global Symbols
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_read
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CE
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 </UL>
 
-<P><STRONG><a name="[be]"></a>rfm73_mode_transmit</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_mode_transmit))
+<P><STRONG><a name="[d0]"></a>rfm73_mode_transmit</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_mode_transmit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = rfm73_mode_transmit &rArr; rfm73_register_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_write
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_read
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CE
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
 </UL>
 
 <P><STRONG><a name="[cb]"></a>rfm73_receive_address_p0</STRONG> (Thumb, 20 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_receive_address_p0))
@@ -1179,8 +1186,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[cc]"></a>rfm73_receive_address_p1</STRONG> (Thumb, 20 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_receive_address_p1))
@@ -1188,7 +1195,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[cd]"></a>rfm73_receive_address_pn</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_receive_address_pn))
@@ -1196,7 +1203,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_register_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[b4]"></a>rfm73_register_read</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_register_read))
@@ -1205,12 +1212,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_SPI_RW
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CSN
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_channel_payload_size
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_bank
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_rfm73_analyze
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[b5]"></a>rfm73_register_write</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_register_write))
@@ -1220,12 +1227,12 @@ Global Symbols
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RFM73_CSN
 </UL>
 <BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_receive_address_pn
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_channel_payload_size
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_bank
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_rfm73_analyze
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 </UL>
 
@@ -1238,15 +1245,14 @@ Global Symbols
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[bd]"></a>rfm73_set_Tpipe</STRONG> (Thumb, 24 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_set_Tpipe))
+<P><STRONG><a name="[c2]"></a>rfm73_set_Tpipe</STRONG> (Thumb, 24 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_set_Tpipe))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = rfm73_set_Tpipe &rArr; rfm73_transmit_address &rArr; rfm73_buffer_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_address
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_receive_address_p0
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[ce]"></a>rfm73_transmit_address</STRONG> (Thumb, 20 bytes, Stack size 12 bytes, radio_lib.o(i.rfm73_transmit_address))
@@ -1254,8 +1260,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
 <P><STRONG><a name="[b9]"></a>rfm73_transmit_message</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_transmit_message))
@@ -1263,10 +1269,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_buffer_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
+<BR>[Called By]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;try_connect
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;master_disconnect_main
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_data_ready
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[ca]"></a>rfm73_wait_ms</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, radio_lib.o(i.rfm73_wait_ms))
@@ -1274,21 +1279,25 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
+<BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_init
 </UL>
 
-<P><STRONG><a name="[ae]"></a>slave_disconnect</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, sys_connect.o(i.slave_disconnect))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
+<P><STRONG><a name="[ae]"></a>slave_disconnect</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, sys_connect.o(i.slave_disconnect))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = slave_disconnect
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_OFF
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
 </UL>
 
-<P><STRONG><a name="[c1]"></a>try_connect</STRONG> (Thumb, 148 bytes, Stack size 24 bytes, sys_connect.o(i.try_connect))
+<P><STRONG><a name="[c0]"></a>try_connect</STRONG> (Thumb, 148 bytes, Stack size 24 bytes, sys_connect.o(i.try_connect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = try_connect &rArr; rfm73_set_Tpipe &rArr; rfm73_transmit_address &rArr; rfm73_buffer_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_transmit_message
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_set_Tpipe
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_transmit
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_mode_receive
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rfm73_check
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>

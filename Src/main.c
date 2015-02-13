@@ -85,13 +85,16 @@ extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi3;
 extern ADC_HandleTypeDef hadc3;
 extern DAC_HandleTypeDef hdac;
-TIM_HandleTypeDef htim2;
+
 // RFM73 pipes address
 extern const unsigned char RX0_Address[] ;
 extern const unsigned char RX1_Address[] ;
 extern const unsigned char RX2_Address[] ;
 
+
+TIM_HandleTypeDef htim2;
 static void MX_TIM2_Init(void);
+
 
 /* USER CODE END 0 */
 
@@ -201,7 +204,7 @@ int main(void)
 
 		//rfm73_mode_standby( &radio2 );
 	
-	
+	/*
 		r2buff[0]='\n'; r2buff[1]='T' ;r2buff[2]='E'; r2buff[3]='S'; r2buff[4]='T'; r2buff[5]=' ';
 		
 		rfm73_set_Tpipe( &radio1, RX2_Address );
@@ -210,7 +213,7 @@ int main(void)
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
 		rfm73_transmit_message( &radio1, r2buff, 6 ) ;
-
+	*/
 		/*
 		rfm73_transmit_address( &radio1, RX2_AddressT ) ;
 		rfm73_receive_address_p0( &radio1, RX2_AddressT ) ;
@@ -322,7 +325,7 @@ void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1000;
+  htim2.Init.Period = 1428 ;		// Give as 95,2 us bettwen interrupts
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_Base_Init(&htim2);
 	TIM2->DIER |= TIM_DIER_UIE;
