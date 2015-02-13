@@ -26,6 +26,11 @@ void disc_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			// Init DAC - buffers, etc.
 			dac_buff_init() ;
 			
+			
+			// Reset timeout counter:
+			system.s_timelast = HAL_GetTick() ;
+
+
 			// Set callback functions for module in that state - connected SLAVE mode ( receiver )
 			_radioH->_data_ready_handler = &Sconn_rcv_data_callback ;
 			_radioH->_max_retransmission_handler = &Sconn_cant_send_callback ; 
@@ -63,6 +68,11 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 		} 
 		// Valid data
 		else {
+
+			// Reset timeout counter:
+			system.s_timelast = HAL_GetTick();
+
+
 			/* *** Place here not too long functions to handle received data
 						 Otherwise you should set proper flag and handle your function
 						 in main. This function shouldn't be to long because the incoming
@@ -71,14 +81,15 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			
 			// Convert received data to DAC buffer
 			// second parameter shoud be:  _radioH->buffer_maxl but dac_append() only works for 30Bs
+			
 			dac_buff_append( (uint8_t*)_radioH->buffer, 30);
 				
 			#ifdef __DBG_ITM
 			
 			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
-				//dac_buff_append((uint8_t*)_radioH->buffer[i]);
 				ITM_SendChar( _radioH->buffer[i] ) ;
 			}
+			
 			
 			/*ITM_SendChar( '-' ) ;
 			ITM_SendChar( 'S' ) ;
@@ -111,11 +122,12 @@ uint8_t Sconn_cant_send_callback( struct Radio_TypeDef * _radioH ) {
 
 void Mconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {}
 	
-void Mconn_packet_sent_callback( struct Radio_TypeDef * _radioH ) {}
+void Mconn_packet_sent_callback( struct Radio_TypeDef * _radioH ) {
+	// Clear counter of not confirmed packets
+	system.m_missing_cnt = 0;
+}
 
 uint8_t Mconn_cant_send_callback( struct Radio_TypeDef * _radioH ) {
-	
-	// The receiver didn't respond properly - perform disconnecting steps withou sending disconnect message
 	
 	#ifdef __DBG_ITM
 			ITM_SendChar( '-' ) ;
@@ -127,7 +139,15 @@ uint8_t Mconn_cant_send_callback( struct Radio_TypeDef * _radioH ) {
 			ITM_SendChar( '-' ) ;
 	#endif
 	
-	master_disconnect_main( _radioH, NULL ) ; 	// Without sending disconnect message
+	
+	// The receiver don't respond properly - perform disconnecting steps withou sending disconnect message
+	
+	// Count not confirmed packets
+	system.m_missing_cnt++ ;
+	if( system.m_missing_cnt >= SYSTEM_NOT_CONFIRMED_MAX ) {
+		system.m_missing_cnt = 0 ;
+		master_disconnect_main( _radioH, NULL ) ; 	// Without sending disconnect message
+	}
 	
 	
 	// return non 0 value to flush TX FIFO in that case
@@ -176,6 +196,9 @@ void master_connected_callback( struct Radio_TypeDef * _radioH ) {
 	_radioH->_max_retransmission_handler = &Mconn_cant_send_callback ;
 	_radioH->_packet_sent_handler = &Mconn_packet_sent_callback ;
 	
+	// Clear counter of not confirmed packets
+	system.m_missing_cnt = 0;
+
 	// Turn on green led
 	GPIO_SET(GREEN_LED_PORT, GREEN_LED_PIN);
 	

@@ -272,16 +272,28 @@ int main(void)
 			// Is need to disable interrupts?
 			master_disconnect_main( &radio1, RX1_Address ) ;
 		}
+
+
+		// Timeout procedure for SLAVE when connected but it not receiving data anymore
+		if( (system.conn_status & SYSTEM_CONNECTED_MASK) && 
+				!(system.conn_status & SYSTEM_MASTER_MODE_MASK) && 
+			( (HAL_GetTick() - system.s_timelast) >= SYSTEM_SLAVE_TIMEOUT_VAL )
+		  ) {
+
+			slave_disconnect(&radio2) ;
+		}
+		
+
 		
 		
-	/** Send one message after 2s since estabilished connection **/
-	if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
-				(system.conn_status & SYSTEM_CONNECTED_MASK)
-		 ) {
-			 
-			 coreclock = HAL_GetTick() ; // reset timer
-			// rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
-	}
+		/** Send one message after 2s since estabilished connection **/
+		if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
+					(system.conn_status & SYSTEM_CONNECTED_MASK)
+			 ) {
+				 
+				 coreclock = HAL_GetTick() ; // reset timer
+				// rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
+		}
 		
 	}
 	

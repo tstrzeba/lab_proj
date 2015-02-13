@@ -429,13 +429,19 @@ void RFM73_CSN( struct Radio_TypeDef *_handler, uint8_t _val ) {
 // rfm73_SPI_RW will be renamed to rfm73_SPI_send ( in future, while everything will work )
 uint8_t rfm73_SPI_RW ( R_SPI_HandleTypeDef *_spiH, uint8_t _data ) {
 	
+	uint32_t timeout = HAL_GetTick() ;
+	
+	
 	//wait for empty TX buffer
 	while( !(_spiH->Instance->SR & SPI_SR_TXE) ) ;
 	//push data to TX buffer
 	_spiH->Instance->DR = (uint16_t)_data;
 
-	// wait for full RX buffer
-	while( !(_spiH->Instance->SR & SPI_SR_RXNE) ) ;
+	// wait for full RX buffer but not more than 10 ms
+	while( !(_spiH->Instance->SR & SPI_SR_RXNE) ) {
+		if( (HAL_GetTick() - timeout) >= 10 )
+			break ;
+	}
 	
 	// read RX buffer
 	return (uint8_t)_spiH->Instance->DR;
