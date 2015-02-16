@@ -38,3 +38,4 @@ laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\system_st
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\sys_connect.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\adc.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\dac.h
+laboratorium_projektowe_kod configuration\rfm73_callbacks.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

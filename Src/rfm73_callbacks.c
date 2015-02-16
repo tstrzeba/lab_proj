@@ -7,6 +7,9 @@
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
+#ifdef __DBG_ITM
+#include "stdio.h"
+#endif
 
 /**
 * 			Callback functions in DISCONNECTED state
@@ -56,8 +59,7 @@ uint8_t disc_cant_send_callback( struct Radio_TypeDef * _radioH ) {
 */
 
 void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
-		
-		uint8_t i ;
+		uint8_t i;
 	
 		// Test for DISCONNEC message - it must appear on pipe 1
 		if ( _radioH->pipe == 1 ) {
@@ -87,7 +89,7 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			#ifdef __DBG_ITM
 			
 			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
-				ITM_SendChar( _radioH->buffer[i] ) ;
+				printf("dac: %#x\n", _radioH->buffer[i] ) ;
 			}
 			
 			

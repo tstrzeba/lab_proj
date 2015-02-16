@@ -41,7 +41,9 @@
 #include "adc.h"
 #include "dac.h"
 /* USER CODE BEGIN 0 */
-
+#ifdef __DBG_ITM
+#include "stdio.h"
+#endif
 
 // external - global - variables
 
@@ -190,8 +192,6 @@ void ADC_IRQHandler(void)
 {
 	adc_buff_append(ADC3->DR);
   /* USER CODE BEGIN ADC_IRQn 0 */
-	//DAC->DHR12RD = ADC3->DR  ;
-	//DAC->SWTRIGR |= DAC_SWTRIGR_SWTRIG1;
   /* USER CODE END ADC_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc3);
   /* USER CODE BEGIN ADC_IRQn 1 */
@@ -201,15 +201,24 @@ void ADC_IRQHandler(void)
 
 void TIM2_IRQHandler(void)
 {
+	if ( dac_buff.is_dac_on == 1) {
   /* USER CODE BEGIN TIM2_IRQn 0 */
 	DAC->DHR12RD = *dac_buff.p_buff_dac;
+	//	printf("dac: %#x\n", *dac_buff.p_buff_dac);
 	dac_buff.p_buff_dac++;
-	if (dac_buff.p_buff_dac == dac_buff.p_buff) 
+	if (dac_buff.p_buff_dac >= (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE - 1))) {
+		dac_buff.buff_overflow = 0;
+		dac_buff.p_buff_dac = dac_buff.dac_wheel_buffer;
+	}
+	if (dac_buff.p_buff_dac == dac_buff.p_buff) {
 			dac_OFF();
-	
+			dac_buff.is_dac_on = 0;
+	}
+}
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
+	
 }

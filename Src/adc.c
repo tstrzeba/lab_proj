@@ -11,6 +11,7 @@ ADC_HandleTypeDef hadc3;
 extern struct Radio_TypeDef radio1;
 
 void adc_buff_append(uint16_t value) {
+	//printf("adc: %#x\n", value);
 	if (adc_buff.i == 0) {
 		*adc_buff.p_buff = (uint8_t)(value >> 4);
 		adc_buff.p_buff++;
