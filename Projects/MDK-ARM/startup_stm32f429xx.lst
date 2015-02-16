@@ -905,19 +905,19 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend="labo
 ratorium_projektowe_kod configuration\startup_stm32f429xx.d" -o"laboratorium_pr
-ojektowe_kod configuration\startup_stm32f429xx.o" -I..\..\Inc -I"C:\Users\Tomek
-\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE" -I
-"C:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Devic
+ojektowe_kod configuration\startup_stm32f429xx.o" -I..\..\Inc -IC:\Users\Scott\
+Documents\lab_proj_code\future_Tomek\Projects\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK
+\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include -IC:\Keil_v
 
 
 
 ARM Macro Assembler    Page 15 
 
 
-e\ST\STM32F4xx\Include" -I"C:\Program Files\Keil_v5\ARM\CMSIS\Include" --predef
-ine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine="STM32F429xx SE
-TA 1" --list=startup_stm32f429xx.lst ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\So
-urce\Templates\arm\startup_stm32f429xx.s
+5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1"
+ --predefine="__UVISION_VERSION SETA 513" --predefine="STM32F429xx SETA 1" --li
+st=startup_stm32f429xx.lst ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templ
+ates\arm\startup_stm32f429xx.s
 
 
 
@@ -2449,4 +2449,4 @@ tes\arm\startup_stm32f429xx.s
 tes\arm\startup_stm32f429xx.s
 Comment: __main used once
 2 symbols
-453 symbols in table
+454 symbols in table

@@ -234,8 +234,10 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-		adc_data_ready();
-		dac_data_ready(); 
+		//adc_data_ready();
+		//dac_data_ready(); 
+		
+		
 		// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
 		
@@ -351,7 +353,7 @@ void MX_TIM2_Init(void)
 void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
+  /* User can add his own implementation to report the file name and line number,*/
   
   /* USER CODE END 6 */
 

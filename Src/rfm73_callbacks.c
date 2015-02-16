@@ -26,7 +26,6 @@ void disc_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			// Init DAC - buffers, etc.
 			dac_buff_init() ;
 			
-			
 			// Reset timeout counter:
 			system.s_timelast = HAL_GetTick() ;
 
@@ -81,9 +80,9 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			// Convert received data to DAC buffer
 			// second parameter shoud be:  _radioH->buffer_maxl but dac_append() only works for 30Bs
 			
-			dac_buff_append( (uint8_t*)_radioH->buffer, 30);
-				
-
+			// dac_buff_append( (uint8_t*)_radioH->buffer, 30);
+		  //dac_buff_imit_append() ;
+			
 
 		}
 }

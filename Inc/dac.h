@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include "stm32f4xx_hal.h"
 	 
-#define DAC_BUFF_SIZE 180
+#define DAC_BUFF_SIZE 66
 
 extern DAC_HandleTypeDef hdac;
 
@@ -29,4 +29,10 @@ void dac_buff_clear(void);
 void dac_data_ready(void);
 void dac_ON(void);
 void dac_OFF(void);
+
+
+
+// Only for testing dac
+void dac_buff_imit_append( void ) ;
+
 #endif
