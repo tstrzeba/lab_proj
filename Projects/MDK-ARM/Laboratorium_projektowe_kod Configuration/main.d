@@ -38,4 +38,3 @@ laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\system_status.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\adc.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\sys_connect.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Inc\dac.h
-laboratorium_projektowe_kod configuration\main.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

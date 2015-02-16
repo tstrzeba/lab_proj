@@ -41,9 +41,7 @@
 #include "adc.h"
 #include "dac.h"
 /* USER CODE BEGIN 0 */
-#ifdef __DBG_ITM
-#include "stdio.h"
-#endif
+
 
 // external - global - variables
 
@@ -204,7 +202,7 @@ void TIM2_IRQHandler(void)
 	if ( dac_buff.is_dac_on == 1) {
   /* USER CODE BEGIN TIM2_IRQn 0 */
 	DAC->DHR12RD = *dac_buff.p_buff_dac;
-	//	printf("dac: %#x\n", *dac_buff.p_buff_dac);
+	
 	dac_buff.p_buff_dac++;
 	if (dac_buff.p_buff_dac >= (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE - 1))) {
 		dac_buff.buff_overflow = 0;

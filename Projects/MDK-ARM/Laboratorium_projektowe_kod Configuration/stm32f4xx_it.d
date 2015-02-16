@@ -37,4 +37,3 @@ laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\sys_connect.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\adc.h
 laboratorium_projektowe_kod configuration\stm32f4xx_it.o: ..\..\Inc\dac.h
-laboratorium_projektowe_kod configuration\stm32f4xx_it.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

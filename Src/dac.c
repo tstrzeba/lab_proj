@@ -1,9 +1,5 @@
 #include "dac.h"
 
-#ifdef __DBG_ITM
-#include "stdio.h"
-#endif
-
 struct DAC_BUFF dac_buff;
 
 // For HAL drivers:

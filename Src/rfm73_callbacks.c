@@ -7,9 +7,6 @@
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
-#ifdef __DBG_ITM
-#include "stdio.h"
-#endif
 
 /**
 * 			Callback functions in DISCONNECTED state
@@ -86,22 +83,8 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			
 			dac_buff_append( (uint8_t*)_radioH->buffer, 30);
 				
-			#ifdef __DBG_ITM
-			
-			for ( i = 0; i < _radioH->buffer_maxl ; i++ ) {
-				printf("dac: %#x\n", _radioH->buffer[i] ) ;
-			}
-			
-			
-			/*ITM_SendChar( '-' ) ;
-			ITM_SendChar( 'S' ) ;
-			ITM_SendChar( 'L' ) ;
-			ITM_SendChar( 'A' ) ;
-			ITM_SendChar( 'V' ) ;
-			ITM_SendChar( 'E' ) ;
-			ITM_SendChar( '-' ) ;
-			*/
-			#endif
+
+
 		}
 }
 	

@@ -43,9 +43,6 @@
 #include "sys_connect.h"
 #include "dac.h"
 
-#ifdef __DBG_ITM
-#include "stdio.h"
-#endif
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -55,12 +52,7 @@
 /* USER CODE BEGIN PV */
 /* USER CODE END PV */
 
-#ifdef __DBG_ITM
-	// For debuging option
-	int fputc(int c, FILE *f) {
-		return(	ITM_SendChar(c));
-	}
-#endif
+
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -169,7 +161,6 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI3_Init();
   MX_ADC3_Init();
-	adc_buff_init();
 	MX_DAC_Init();
 	MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
@@ -229,7 +220,7 @@ int main(void)
 	/*
 	SystemCoreClockUpdate();
 	coreclock = SystemCoreClock;
-	printf("CoreClock: %i", coreclock);
+
 	*/
 	
 	/*
@@ -361,7 +352,7 @@ void assert_failed(uint8_t* file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
-    ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  
   /* USER CODE END 6 */
 
 }

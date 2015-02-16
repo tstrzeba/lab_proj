@@ -1,9 +1,5 @@
 #include "adc.h"
 #include "radio_lib.h"
-#ifdef __DBG_ITM
-#include "stdio.h"
-#endif
-
 
 struct ADC_BUFF adc_buff;
 
@@ -11,7 +7,7 @@ ADC_HandleTypeDef hadc3;
 extern struct Radio_TypeDef radio1;
 
 void adc_buff_append(uint16_t value) {
-	//printf("adc: %#x\n", value);
+
 	if (adc_buff.i == 0) {
 		*adc_buff.p_buff = (uint8_t)(value >> 4);
 		adc_buff.p_buff++;
@@ -29,31 +25,31 @@ void adc_buff_append(uint16_t value) {
 		adc_buff.i = 0;
 	}
 	if (adc_buff.buff_it >= adc_buff.buff_max) {
-		adc_buff.buff_full = 1;
 		adc_buff.buff_it = 0;
+		adc_buff.buff_full = 1;
 		adc_buff.p_buff_ready = adc_buff.p_buff;
 		if (adc_buff.buff_in_use == 0) {
 			adc_buff.p_buff = adc_buff.buffer1;
-			adc_buff.buff_in_use++;
+			adc_buff.buff_in_use = 1;
 		}
 		else {
 			adc_buff.p_buff = adc_buff.buffer0;
-			adc_buff.buff_in_use--;
+			adc_buff.buff_in_use = 0;
+			
 		}
 	}
 };
 
 void adc_data_ready(void) {
+	uint8_t i = 0;
 	if (adc_buff.buff_full == 1) {
 		adc_buff.p_buff_ready--;
 		if (adc_buff.buff_in_use == 1) {
 			rfm73_transmit_message( &radio1, (const uint8_t*)adc_buff.buffer0, 30 );
+
 		}
 		else {
 			rfm73_transmit_message( &radio1, (const uint8_t*)adc_buff.buffer1, 30 );
-		}
-		for (adc_buff.i = adc_buff.buff_max; adc_buff.i > 0; adc_buff.i--, adc_buff.p_buff_ready--) {
-			*adc_buff.p_buff_ready = 0;
 		}
 		adc_buff.buff_full = 0;
 	}

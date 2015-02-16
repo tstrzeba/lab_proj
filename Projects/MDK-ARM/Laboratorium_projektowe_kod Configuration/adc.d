@@ -33,4 +33,3 @@ laboratorium_projektowe_kod configuration\adc.o: ..\..\Drivers\STM32F4xx_HAL_Dri
 laboratorium_projektowe_kod configuration\adc.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h
 laboratorium_projektowe_kod configuration\adc.o: ..\..\Inc\radio_lib.h
 laboratorium_projektowe_kod configuration\adc.o: ..\..\Inc\spi.h
-laboratorium_projektowe_kod configuration\adc.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
