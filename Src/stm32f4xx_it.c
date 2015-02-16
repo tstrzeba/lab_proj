@@ -51,7 +51,6 @@ extern struct Radio_TypeDef radio2;
 extern ADC_HandleTypeDef hadc3;
 extern TIM_HandleTypeDef htim2;
 extern struct DAC_BUFF dac_buff;
-volatile uint8_t i=0;
 /* USER CODE END 0 */
 /* External variables --------------------------------------------------------*/
 
@@ -202,17 +201,11 @@ void ADC_IRQHandler(void)
 
 void TIM2_IRQHandler(void)
 {
-	
-	
-	
-	i++;
   /* USER CODE BEGIN TIM2_IRQn 0 */
-	DAC->DHR12RD = *dac_buff.p_buff_ready;
-	dac_buff.p_buff_ready++;
-	if (i >= (dac_buff.buff_max-1)) {
+	DAC->DHR12RD = *dac_buff.p_buff_dac;
+	dac_buff.p_buff_dac++;
+	if (dac_buff.p_buff_dac == dac_buff.p_buff) 
 			dac_OFF();
-		i = 0;
-	}
 	
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);

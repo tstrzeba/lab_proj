@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Feb 13 23:30:53 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050041: Last Updated: Mon Feb 16 10:54:40 2015
 <BR><P>
 <H3>Maximum Stack Usage =        152 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -770,13 +770,13 @@ Global Symbols
 <P><STRONG><a name="[97]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 406 bytes, Stack size 8 bytes, stm32f4xx_hal_tim.o(i.HAL_TIM_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_TIM_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_CaptureCallback
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_CommutationCallback
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_BreakCallback
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_TriggerCallback
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PWM_PulseFinishedCallback
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_OC_DelayElapsedCallback
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IC_CaptureCallback
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
@@ -930,7 +930,7 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>SystemInit</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, system_stm32f4xx.o(i.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429xx.o(.text)
 </UL>
-<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.TIM2_IRQHandler))
+<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.TIM2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = TIM2_IRQHandler &rArr; HAL_TIM_IRQHandler
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_OFF
@@ -996,17 +996,17 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_data_ready
 </UL>
 
-<P><STRONG><a name="[af]"></a>dac_buff_append</STRONG> (Thumb, 204 bytes, Stack size 12 bytes, dac.o(i.dac_buff_append))
+<P><STRONG><a name="[af]"></a>dac_buff_append</STRONG> (Thumb, 134 bytes, Stack size 12 bytes, dac.o(i.dac_buff_append))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = dac_buff_append
 </UL>
 <BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
 </UL>
 
-<P><STRONG><a name="[bc]"></a>dac_buff_init</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, dac.o(i.dac_buff_init))
+<P><STRONG><a name="[bc]"></a>dac_buff_init</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dac.o(i.dac_buff_init))
 <BR><BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disc_rcv_data_callback
 </UL>
 
-<P><STRONG><a name="[ba]"></a>dac_data_ready</STRONG> (Thumb, 32 bytes, Stack size 4 bytes, dac.o(i.dac_data_ready))
+<P><STRONG><a name="[ba]"></a>dac_data_ready</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, dac.o(i.dac_data_ready))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = dac_data_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dac_ON
@@ -1081,8 +1081,8 @@ Global Symbols
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_buff_clear
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;adc_OFF
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mconn_cant_send_callback
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mconn_cant_send_callback
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[70]"></a>master_rcv_data_callback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rfm73_callbacks.o(i.master_rcv_data_callback))
@@ -1342,8 +1342,8 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[ab]"></a>ITM_SendChar</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, rfm73_callbacks.o(i.ITM_SendChar))
-<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mconn_cant_send_callback
+<BR><BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Mconn_cant_send_callback
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sconn_rcv_data_callback
 </UL>
 
 <P><STRONG><a name="[8a]"></a>NVIC_GetPriorityGrouping</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_hal_cortex.o(i.NVIC_GetPriorityGrouping))

@@ -5,8 +5,8 @@
 #endif
 
 #include <stdint.h>
-#include "adc.h"
-
+#include "stm32f4xx_hal.h"
+	 
 #define DAC_BUFF_SIZE 60
 
 extern DAC_HandleTypeDef hdac;
@@ -15,14 +15,11 @@ void MX_DAC_Init(void);
 
 struct DAC_BUFF {
 	volatile uint8_t buff_max;
-	volatile uint8_t buff_it;
 	volatile uint16_t* volatile p_buff;
-	volatile uint16_t* volatile p_buff_ready;
-	volatile uint8_t data_ready;
-	volatile uint8_t buff_in_use;
-	volatile uint16_t dac_buffer0[DAC_BUFF_SIZE];
-	volatile uint16_t dac_buffer1[DAC_BUFF_SIZE];
+	volatile uint16_t* volatile p_buff_dac;
 	volatile uint8_t i;
+	volatile uint16_t dac_wheel_buffer[DAC_BUFF_SIZE];
+	volatile uint8_t is_dac_on;
 } ;
 
 void dac_buff_init(void);
