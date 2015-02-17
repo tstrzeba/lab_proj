@@ -41,7 +41,6 @@ void adc_buff_append(uint16_t value) {
 };
 
 void adc_data_ready(void) {
-	uint8_t i = 0;
 	if (adc_buff.buff_full == 1) {
 		adc_buff.p_buff_ready--;
 		if (adc_buff.buff_in_use == 1) {

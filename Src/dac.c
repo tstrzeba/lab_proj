@@ -12,8 +12,8 @@ extern TIM_HandleTypeDef htim2 ;
 
 
 void dac_buff_init( void ) {
-	
-#ifdef __DBG_ITM
+	/*
+	#ifdef __DBG_ITM
 	// Init table with 0.3*sin(1kHz) + 1.65 sampled by 10kHz
 dac_buff.dac_wheel_buffer[0] = 2253 ; dac_buff.dac_wheel_buffer[1] = 2494 ; dac_buff.dac_wheel_buffer[2] = 2642 ; dac_buff.dac_wheel_buffer[3] = 2642 ; dac_buff.dac_wheel_buffer[4] = 2494 ; dac_buff.dac_wheel_buffer[5] = 2253 ; dac_buff.dac_wheel_buffer[6] = 2012 ; dac_buff.dac_wheel_buffer[7] = 1863 ; dac_buff.dac_wheel_buffer[8] = 1863 ; dac_buff.dac_wheel_buffer[9] = 2012 ; dac_buff.dac_wheel_buffer[10] = 2253 ; 
 dac_buff.dac_wheel_buffer[11] = 2253 ; dac_buff.dac_wheel_buffer[12] = 2494 ; dac_buff.dac_wheel_buffer[13] = 2642 ; dac_buff.dac_wheel_buffer[14] = 2642 ; dac_buff.dac_wheel_buffer[15] = 2494 ; dac_buff.dac_wheel_buffer[16] = 2253 ; dac_buff.dac_wheel_buffer[17] = 2012 ; dac_buff.dac_wheel_buffer[18] = 1863 ; dac_buff.dac_wheel_buffer[19] = 1863 ; dac_buff.dac_wheel_buffer[20] = 2012 ; dac_buff.dac_wheel_buffer[21] = 2253 ; 
@@ -23,7 +23,7 @@ dac_buff.dac_wheel_buffer[44] = 2253 ; dac_buff.dac_wheel_buffer[45] = 2494 ; da
 dac_buff.dac_wheel_buffer[55] = 2253 ; dac_buff.dac_wheel_buffer[56] = 2494 ; dac_buff.dac_wheel_buffer[57] = 2642 ; dac_buff.dac_wheel_buffer[58] = 2642 ; dac_buff.dac_wheel_buffer[59] = 2494 ;
 dac_buff.dac_wheel_buffer[60] = 2253 ; dac_buff.dac_wheel_buffer[61] = 2012 ; dac_buff.dac_wheel_buffer[62] = 1863 ; dac_buff.dac_wheel_buffer[63] = 1863 ; dac_buff.dac_wheel_buffer[64] = 2012 ; dac_buff.dac_wheel_buffer[65] = 2253 ;
 #endif
-	
+	*/
 
 	dac_buff.buff_max = DAC_BUFF_SIZE;
 	dac_buff.p_buff = dac_buff.dac_wheel_buffer;
@@ -33,9 +33,9 @@ dac_buff.dac_wheel_buffer[60] = 2253 ; dac_buff.dac_wheel_buffer[61] = 2012 ; da
 	dac_buff.buff_overflow = 0;
 	
 	
-#ifdef __DBG_ITM
-	dac_ON() ;
-#endif 
+//#ifdef __DBG_ITM
+	DAC->CR |= DAC_CR_EN1;
+//#endif 
 	
 	
 }
@@ -55,28 +55,28 @@ void dac_buff_append(uint8_t * const _rcv_data, uint8_t _adc_buff_size ) {
 		dac_buff.p_buff++;
 		if (dac_buff.p_buff >= (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE - 1))) {
 			dac_buff.p_buff = dac_buff.dac_wheel_buffer;
-			dac_buff.buff_overflow = 1;
+			//dac_buff.buff_overflow = 1;
 		}
 	}
 }
 
 void dac_data_ready(void) {
-	if (dac_buff.buff_overflow == 1) {
-	if (dac_buff.p_buff_dac > dac_buff.p_buff) {
+	//if (dac_buff.buff_overflow == 1) {
+	if (dac_buff.p_buff_dac != dac_buff.p_buff) {
 		if (dac_buff.is_dac_on == 0) {
 			dac_ON();
 			dac_buff.is_dac_on = 1;
 		}
 	}
-}
-	else {
+//}
+	/*else {
 		if (dac_buff.p_buff_dac < dac_buff.p_buff) {
 		if (dac_buff.is_dac_on == 0) {
 			dac_ON();
 			dac_buff.is_dac_on = 1;
 		}
 	}
-	}
+	}*/
 }
 
 void MX_DAC_Init(void)
@@ -97,19 +97,19 @@ void MX_DAC_Init(void)
 }
 
 void dac_ON(void){
-	DAC->CR |= DAC_CR_EN1;
+	//DAC->CR |= DAC_CR_EN1;
 	// Enable timer too
 	htim2.Instance->CR1 |= TIM_CR1_CEN;
 }
 void dac_OFF(void){
-	DAC->CR &= ~DAC_CR_EN1;
+	//DAC->CR &= ~DAC_CR_EN1;
 	// Disable timer too
 	htim2.Instance->CR1 &= ~TIM_CR1_CEN;
 }
 
 
 
-#ifdef __DBG_ITM
+//#ifdef __DBG_ITM
 
 		void dac_buff_imit_append (void) {
 			
@@ -119,8 +119,8 @@ void dac_OFF(void){
 				dac_buff.p_buff += 30 ;
 			} else {
 				dac_buff.p_buff = dac_buff.dac_wheel_buffer +( 30 - ( (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE-1)) - dac_buff.p_buff) );
-				dac_buff.buff_overflow = 1;
+			//	dac_buff.buff_overflow = 1;
 			}
 			
 		}
-#endif
+//#endif

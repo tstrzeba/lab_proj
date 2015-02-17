@@ -234,8 +234,8 @@ int main(void)
   /* Infinite loop */
   while (1)
   {
-		//adc_data_ready();
-		//dac_data_ready(); 
+		adc_data_ready();
+		dac_data_ready(); 
 		
 		
 		// Check status rfm73 module

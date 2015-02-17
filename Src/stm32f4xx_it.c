@@ -189,6 +189,7 @@ void SPI3_IRQHandler(void) {
 void ADC_IRQHandler(void)
 {
 	adc_buff_append(ADC3->DR);
+	//adc_buff_append (0x0345);
   /* USER CODE BEGIN ADC_IRQn 0 */
   /* USER CODE END ADC_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc3);
@@ -200,30 +201,29 @@ void ADC_IRQHandler(void)
 void TIM2_IRQHandler(void)
 {
 	
-	/*
-	if ( dac_buff.is_dac_on == 1) {
+	
+	//if ( dac_buff.is_dac_on == 1) {
 		// USER CODE BEGIN TIM2_IRQn 0 
 		DAC->DHR12RD = *dac_buff.p_buff_dac;
+		/*dac_buff.i++ ; 
+		if ( dac_buff.i >= DAC_BUFF_SIZE ) 
+			dac_buff.i = 0 ;
 		
+		DAC->DHR12RD = dac_buff.dac_wheel_buffer[dac_buff.i] ;*/
 		dac_buff.p_buff_dac++;
 		if (dac_buff.p_buff_dac >= (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE - 1))) {
-			dac_buff.buff_overflow = 0;
+			//dac_buff.buff_overflow = 0;
 			dac_buff.p_buff_dac = dac_buff.dac_wheel_buffer;
 		}
 		if (dac_buff.p_buff_dac == dac_buff.p_buff) {
 				dac_OFF();
 				dac_buff.is_dac_on = 0;
 		}
-	}
-	*/
+	//}
 
-	#ifdef __DBG_ITM
-		dac_buff.i++ ; 
-		if ( dac_buff.i >= DAC_BUFF_SIZE ) 
-			dac_buff.i = 0 ;
+//	#ifdef __DBG_ITM
 		
-		DAC->DHR12RD = dac_buff.dac_wheel_buffer[dac_buff.i] ;
-	#endif
+//	#endif
 
 
   /* USER CODE END TIM2_IRQn 0 */
