@@ -138,6 +138,19 @@ void MX_GPIO_Init(void)
 		HAL_GPIO_Init(BLUE_SW_PORT, &gpio_init_struct);
 		
 		
+		
+		
+		
+		// for testing - PE5
+		/*
+		__GPIOE_CLK_ENABLE();
+		gpio_init_struct.Pin = GPIO_PIN_4;
+		gpio_init_struct.Mode = GPIO_MODE_OUTPUT_PP;
+		gpio_init_struct.Pull = GPIO_NOPULL;
+		gpio_init_struct.Speed = GPIO_SPEED_MEDIUM ;
+		HAL_GPIO_Init(GPIOE, &gpio_init_struct);
+		*/
+		
 }
 
 /* USER CODE BEGIN 2 */

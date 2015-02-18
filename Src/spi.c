@@ -44,6 +44,7 @@
 
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi3;
+SPI_HandleTypeDef hspi4;		// Instead SPI1
 
 /* SPI1 init function */
 void MX_SPI1_Init(void)
@@ -72,6 +73,37 @@ void MX_SPI1_Init(void)
 	
 
 }
+
+
+/* SPI1 init function */
+void MX_SPI4_Init(void)
+{
+
+  hspi4.Instance = SPI4;
+  hspi4.Init.Mode = SPI_MODE_MASTER;
+  hspi4.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi4.Init.DataSize = SPI_DATASIZE_8BIT;
+  hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi4.Init.NSS = SPI_NSS_SOFT;
+  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi4.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi4.Init.TIMode = SPI_TIMODE_DISABLED;
+  hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLED;
+  HAL_SPI_Init(&hspi4);
+	
+	// Enable module
+	hspi4.Instance->CR1 |= SPI_CR1_SPE ;
+	
+	// Enable NVIC interrupt 
+	NVIC_ClearPendingIRQ( SPI4_IRQn ) ;
+	NVIC_EnableIRQ( SPI4_IRQn ) ;
+	NVIC_SetPriority( SPI4_IRQn, 0x0D ) ;
+	
+
+}
+
+
 /* SPI3 init function */
 void MX_SPI3_Init(void)
 {
@@ -154,7 +186,24 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
   /* USER CODE BEGIN SPI3_MspInit 1 */
 
   /* USER CODE END SPI3_MspInit 1 */
-  }
+  } 
+	else if( hspi->Instance==SPI4) {
+		/* Peripheral clock enable */
+    __SPI4_CLK_ENABLE();
+		__GPIOE_CLK_ENABLE();
+    /**SPI4 GPIO Configuration    
+    PE2     ------> SPI1_SCK
+    PE5     ------> SPI1_MISO
+    PE6     ------> SPI1_MOSI 
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_5|GPIO_PIN_6;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
+    GPIO_InitStruct.Alternate = GPIO_AF5_SPI4;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+		
+	}
 }
 
 void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)

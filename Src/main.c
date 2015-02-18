@@ -75,6 +75,8 @@ struct Radio_TypeDef radio2;
 // SPI hal instances from spi.c
 extern SPI_HandleTypeDef hspi1;
 extern SPI_HandleTypeDef hspi3;
+extern SPI_HandleTypeDef hspi4;
+
 extern ADC_HandleTypeDef hadc3;
 extern DAC_HandleTypeDef hdac;
 
@@ -107,8 +109,8 @@ int main(void)
 	
 	// Define Radio_TypeDef structs for each RFM73 module
 	
-	radio1.spi_inst = &hspi1 ;
-	radio1.spi_irqn = SPI1_IRQn ;
+	radio1.spi_inst = &hspi4 ; // &hspi1 ;
+	radio1.spi_irqn = SPI4_IRQn ; // SPI1_IRQn ;
 	radio1.A_SPI_CE_pin = MOD1_CE ;
 	radio1.A_SPI_CSN_pin = MOD1_CSN ;
 	radio1.A_SPI_gpio_port = MOD1_ADF_PORT ;
@@ -158,7 +160,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
+  //MX_SPI1_Init();
+	MX_SPI4_Init();
   MX_SPI3_Init();
   MX_ADC3_Init();
 	MX_DAC_Init();
@@ -280,14 +283,14 @@ int main(void)
 
 		
 		
-		/** Send one message after 2s since estabilished connection **/
-		if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
+		/* Send one message after 2s since estabilished connection **/
+		/*if ( ((uint32_t)( HAL_GetTick() - coreclock ) >= 2000 ) &&
 					(system.conn_status & SYSTEM_CONNECTED_MASK)
 			 ) {
 				 
 				 coreclock = HAL_GetTick() ; // reset timer
 				// rfm73_transmit_message( &radio1, (const uint8_t *)"TEST\n", 5 );
-		}
+		}*/
 		
 	}
 	
@@ -331,7 +334,7 @@ void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1428 ;		// Give as 95,2 us bettwen interrupts
+  htim2.Init.Period = 1520 ;		// 1428 give as 95,2 us bettwen interrupts
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_Base_Init(&htim2);
 	TIM2->DIER |= TIM_DIER_UIE;

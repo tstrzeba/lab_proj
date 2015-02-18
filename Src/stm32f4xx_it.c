@@ -71,6 +71,12 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
+	
+	
+	// for testing
+	//GPIOE->ODR ^= GPIO_PIN_4 ;
+	
+	
 }
 
 /**
@@ -186,10 +192,42 @@ void SPI3_IRQHandler(void) {
 	
 }
 
+
+
+
+void SPI4_IRQHandler(void) {
+	
+	// Is it RX interrut? 
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_RXNE) &&
+			 (radio1.status & RFM73_D_READING_MASK)
+	) {
+	
+			rfm73_rx_interrupt_handle( &radio1 );
+	
+	}
+	
+	
+	
+	// Is it TX interrupt ? 
+	if ( (radio1.spi_inst->Instance->SR & SPI_SR_TXE) && 
+			 (radio1.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
+			 (radio1.status & RFM73_SPI_SENDING_MASK)
+		)
+	{
+				//rfm73_tx_interrupt_handle( &radio1 ) ;
+	}
+	
+}
+
+
+
+
 void ADC_IRQHandler(void)
 {
 	adc_buff_append(ADC3->DR);
-	//adc_buff_append (0x0345);
+	//DAC->DHR12RD = ADC3->DR ;
+	
+	
   /* USER CODE BEGIN ADC_IRQn 0 */
   /* USER CODE END ADC_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc3);
@@ -197,6 +235,7 @@ void ADC_IRQHandler(void)
 
   /* USER CODE END ADC_IRQn 1 */
 }
+
 
 void TIM2_IRQHandler(void)
 {
@@ -220,10 +259,7 @@ void TIM2_IRQHandler(void)
 				dac_buff.is_dac_on = 0;
 		}
 	//}
-
-//	#ifdef __DBG_ITM
-		
-//	#endif
+	
 
 
   /* USER CODE END TIM2_IRQn 0 */

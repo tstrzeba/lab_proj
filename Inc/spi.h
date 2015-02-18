@@ -48,6 +48,7 @@ extern SPI_HandleTypeDef hspi3;
 
 void MX_SPI1_Init(void);
 void MX_SPI3_Init(void);
+void MX_SPI4_Init(void);
 
 #ifdef __cplusplus
 }
