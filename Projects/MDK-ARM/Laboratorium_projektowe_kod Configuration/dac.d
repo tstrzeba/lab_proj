@@ -1,6 +1,6 @@
 laboratorium_projektowe_kod configuration\dac.o: ..\..\Src\dac.c
 laboratorium_projektowe_kod configuration\dac.o: ..\..\Inc\dac.h
-laboratorium_projektowe_kod configuration\dac.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+laboratorium_projektowe_kod configuration\dac.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 laboratorium_projektowe_kod configuration\dac.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 laboratorium_projektowe_kod configuration\dac.o: ..\..\Inc\stm32f4xx_hal_conf.h
 laboratorium_projektowe_kod configuration\dac.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_rcc.h

@@ -1,7 +1,7 @@
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Src\sys_connect.c
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\sys_connect.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\radio_lib.h
-laboratorium_projektowe_kod configuration\sys_connect.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+laboratorium_projektowe_kod configuration\sys_connect.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 laboratorium_projektowe_kod configuration\sys_connect.o: ..\..\Inc\stm32f4xx_hal_conf.h

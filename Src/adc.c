@@ -3,11 +3,12 @@
 
 struct ADC_BUFF adc_buff;
 
+/// For HAL drivers
 ADC_HandleTypeDef hadc3;
 extern struct Radio_TypeDef radio1;
 
 void adc_buff_append(uint16_t value) {
-
+	/// Convert data from 12 bits to 8 bits
 	if (adc_buff.i == 0) {
 		*adc_buff.p_buff = (uint8_t)(value >> 4);
 		adc_buff.p_buff++;
@@ -24,6 +25,8 @@ void adc_buff_append(uint16_t value) {
 		adc_buff.buff_it++;
 		adc_buff.i = 0;
 	}
+	
+	/// If p_buff point to end of buffer switch buffers and set buff_full flag
 	if (adc_buff.buff_it >= adc_buff.buff_max) {
 		adc_buff.buff_it = 0;
 		adc_buff.buff_full = 1;
@@ -38,9 +41,11 @@ void adc_buff_append(uint16_t value) {
 			
 		}
 	}
-};
+}
+
 
 void adc_data_ready(void) {
+	/// If buffer full send buffer to RF module
 	if (adc_buff.buff_full == 1) {
 		adc_buff.p_buff_ready--;
 		if (adc_buff.buff_in_use == 1) {
@@ -50,7 +55,7 @@ void adc_data_ready(void) {
 		else {
 			rfm73_transmit_message( &radio1, (const uint8_t*)adc_buff.buffer1, 30 );
 		}
-		adc_buff.buff_full = 0;
+		adc_buff.buff_full = 0;	/// Clear buff_full flag
 	}
 }
 
@@ -70,6 +75,8 @@ void adc_buff_clear(void) {
 	adc_buff.p_buff_ready = 0;
 	adc_buff.buff_full = 0;
 	adc_buff.buff_in_use = 0;
+	
+	/// Clear all samples
 	for (adc_buff.i = 0; adc_buff.i < ADC_BUFF_SIZE; adc_buff.i++) {
 		adc_buff.buffer0[adc_buff.i] = 0;
 		adc_buff.buffer1[adc_buff.i] = 0;
@@ -78,18 +85,17 @@ void adc_buff_clear(void) {
 	
 }
 
-void adc_ON(void){
+void adc_ON(void) {
 	ADC3->CR2 |= ADC_CR2_ADON;
-		ADC3->CR2 |= ADC_CR2_SWSTART;
+	ADC3->CR2 |= ADC_CR2_SWSTART;
 }
 
-void adc_OFF(void){
+void adc_OFF(void) {
 	ADC3->CR2 &= ~ADC_CR2_ADON;
-		ADC3->CR2 &= ~ADC_CR2_SWSTART;
+	ADC3->CR2 &= ~ADC_CR2_SWSTART;
 }
 
-void MX_ADC3_Init(void)
-{
+void MX_ADC3_Init(void) {
 
   ADC_ChannelConfTypeDef sConfig;
 

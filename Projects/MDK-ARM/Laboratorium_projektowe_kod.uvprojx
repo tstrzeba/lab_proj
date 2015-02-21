@@ -458,11 +458,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\Src\dac.c</FilePath>
             </File>
-            <File>
-              <FileName>dac.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\Inc\dac.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

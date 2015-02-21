@@ -1,6 +1,6 @@
 laboratorium_projektowe_kod configuration\radio_lib.o: ..\..\Src\radio_lib.c
 laboratorium_projektowe_kod configuration\radio_lib.o: ..\..\Inc\radio_lib.h
-laboratorium_projektowe_kod configuration\radio_lib.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+laboratorium_projektowe_kod configuration\radio_lib.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 laboratorium_projektowe_kod configuration\radio_lib.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\radio_lib.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
 laboratorium_projektowe_kod configuration\radio_lib.o: ..\..\Inc\stm32f4xx_hal_conf.h

@@ -31,7 +31,7 @@
   *
   ******************************************************************************
   */
-/* Includes ------------------------------------------------------------------*/
+/** Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_it.h"
@@ -40,19 +40,14 @@
 #include "sys_connect.h"
 #include "adc.h"
 #include "dac.h"
-/* USER CODE BEGIN 0 */
 
-
-// external - global - variables
-
-// structures for radio RFM73 modules:
+/// Structures for radio RFM73 modules:
 extern struct Radio_TypeDef radio1;
 extern struct Radio_TypeDef radio2;
 extern ADC_HandleTypeDef hadc3;
 extern TIM_HandleTypeDef htim2;
 extern struct DAC_BUFF dac_buff;
-/* USER CODE END 0 */
-/* External variables --------------------------------------------------------*/
+
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
@@ -61,38 +56,10 @@ extern struct DAC_BUFF dac_buff;
 /**
 * @brief This function handles System tick timer.
 */
-void SysTick_Handler(void)
-{
-  /* USER CODE BEGIN SysTick_IRQn 0 */
-
-  /* USER CODE END SysTick_IRQn 0 */
+void SysTick_Handler(void) {
   HAL_IncTick();
   HAL_SYSTICK_IRQHandler();
-  /* USER CODE BEGIN SysTick_IRQn 1 */
-
-  /* USER CODE END SysTick_IRQn 1 */
-	
-	
-	// for testing
-	//GPIOE->ODR ^= GPIO_PIN_4 ;
-	
-	
 }
-
-/**
-* @brief This function handles RCC global interrupt.
-*/
-void RCC_IRQHandler(void)
-{
-  /* USER CODE BEGIN RCC_IRQn 0 */
-
-  /* USER CODE END RCC_IRQn 0 */
-  /* USER CODE BEGIN RCC_IRQn 1 */
-
-  /* USER CODE END RCC_IRQn 1 */
-}
-
-/* USER CODE BEGIN 1 */
 
 /** 
 * @brief For RFM73 IRQ - MODULE 1 ( connected with SPI1 )
@@ -100,67 +67,31 @@ void RCC_IRQHandler(void)
 */
 void EXTI3_IRQHandler( void ) {
 	
-	// Check if that was interrupt from MOD1_IRQ pin
+	/// Check if that was interrupt from MOD1_IRQ pin
 	if(__HAL_GPIO_EXTI_GET_IT(MOD1_IRQ) != RESET)
   {
     __HAL_GPIO_EXTI_CLEAR_IT(MOD1_IRQ);		// Clear INTERRUPT
 		
-		// Inform main program that RFM73 module 1 has something to say: 
+		/// Inform main program that RFM73 module 1 has something to say: 
 		radio1.status |= RFM73_IRQ_OCR_MASK ;
   }
 
 }
-
-
 
 /**
 *	@brief For RFM73 IRQ - MODULE 2 ( connected with SPI3 )
 */
 void EXTI9_5_IRQHandler( void ) {
 	
-	// Check if that was interrupt from MOD1_IRQ pin
+	/// Check if that was interrupt from MOD1_IRQ pin
 	if(__HAL_GPIO_EXTI_GET_IT(MOD2_IRQ) != RESET)
   {
     __HAL_GPIO_EXTI_CLEAR_IT(MOD2_IRQ);		// Clear INTERRUPT
 		
-		
-		// Inform main program that RFM73 module 2 has something to say: 
+		/// Inform main program that RFM73 module 2 has something to say: 
 		radio2.status |= RFM73_IRQ_OCR_MASK ;
 		
   }
-	
-}
-
-
-
-
-
-
-
-/** 
-* @brief For RFM73 IRQ - MODULE 1 SPI - interrupt
-*/
-void SPI1_IRQHandler(void) {
-	
-	// Is it RX interrut? 
-	if ( (radio1.spi_inst->Instance->SR & SPI_SR_RXNE) &&
-			 (radio1.status & RFM73_D_READING_MASK)
-	) {
-	
-			rfm73_rx_interrupt_handle( &radio1 );
-	
-	}
-	
-	
-	
-	// Is it TX interrupt ? 
-	if ( (radio1.spi_inst->Instance->SR & SPI_SR_TXE) && 
-			 (radio1.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
-			 (radio1.status & RFM73_SPI_SENDING_MASK)
-		)
-	{
-				//rfm73_tx_interrupt_handle( &radio1 ) ;
-	}
 	
 }
 
@@ -170,8 +101,7 @@ void SPI1_IRQHandler(void) {
 */
 void SPI3_IRQHandler(void) {
 	
-	
-	// Is it RX interrut? 
+	/// Is it RX interrut? 
 	if ( (radio2.spi_inst->Instance->SR & SPI_SR_RXNE) &&
 			 (radio2.status & RFM73_D_READING_MASK)
 	) {
@@ -179,25 +109,23 @@ void SPI3_IRQHandler(void) {
 		
 	}
 	
-	
-	
-	// Is it TX interrupt ? 
+	/// Is it TX interrupt ? 
 	if ( (radio2.spi_inst->Instance->SR & SPI_SR_TXE) && 
 			 (radio2.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
 			 (radio2.status & RFM73_SPI_SENDING_MASK)
 		)
 	{
-		//	rfm73_tx_interrupt_handle( &radio2 ) ;
+		///	rfm73_tx_interrupt_handle( &radio2 ) ;
 	}
 	
 }
 
-
-
-
+/** 
+* @brief For RFM73 IRQ - MODULE 1 SPI - interrupt
+*/
 void SPI4_IRQHandler(void) {
 	
-	// Is it RX interrut? 
+	/// Is it RX interrut? 
 	if ( (radio1.spi_inst->Instance->SR & SPI_SR_RXNE) &&
 			 (radio1.status & RFM73_D_READING_MASK)
 	) {
@@ -206,9 +134,7 @@ void SPI4_IRQHandler(void) {
 	
 	}
 	
-	
-	
-	// Is it TX interrupt ? 
+		/// Is it TX interrupt ? 
 	if ( (radio1.spi_inst->Instance->SR & SPI_SR_TXE) && 
 			 (radio1.spi_inst->Instance->CR2 & SPI_CR2_TXEIE) && 
 			 (radio1.status & RFM73_SPI_SENDING_MASK)
@@ -216,56 +142,35 @@ void SPI4_IRQHandler(void) {
 	{
 				//rfm73_tx_interrupt_handle( &radio1 ) ;
 	}
-	
 }
 
-
-
-
+/** 
+* @brief For ADC IRQ interrupt
+*/
 void ADC_IRQHandler(void)
 {
 	adc_buff_append(ADC3->DR);
-	//DAC->DHR12RD = ADC3->DR ;
-	
-	
-  /* USER CODE BEGIN ADC_IRQn 0 */
-  /* USER CODE END ADC_IRQn 0 */
   HAL_ADC_IRQHandler(&hadc3);
-  /* USER CODE BEGIN ADC_IRQn 1 */
-
-  /* USER CODE END ADC_IRQn 1 */
 }
 
-
+/** 
+* @brief For TIM2 IRQ interrupt
+*/
 void TIM2_IRQHandler(void)
 {
-	
-	
-	//if ( dac_buff.is_dac_on == 1) {
-		// USER CODE BEGIN TIM2_IRQn 0 
+	/// Send a sample to DAC
 		DAC->DHR12RD = *dac_buff.p_buff_dac;
-		/*dac_buff.i++ ; 
-		if ( dac_buff.i >= DAC_BUFF_SIZE ) 
-			dac_buff.i = 0 ;
-		
-		DAC->DHR12RD = dac_buff.dac_wheel_buffer[dac_buff.i] ;*/
+	/// Increment p_buff_dac
 		dac_buff.p_buff_dac++;
+	/// If p_buff_dac points to end of buffer change it to point to beginning of buffer
 		if (dac_buff.p_buff_dac >= (dac_buff.dac_wheel_buffer + (DAC_BUFF_SIZE - 1))) {
-			//dac_buff.buff_overflow = 0;
 			dac_buff.p_buff_dac = dac_buff.dac_wheel_buffer;
 		}
+	/// If p_buff_dac is equal to p_buff disable timer because all samples were delivered to DAC
 		if (dac_buff.p_buff_dac == dac_buff.p_buff) {
 				dac_OFF();
 				dac_buff.is_dac_on = 0;
 		}
-	//}
-	
 
-
-  /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
-  /* USER CODE BEGIN TIM2_IRQn 1 */
-
-  /* USER CODE END TIM2_IRQn 1 */
-	
 }

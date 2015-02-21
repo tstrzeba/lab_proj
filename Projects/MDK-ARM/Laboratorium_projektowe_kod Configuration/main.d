@@ -6,7 +6,7 @@ laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\STM32F4xx_HAL_Dr
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Include\core_cm4.h
-laboratorium_projektowe_kod configuration\main.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+laboratorium_projektowe_kod configuration\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Include\core_cmInstr.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Include\core_cmFunc.h
 laboratorium_projektowe_kod configuration\main.o: ..\..\Drivers\CMSIS\Include\core_cm4_simd.h

@@ -1,6 +1,6 @@
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Src\rfm73_callbacks.c
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\rfm73_callbacks.h
-laboratorium_projektowe_kod configuration\rfm73_callbacks.o: C:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+laboratorium_projektowe_kod configuration\rfm73_callbacks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\radio_lib.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Inc\spi.h
 laboratorium_projektowe_kod configuration\rfm73_callbacks.o: ..\..\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
