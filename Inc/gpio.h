@@ -1,3 +1,4 @@
+/** \file gpio.h  */
 /**
   ******************************************************************************
   * File Name          : gpio.h
@@ -43,24 +44,31 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
-// MODULE 1 (connected with SPI1) RFM73 additional pins definition - HAL notation
-// !!!!!!!! CE and CSN must be at the same port!
-#define MOD1_CE GPIO_PIN_2
-#define MOD1_CSN GPIO_PIN_3
-#define MOD1_ADF_PORT GPIOG
+/** MODULE 1 - RFM73 additional pins definition - compatible with STM HAL
+* 
+* 
+* \warning Macro must be as mask not as bit number
+* \warning Pins: CE and CSN must be at the same port!
+*/
+#define MOD1_CE GPIO_PIN_2    /**< mask for CE pin in port: MOD1_ADF_PORT */
+#define MOD1_CSN GPIO_PIN_3   /**< mask for CSN pin in port: MOD1_ADF_PORT */
+#define MOD1_ADF_PORT GPIOG   /**< Address of port where MOD1_CE and MOD1_CSN are connected */
 
-#define MOD1_IRQ GPIO_PIN_3
-#define MOD1_IRQ_PORT GPIOC
+#define MOD1_IRQ GPIO_PIN_3   /**< mask for IRQ pin in port: MOD1_IRQ_PORT */
+#define MOD1_IRQ_PORT GPIOC   /**< Address of port where MOD1_IRQ is connected */
 
 	 
-// MODULE 2 (connected with SPI3) RFM73 additional pins definition - HAL notation
-// !!!!!!!! CE and CSN must be at the same port!
-#define MOD2_CE GPIO_PIN_7
-#define MOD2_CSN GPIO_PIN_6
-#define MOD2_ADF_PORT GPIOC
+/** MODULE 2 - RFM73 additional pins definition - compatible with STM HAL
+* 
+* \warning Macro must be as mask not as bit number
+* \warning Pins: CE and CSN must be at the same port!
+*/
+#define MOD2_CE GPIO_PIN_7    /**< mask for CE pin in port: MOD2_ADF_PORT */
+#define MOD2_CSN GPIO_PIN_6   /**< mask for CSN pin in port: MOD2_ADF_PORT */
+#define MOD2_ADF_PORT GPIOC   /**< Address of port where MOD2_CE and MOD2_CSN are connected */
 	 
-#define MOD2_IRQ GPIO_PIN_8
-#define MOD2_IRQ_PORT GPIOC
+#define MOD2_IRQ GPIO_PIN_8   /**< mask for IRQ pin in port: MOD2_IRQ_PORT */
+#define MOD2_IRQ_PORT GPIOC   /**< Address of port where MOD2_IRQ is connected */
 
 
 	 
@@ -81,7 +89,9 @@
 #define BLUE_SW_PIN GPIO_PIN_0
 #define BLUE_SW_PORT GPIOA
 
-
+/**  
+* Performs gpio initialization
+*/
 void MX_GPIO_Init(void);
 #ifdef __cplusplus
 }
