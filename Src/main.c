@@ -43,6 +43,7 @@
 #include "sys_connect.h"
 #include "dac.h"
 
+//static void HardFault_Handler ( void ) __attribute__( ( naked ) );
 void SystemClock_Config(void);
 
 /// Declare SYSTEM structure - contain system state information ( e.g. connected / not connected )
@@ -72,11 +73,10 @@ TIM_HandleTypeDef htim2;
 /// TIM2 initialization function
 static void MX_TIM2_Init(void); 
 
-
 int main(void)
 {
-	uint8_t temp8 ;
 	
+
 	/// for testing:
 	uint8_t pipe, length, r2buff[20];
 	uint32_t coreclock ;
@@ -136,6 +136,11 @@ int main(void)
 	rfm73_init( &radio2 );
 
 
+	
+						//	adc_ON() ;
+					//		DAC->CR |= DAC_CR_EN1;	/// enable DAC
+							
+
   /** Infinite loop */
   while (1)
   {
@@ -150,8 +155,17 @@ int main(void)
 		
 		/// Check status rfm73 module
 		rfm73_check( &radio2 ) ;
-			
 		
+				/*
+							if ( (uint32_t)(HAL_GetTick() - coreclock) >= 8 ) {
+									coreclock = HAL_GetTick() ;
+									rfm73_mode_transmit( &radio1 ) ;
+									rfm73_transmit_message(&radio1, (const uint8_t*)"abc", 3) ;
+				//					rfm73_mode_receive( &radio1 ) ;
+							}
+		
+			*/
+				
 		/// Perform connection procedure - master mode:
 		if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_SET) &&
 				!(system.conn_status & SYSTEM_CONNECTED_MASK)
@@ -223,6 +237,79 @@ void MX_TIM2_Init(void) {
   HAL_TIM_Base_Init(&htim2);
 	TIM2->DIER |= TIM_DIER_UIE;	/// Update Interrupt Enable
 }
+
+
+/*
+*	---------------------------------------------------------------------------
+* 												HARDFAULT HANDLER	START
+*	---------------------------------------------------------------------------
+*/
+/*
+void HardFault_Handler ( void ) 	{
+	/ *__asm volatile
+		(
+        " tst lr, #4                                                \n"
+        " ite eq                                                    \n"
+        " mrseq r0, msp                                             \n"
+        " mrsne r0, psp                                             \n"
+        " ldr r1, [r0, #24]                                         \n"
+        " ldr r2, handler2_address_const                            \n"
+        " bx r2                                                     \n"
+        " handler2_address_const: .word prvGetRegistersFromStack    \n"
+		);
+	* /
+	volatile int lr ;
+	volatile int sp ; 
+	volatile int pc ;
+	
+	pc = __current_pc() ;
+	
+	sp = __current_sp() ;
+	
+	lr = __return_address();
+	
+	for(;;) ;
+}
+*/ 
+
+/*
+void prvGetRegistersFromStack( uint32_t *pulFaultStackAddress )
+{
+/ * These are volatile to try and prevent the compiler/linker optimising them
+away as the variables never actually get used.  If the debugger won't show the
+values of the variables, make them global my moving their declaration outside
+of this function. * /
+volatile uint32_t r0;
+volatile uint32_t r1;
+volatile uint32_t r2;
+volatile uint32_t r3;
+volatile uint32_t r12;
+volatile uint32_t lr; // Link register. * /
+volatile uint32_t pc; // Program counter. * /
+volatile uint32_t psr; // Program status register. * /
+
+    r0 = pulFaultStackAddress[ 0 ];
+    r1 = pulFaultStackAddress[ 1 ];
+    r2 = pulFaultStackAddress[ 2 ];
+    r3 = pulFaultStackAddress[ 3 ];
+
+    r12 = pulFaultStackAddress[ 4 ];
+    lr = pulFaultStackAddress[ 5 ];
+    pc = pulFaultStackAddress[ 6 ];
+    psr = pulFaultStackAddress[ 7 ];
+
+    / * When the following line is hit, the variables contain the register values. * /
+    for( ;; );
+}
+*/
+
+
+/*
+*	---------------------------------------------------------------------------
+* 												HARDFAULT HANDLER END
+*	---------------------------------------------------------------------------
+*/
+
 
 #ifdef USE_FULL_ASSERT
 

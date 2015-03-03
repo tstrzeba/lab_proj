@@ -4,9 +4,17 @@
 #include "sys_connect.h"
 #include "adc.h"
 #include "dac.h"
+
+// For FIR purposes
+#include "arm_math.h"
+//#include "math_helper.h"
+
+
 // SYSTEM STATUS
 extern struct SysStat_TypeDef system ;
 
+// FIR structure
+extern arm_fir_instance_f32 S_FIR;
 
 /**
 * 			Callback functions in DISCONNECTED state
@@ -25,6 +33,10 @@ void disc_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			
 			// Init DAC - buffers, etc.
 			dac_buff_init() ;
+					
+						// Init FIR 
+						fir_init();
+			
 			
 			// Reset timeout counter:
 			system.s_timelast = HAL_GetTick() ;
@@ -55,9 +67,8 @@ uint8_t disc_cant_send_callback( struct Radio_TypeDef * _radioH ) {
 */
 
 void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
-		uint8_t i;
 	
-		// Test for DISCONNEC message - it must appear on pipe 1
+		// Test for DISCONNECT message - it must appear on pipe 1
 		if ( _radioH->pipe == 1 ) {
 			// Test for DISCONNECT message:
 			if ( (_radioH->buffer_maxl == 1) && ( _radioH->buffer[0] == 'D' ) ) {
@@ -70,7 +81,6 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			// Reset timeout counter:
 			system.s_timelast = HAL_GetTick();
 
-
 			/* *** Place here not too long functions to handle received data
 						 Otherwise you should set proper flag and handle your function
 						 in main. This function shouldn't be to long because the incoming
@@ -81,7 +91,7 @@ void Sconn_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			// second parameter shoud be:  _radioH->buffer_maxl but dac_append() only works for 30Bs
 			
 			dac_buff_append( (uint8_t*)_radioH->buffer, 30);
-			
+
 
 		}
 }

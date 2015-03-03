@@ -120,6 +120,13 @@ void MX_ADC3_Init(void) {
   sConfig.Rank = 1;
   sConfig.SamplingTime = ADC_SAMPLETIME_84CYCLES;
   HAL_ADC_ConfigChannel(&hadc3, &sConfig);
+	
+	/* Enable NVIC */ 
+	
+	NVIC_ClearPendingIRQ( ADC_IRQn );
+	NVIC_EnableIRQ(ADC_IRQn);
+	NVIC_SetPriority(ADC_IRQn, 0x01 );
+	
 	ADC3->CR1 |= ADC_CR1_EOCIE;
 	adc_buff_init();
 }

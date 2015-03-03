@@ -149,7 +149,11 @@ void SPI4_IRQHandler(void) {
 */
 void ADC_IRQHandler(void)
 {
-	adc_buff_append(ADC3->DR);
+	
+		adc_buff_append(ADC3->DR);
+					//DAC->DHR12RD  = ADC3->DR ;
+					//GPIOE->ODR ^= GPIO_PIN_4 ;
+	
   HAL_ADC_IRQHandler(&hadc3);
 }
 
@@ -158,6 +162,8 @@ void ADC_IRQHandler(void)
 */
 void TIM2_IRQHandler(void)
 {
+	
+		
 	/// Send a sample to DAC
 		DAC->DHR12RD = *dac_buff.p_buff_dac;
 	/// Increment p_buff_dac
@@ -171,6 +177,8 @@ void TIM2_IRQHandler(void)
 				dac_OFF();
 				dac_buff.is_dac_on = 0;
 		}
+	
+	
 
   HAL_TIM_IRQHandler(&htim2);
 }

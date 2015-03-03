@@ -141,7 +141,7 @@ void MX_GPIO_Init(void)
 		
 		
 		
-		// for testing - PE5
+		// for testing - PE4
 		/*
 		__GPIOE_CLK_ENABLE();
 		gpio_init_struct.Pin = GPIO_PIN_4;

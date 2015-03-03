@@ -391,7 +391,7 @@ const unsigned char Bank0_Reg[ BANK0_ENTRIES ][ 2 ]={
    {  3, 0x03 }, // 5 bytes addresses
    {  4, 0x27 }, // 0x27- 750us, 7 times | 0xff - auto retransmission delay 4 ms, 15 times
    {  5, 0x0A }, // channel 10
-   {  6 ,0x2F }, // 2MBit, power TX 5dBm, LNA gain high - 0x27 | 0x07 - data rate 1Mbit, power 5dbm, LNA gain high
+   {  6 ,0x2F }, // 2MBit, TX power -5dBm, LNA gain high |2MBit, power TX 5dBm, LNA gain high - 0x2F | 0x07 - data rate 1Mbit, power 5dbm, LNA gain high
    {  7, 0x07 }, // why write this at all?? but seems required to work...
    {  8, 0x00 }, // clear Tx packet counters
    { 23, 0x00 }, // fifo status

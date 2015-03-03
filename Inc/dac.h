@@ -49,4 +49,12 @@ inline void dac_ON(void);
 /// Disable TIM2
 inline void dac_OFF(void);
 
+
+
+
+
+
+// fir 
+void fir_init( void ) ;
+
 #endif

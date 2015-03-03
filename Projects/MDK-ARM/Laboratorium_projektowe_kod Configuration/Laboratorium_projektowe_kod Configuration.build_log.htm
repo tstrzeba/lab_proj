@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.13.0.0
 Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Tomasz Strzebak, AGH, LIC=----
+License Information: Slawomir Pab, AGH student, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.13.0.0
@@ -21,14 +21,12 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.14.0_KEIL
 Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
-C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\Laboratorium_projektowe_kod.uvprojx
-Project File Date:  02/21/2015
+C:\Users\Scott\Documents\lab_proj_code\future_Tomek\Projects\MDK-ARM\Laboratorium_projektowe_kod.uvprojx
+Project File Date:  03/01/2015
 
 <h2>Output:</h2>
 Rebuild target 'Laboratorium_projektowe_kod Configuration'
 compiling main.c...
-..\..\Src\main.c(78): warning:  #177-D: variable "temp8" was declared but never referenced
-        uint8_t temp8 ;
 ..\..\Src\main.c(81): warning:  #177-D: variable "pipe" was declared but never referenced
         uint8_t pipe, length, r2buff[20];
 ..\..\Src\main.c(81): warning:  #177-D: variable "length" was declared but never referenced
@@ -37,16 +35,13 @@ compiling main.c...
         uint8_t pipe, length, r2buff[20];
 ..\..\Src\main.c(82): warning:  #550-D: variable "coreclock" was set but never used
         uint32_t coreclock ;
-..\..\Src\main.c: 5 warnings, 0 errors
+..\..\Src\main.c: 4 warnings, 0 errors
 compiling stm32f4xx_hal_msp.c...
 compiling gpio.c...
 compiling stm32f4xx_it.c...
 compiling spi.c...
 compiling radio_lib.c...
 compiling rfm73_callbacks.c...
-..\..\Src\rfm73_callbacks.c(58): warning:  #177-D: variable "i" was declared but never referenced
-                uint8_t i;
-..\..\Src\rfm73_callbacks.c: 1 warning, 0 errors
 compiling sys_connect.c...
 compiling adc.c...
 compiling dac.c...
@@ -72,14 +67,27 @@ compiling stm32f4xx_hal_tim_ex.c...
 compiling system_stm32f4xx.c...
 assembling startup_stm32f429xx.s...
 linking...
-Program Size: Code=10460 RO-data=580 RW-data=32 ZI-data=2064  
-"Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf" - 0 Error(s), 6 Warning(s).
+Program Size: Code=12276 RO-data=580 RW-data=640 ZI-data=2376  
+"Laboratorium_projektowe_kod Configuration\Laboratorium_projektowe_kod Configuration.axf" - 0 Error(s), 4 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.2.0.pack
+                ARM::CMSIS:DSP:1.4.2
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: DSP Version: 1.4.2
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\Tomek\Documents\Visual Studio 2013\Projects\Project_Lab_GIT\Projects\MDK-ARM\RTE
+  C:\Users\Scott\Documents\lab_proj_code\future_Tomek\Projects\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:DSP:1.4.2
+      Include file:  CMSIS\Include\arm_math.h
+      Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
 </pre>
 </body>
 </html>
