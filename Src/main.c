@@ -43,6 +43,8 @@
 #include "sys_connect.h"
 #include "dac.h"
 
+#include "arm_math.h"
+
 //static void HardFault_Handler ( void ) __attribute__( ( naked ) );
 void SystemClock_Config(void);
 
@@ -63,6 +65,12 @@ extern SPI_HandleTypeDef hspi4;
 extern ADC_HandleTypeDef hadc3;
 extern DAC_HandleTypeDef hdac;
 
+// ADC Pre-filtering purposes:
+extern struct ADC_PRE_FILTER adc_prefilter ;
+static volatile float32_t fir_buff0[BLOCK_SIZE] ;
+static volatile float32_t fir_buff1[BLOCK_SIZE] ;
+
+
 /// RFM73 pipes address
 extern const unsigned char RX0_Address[] ;
 extern const unsigned char RX1_Address[] ;
@@ -78,9 +86,23 @@ int main(void)
 	
 
 	/// for testing:
+	/*
 	uint8_t pipe, length, r2buff[20];
+	*/
+	
+	
 	uint32_t coreclock ;
-
+	
+	
+	// Filtering purposes - init structure
+	adc_prefilter.status = 0;
+	adc_prefilter.nr_used_buff = 0 ;
+	adc_prefilter.buffers[0] = &fir_buff0[0];
+	adc_prefilter.buffers[1] = &fir_buff1[0];
+	adc_prefilter.buffers_size = BLOCK_SIZE;
+	adc_prefilter.used_buff = adc_prefilter.buffers[0] ;
+	
+	
 	/// Define SYSTEM STATUS
 	system.conn_status = 0 ;
 	
@@ -156,16 +178,13 @@ int main(void)
 		/// Check status rfm73 module
 		rfm73_check( &radio2 ) ;
 		
-				/*
-							if ( (uint32_t)(HAL_GetTick() - coreclock) >= 8 ) {
-									coreclock = HAL_GetTick() ;
-									rfm73_mode_transmit( &radio1 ) ;
-									rfm73_transmit_message(&radio1, (const uint8_t*)"abc", 3) ;
-				//					rfm73_mode_receive( &radio1 ) ;
-							}
 		
-			*/
-				
+		// Check if there are data ready to filtering
+		adc_filtering_check() ;
+
+
+
+		
 		/// Perform connection procedure - master mode:
 		if ( (HAL_GPIO_ReadPin( BLUE_SW_PORT, BLUE_SW_PIN ) == GPIO_PIN_SET) &&
 				!(system.conn_status & SYSTEM_CONNECTED_MASK)

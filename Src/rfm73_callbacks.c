@@ -33,10 +33,6 @@ void disc_rcv_data_callback( struct Radio_TypeDef * _radioH ) {
 			
 			// Init DAC - buffers, etc.
 			dac_buff_init() ;
-					
-						// Init FIR 
-						fir_init();
-			
 			
 			// Reset timeout counter:
 			system.s_timelast = HAL_GetTick() ;

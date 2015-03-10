@@ -4,11 +4,53 @@
 #include "stdint.h"
 #include "stm32f4xx_hal.h"
 
+#include "arm_math.h"
+
 /// Maximum ADC buffer size	
 #define ADC_BUFF_SIZE 30
 
 /// For HAL drivers
 extern ADC_HandleTypeDef hadc3;
+
+
+
+/*
+*		defines used by filtering functions
+*/
+#define BLOCK_SIZE 24
+#define NUM_TAPS 53			// how many taps have
+
+/* 
+* 	Struct - before filters 
+*/
+struct ADC_PRE_FILTER {
+	volatile float32_t * volatile buffers[2] ; // contain pinters to buffers
+	volatile float32_t * volatile used_buff ;	// points to currently used buffer, count from 0 to n-1.
+	
+  volatile uint8_t nr_used_buff ; // number of currently using buffer
+	
+  uint8_t buffers_size ;		// size each buffer - must be the same
+	
+	volatile uint8_t status ;
+	
+};
+/*
+*		Defines that are describe bits in status byte in ADC_PRE_FILTER struct
+*/
+#define ADC_PRE_FILTER_FULL0_BIT 0
+#define ADC_PRE_FILTER_FULL0_MASK (1 << ADC_PRE_FILTER_FULL0_BIT)
+
+#define ADC_PRE_FILTER_FULL1_BIT 1
+#define ADC_PRE_FILTER_FULL1_MASK (1 << ADC_PRE_FILTER_FULL1_BIT)
+
+/* 
+*		Functions used to do 'pre filtering' procedures
+*/
+void adc_filtering_check( void ) ;
+
+
+
+
 
 /**
 *Struct contained ADC variables and ADC buffers. That struct containes:

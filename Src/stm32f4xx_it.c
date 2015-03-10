@@ -48,6 +48,8 @@ extern ADC_HandleTypeDef hadc3;
 extern TIM_HandleTypeDef htim2;
 extern struct DAC_BUFF dac_buff;
 
+// For pre filter purposes:
+extern struct ADC_PRE_FILTER adc_prefilter ;
 
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
@@ -150,7 +152,37 @@ void SPI4_IRQHandler(void) {
 void ADC_IRQHandler(void)
 {
 	
-		adc_buff_append(ADC3->DR);
+	// adc_buff_append(ADC3->DR);
+	
+	// Add samples to buffer:
+	*(adc_prefilter.used_buff) = (float32_t)ADC3->DR ;
+	(adc_prefilter.used_buff)++ ;
+	
+	// Check whether buffer is full:
+	if ( (adc_prefilter.used_buff - adc_prefilter.buffers_size) >
+				adc_prefilter.buffers[ adc_prefilter.nr_used_buff ] ) {
+	
+		// Change buffers and set proper flags
+		if ( (adc_prefilter.nr_used_buff == 0) && 
+				!(adc_prefilter.status & ADC_PRE_FILTER_FULL1_MASK ) 
+			 ) {
+			adc_prefilter.status |= ADC_PRE_FILTER_FULL0_MASK ;	// set flag to inform that buffer 0 is full
+			adc_prefilter.nr_used_buff = 1 ;
+			adc_prefilter.used_buff = adc_prefilter.buffers[1];
+		} 
+		else if ( (adc_prefilter.nr_used_buff == 1) && 
+						 !(adc_prefilter.status & ADC_PRE_FILTER_FULL0_MASK )
+						) {
+			adc_prefilter.status |= ADC_PRE_FILTER_FULL1_MASK ; // set flag to inform that buffer 1 is full
+			adc_prefilter.nr_used_buff = 0 ;
+			adc_prefilter.used_buff = adc_prefilter.buffers[0];
+		}
+		else {
+			// Hard fault - non buffer is free!
+			for(;;) ;
+		}
+					
+	}
 					//DAC->DHR12RD  = ADC3->DR ;
 					//GPIOE->ODR ^= GPIO_PIN_4 ;
 	

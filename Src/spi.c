@@ -192,9 +192,9 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     __SPI4_CLK_ENABLE();
 		__GPIOE_CLK_ENABLE();
     /**SPI4 GPIO Configuration    
-    PE2     ------> SPI1_SCK
-    PE5     ------> SPI1_MISO
-    PE6     ------> SPI1_MOSI 
+    PE2     ------> SPI4_SCK
+    PE5     ------> SPI4_MISO
+    PE6     ------> SPI4_MOSI 
     */
     GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_5|GPIO_PIN_6;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
