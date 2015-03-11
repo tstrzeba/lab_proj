@@ -51,6 +51,8 @@ extern struct DAC_BUFF dac_buff;
 // For pre filter purposes:
 extern struct ADC_PRE_FILTER adc_prefilter ;
 
+
+
 /******************************************************************************/
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
@@ -152,10 +154,12 @@ void SPI4_IRQHandler(void) {
 void ADC_IRQHandler(void)
 {
 	
+
+	
 	// adc_buff_append(ADC3->DR);
 	
 	// Add samples to buffer:
-	*(adc_prefilter.used_buff) = (float32_t)ADC3->DR ;
+	*(adc_prefilter.used_buff) = (float32_t)(((float32_t)ADC3->DR/4096.0f)*3.0f) ;
 	(adc_prefilter.used_buff)++ ;
 	
 	// Check whether buffer is full:
@@ -194,6 +198,7 @@ void ADC_IRQHandler(void)
 */
 void TIM2_IRQHandler(void)
 {
+		TIM2->SR &= ~TIM_SR_UIF ;
 	
 		
 	/// Send a sample to DAC
@@ -212,5 +217,6 @@ void TIM2_IRQHandler(void)
 	
 	
 
-  HAL_TIM_IRQHandler(&htim2);
+
+  // HAL_TIM_IRQHandler(&htim2);
 }

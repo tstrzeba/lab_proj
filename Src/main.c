@@ -67,8 +67,8 @@ extern DAC_HandleTypeDef hdac;
 
 // ADC Pre-filtering purposes:
 extern struct ADC_PRE_FILTER adc_prefilter ;
-static volatile float32_t fir_buff0[BLOCK_SIZE] ;
-static volatile float32_t fir_buff1[BLOCK_SIZE] ;
+volatile float32_t fir_buff0[BLOCK_SIZE] ;
+volatile float32_t fir_buff1[BLOCK_SIZE] ;
 
 
 /// RFM73 pipes address
@@ -76,14 +76,23 @@ extern const unsigned char RX0_Address[] ;
 extern const unsigned char RX1_Address[] ;
 extern const unsigned char RX2_Address[] ;
 
+
+uint8_t testtest = 0;
+
+
 /// For HAL drivers
 TIM_HandleTypeDef htim2;
+
 /// TIM2 initialization function
 static void MX_TIM2_Init(void); 
+
+
+
 
 int main(void)
 {
 	
+	testtest = 1;
 
 	/// for testing:
 	/*
@@ -166,11 +175,14 @@ int main(void)
   /** Infinite loop */
   while (1)
   {
-		/// Check if ADC data are redy
-		adc_data_ready();
 		
-		/// Check if DAC data are redy
-		dac_data_ready(); 
+		if( (system.conn_status & SYSTEM_CONNECTED_MASK) ) {
+			/// Check if ADC data are redy
+			adc_data_ready();
+			
+			/// Check if DAC data are redy
+			dac_data_ready(); 
+		}
 		
 		/// Check status rfm73 module
 		rfm73_check( &radio1 ) ;
@@ -217,6 +229,16 @@ int main(void)
 	}
 }
 
+
+void HardFault_Handler (void)  { 
+  if (CoreDebug->DHCSR & 1)  {     // check C_DEBUGEN == 1 -> Debugger Connected 
+    __breakpoint (0);              // halt program execution here 
+  } 
+  while (1);                       // enter endless loop otherwise 
+} 
+
+
+
 /** System Clock Configuration */
 void SystemClock_Config(void) {
 
@@ -251,83 +273,16 @@ void MX_TIM2_Init(void) {
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1520 ;		/// 1428 give as 95,2 us bettwen interrupts
+  htim2.Init.Period = 0x031A ; //1520		/// 1428 give as 95,2 us bettwen interrupts
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_Base_Init(&htim2);
+	htim2.Instance->CR1 &= ~TIM_CR1_CEN ;	// turn off tim2 at start
 	TIM2->DIER |= TIM_DIER_UIE;	/// Update Interrupt Enable
+	NVIC_EnableIRQ(TIM2_IRQn) ;
+	NVIC_SetPriority(TIM2_IRQn, 0x10) ;
 }
 
 
-/*
-*	---------------------------------------------------------------------------
-* 												HARDFAULT HANDLER	START
-*	---------------------------------------------------------------------------
-*/
-/*
-void HardFault_Handler ( void ) 	{
-	/ *__asm volatile
-		(
-        " tst lr, #4                                                \n"
-        " ite eq                                                    \n"
-        " mrseq r0, msp                                             \n"
-        " mrsne r0, psp                                             \n"
-        " ldr r1, [r0, #24]                                         \n"
-        " ldr r2, handler2_address_const                            \n"
-        " bx r2                                                     \n"
-        " handler2_address_const: .word prvGetRegistersFromStack    \n"
-		);
-	* /
-	volatile int lr ;
-	volatile int sp ; 
-	volatile int pc ;
-	
-	pc = __current_pc() ;
-	
-	sp = __current_sp() ;
-	
-	lr = __return_address();
-	
-	for(;;) ;
-}
-*/ 
-
-/*
-void prvGetRegistersFromStack( uint32_t *pulFaultStackAddress )
-{
-/ * These are volatile to try and prevent the compiler/linker optimising them
-away as the variables never actually get used.  If the debugger won't show the
-values of the variables, make them global my moving their declaration outside
-of this function. * /
-volatile uint32_t r0;
-volatile uint32_t r1;
-volatile uint32_t r2;
-volatile uint32_t r3;
-volatile uint32_t r12;
-volatile uint32_t lr; // Link register. * /
-volatile uint32_t pc; // Program counter. * /
-volatile uint32_t psr; // Program status register. * /
-
-    r0 = pulFaultStackAddress[ 0 ];
-    r1 = pulFaultStackAddress[ 1 ];
-    r2 = pulFaultStackAddress[ 2 ];
-    r3 = pulFaultStackAddress[ 3 ];
-
-    r12 = pulFaultStackAddress[ 4 ];
-    lr = pulFaultStackAddress[ 5 ];
-    pc = pulFaultStackAddress[ 6 ];
-    psr = pulFaultStackAddress[ 7 ];
-
-    / * When the following line is hit, the variables contain the register values. * /
-    for( ;; );
-}
-*/
-
-
-/*
-*	---------------------------------------------------------------------------
-* 												HARDFAULT HANDLER END
-*	---------------------------------------------------------------------------
-*/
 
 
 #ifdef USE_FULL_ASSERT

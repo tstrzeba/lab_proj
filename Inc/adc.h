@@ -18,7 +18,11 @@ extern ADC_HandleTypeDef hadc3;
 *		defines used by filtering functions
 */
 #define BLOCK_SIZE 24
-#define NUM_TAPS 53			// how many taps have
+// Ist filter #define NUM_TAPS 53			// how many taps have
+// IInd filter
+//#define NUM_TAPS 47
+// IIIrd filter
+#define NUM_TAPS 51
 
 /* 
 * 	Struct - before filters 

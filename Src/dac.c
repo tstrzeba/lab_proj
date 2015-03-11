@@ -65,8 +65,10 @@ void MX_DAC_Init(void)
 }
 
 void dac_ON(void){
-	htim2.Instance->CR1 |= TIM_CR1_CEN;
+	TIM2->CR1 |= TIM_CR1_CEN;
+	//htim2.Instance->CR1 |= TIM_CR1_CEN;
 }
 void dac_OFF(void){
-	htim2.Instance->CR1 &= ~TIM_CR1_CEN;
+	TIM2->CR1 &= ~TIM_CR1_CEN ;
+	//htim2.Instance->CR1 &= ~TIM_CR1_CEN;
 }
