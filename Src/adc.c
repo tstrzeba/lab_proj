@@ -102,7 +102,7 @@ void MX_ADC3_Init(void) {
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
   hadc3.Instance = ADC3;
-  hadc3.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV8;
+  hadc3.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
   hadc3.Init.Resolution = ADC_RESOLUTION12b;
   hadc3.Init.ScanConvMode = ENABLE;
   hadc3.Init.ContinuousConvMode = ENABLE;

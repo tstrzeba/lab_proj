@@ -133,7 +133,7 @@ int main(void)
 
 	/// Init radio RFM73 module
 	rfm73_init( &radio1 );
-	rfm73_init( &radio2 );
+	//rfm73_init( &radio2 );
 
 
   /** Infinite loop */
@@ -146,10 +146,10 @@ int main(void)
 		dac_data_ready(); 
 		
 		/// Check status rfm73 module
-		rfm73_check( &radio1 ) ;
+		 rfm73_check( &radio1 ) ;
 		
 		/// Check status rfm73 module
-		rfm73_check( &radio2 ) ;
+		//rfm73_check( &radio2 ) ;
 			
 		
 		/// Perform connection procedure - master mode:
@@ -179,7 +179,8 @@ int main(void)
 			( (HAL_GetTick() - system.s_timelast) >= SYSTEM_SLAVE_TIMEOUT_VAL )
 		  ) {
 
-			slave_disconnect(&radio2) ;
+				//slave_disconnect(&radio2) ;
+				slave_disconnect(&radio1) ;
 		}
 	}
 }
@@ -218,7 +219,7 @@ void MX_TIM2_Init(void) {
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1520 ;		/// 1428 give as 95,2 us bettwen interrupts
+  htim2.Init.Period = 0x0308 ;// 760 ;		// was 1520 /// 1428 give as 95,2 us bettwen interrupts
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   HAL_TIM_Base_Init(&htim2);
 	TIM2->DIER |= TIM_DIER_UIE;	/// Update Interrupt Enable
